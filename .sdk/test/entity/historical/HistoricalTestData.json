@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "historical": {
+      "HISTORICAL00": {
+        "data": [],
+        "token_id": "TOKEN01"
+      },
+      "HISTORICAL01": {
+        "data": [],
+        "token_id": "TOKEN01"
+      },
+      "HISTORICAL02": {
+        "data": [],
+        "token_id": "TOKEN01"
+      }
+    }
+  },
+  "new": {
+    "historical": {
+      "historical_ref01": {
+        "data": [],
+        "token_id": "TOKEN01"
+      }
+    }
+  }
+}

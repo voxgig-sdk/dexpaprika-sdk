@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "exchange": {
+      "EXCHANGE00": {
+        "chain": "s3c",
+        "id": "EXCHANGE00",
+        "liquidity_usd": 62,
+        "name": "s3f",
+        "trades_24h": "s40",
+        "volume_24h": 65
+      },
+      "EXCHANGE01": {
+        "chain": "s78",
+        "id": "EXCHANGE01",
+        "liquidity_usd": 122,
+        "name": "s7b",
+        "trades_24h": "s7c",
+        "volume_24h": 125
+      },
+      "EXCHANGE02": {
+        "chain": "sb4",
+        "id": "EXCHANGE02",
+        "liquidity_usd": 182,
+        "name": "sb7",
+        "trades_24h": "sb8",
+        "volume_24h": 185
+      }
+    }
+  },
+  "new": {
+    "exchange": {
+      "exchange_ref01": {
+        "chain": "sf0",
+        "liquidity_usd": 242,
+        "name": "sf3",
+        "trades_24h": "sf4",
+        "volume_24h": 245
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# BasicPoolFlow
+
+main: kit: flow: BasicPoolFlow:
+{
+  entity: "pool",
+  kind: "basic",
+  name: "BasicPoolFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "pool_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPoolFlow"
+}

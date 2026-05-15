@@ -1,0 +1,69 @@
+{
+  "existing": {
+    "token": {
+      "TOKEN00": {
+        "address": "s82",
+        "chain": "s83",
+        "decimal": "s84",
+        "id": "TOKEN00",
+        "last_updated": "s86",
+        "liquidity_usd": 135,
+        "market_cap": 136,
+        "name": "s89",
+        "price_change_24h": 138,
+        "price_usd": 139,
+        "symbol": "s8c",
+        "total_supply": 141,
+        "volume_24h": 142
+      },
+      "TOKEN01": {
+        "address": "s104",
+        "chain": "s105",
+        "decimal": "s106",
+        "id": "TOKEN01",
+        "last_updated": "s108",
+        "liquidity_usd": 265,
+        "market_cap": 266,
+        "name": "s10b",
+        "price_change_24h": 268,
+        "price_usd": 269,
+        "symbol": "s10e",
+        "total_supply": 271,
+        "volume_24h": 272
+      },
+      "TOKEN02": {
+        "address": "s186",
+        "chain": "s187",
+        "decimal": "s188",
+        "id": "TOKEN02",
+        "last_updated": "s18a",
+        "liquidity_usd": 395,
+        "market_cap": 396,
+        "name": "s18d",
+        "price_change_24h": 398,
+        "price_usd": 399,
+        "symbol": "s190",
+        "total_supply": 401,
+        "volume_24h": 402
+      }
+    }
+  },
+  "new": {
+    "token": {
+      "token_ref01": {
+        "address": "s208",
+        "chain": "s209",
+        "decimal": "s20a",
+        "last_updated": "s20c",
+        "liquidity_usd": 525,
+        "market_cap": 526,
+        "name": "s20f",
+        "price_change_24h": 528,
+        "price_usd": 529,
+        "symbol": "s212",
+        "total_supply": 531,
+        "volume_24h": 532
+      }
+    }
+  }
+}

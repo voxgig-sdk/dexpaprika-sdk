@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "pool": {
+      "POOL00": {
+        "address": "s5a",
+        "apr": 91,
+        "chain": "s5c",
+        "dex": "s5d",
+        "id": "POOL00",
+        "liquidity_usd": 95,
+        "token0": {},
+        "token1": {},
+        "volume_24h": 98
+      },
+      "POOL01": {
+        "address": "sb4",
+        "apr": 181,
+        "chain": "sb6",
+        "dex": "sb7",
+        "id": "POOL01",
+        "liquidity_usd": 185,
+        "token0": {},
+        "token1": {},
+        "volume_24h": 188
+      },
+      "POOL02": {
+        "address": "s10e",
+        "apr": 271,
+        "chain": "s110",
+        "dex": "s111",
+        "id": "POOL02",
+        "liquidity_usd": 275,
+        "token0": {},
+        "token1": {},
+        "volume_24h": 278
+      }
+    }
+  },
+  "new": {
+    "pool": {
+      "pool_ref01": {
+        "address": "s168",
+        "apr": 361,
+        "chain": "s16a",
+        "dex": "s16b",
+        "liquidity_usd": 365,
+        "token0": {},
+        "token1": {},
+        "volume_24h": 368
+      }
+    }
+  }
+}

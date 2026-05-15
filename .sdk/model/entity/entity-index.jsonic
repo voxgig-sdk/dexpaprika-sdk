@@ -1,0 +1,7 @@
+# Entity Models
+
+@"exchange.jsonic"
+@"historical.jsonic"
+@"pool.jsonic"
+@"ticker.jsonic"
+@"token.jsonic"

@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "ticker": {
+      "TICKER00": {
+        "price_change_24h": 50,
+        "price_usd": 51,
+        "symbol": "s34",
+        "timestamp": "s35",
+        "volume_24h": 54
+      },
+      "TICKER01": {
+        "price_change_24h": 100,
+        "price_usd": 101,
+        "symbol": "s66",
+        "timestamp": "s67",
+        "volume_24h": 104
+      },
+      "TICKER02": {
+        "price_change_24h": 150,
+        "price_usd": 151,
+        "symbol": "s98",
+        "timestamp": "s99",
+        "volume_24h": 154
+      }
+    }
+  },
+  "new": {
+    "ticker": {
+      "ticker_ref01": {
+        "price_change_24h": 200,
+        "price_usd": 201,
+        "symbol": "sca",
+        "timestamp": "scb",
+        "volume_24h": 204
+      }
+    }
+  }
+}

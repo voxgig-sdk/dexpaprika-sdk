@@ -1,0 +1,7 @@
+# Flows
+
+@"BasicExchangeFlow.jsonic"
+@"BasicHistoricalFlow.jsonic"
+@"BasicPoolFlow.jsonic"
+@"BasicTickerFlow.jsonic"
+@"BasicTokenFlow.jsonic"

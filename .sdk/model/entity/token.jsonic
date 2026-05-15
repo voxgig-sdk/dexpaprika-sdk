@@ -1,0 +1,176 @@
+# Entity: token
+
+main: kit: entity: token: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "chain"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "decimal"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "last_updated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "liquidity_usd"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "market_cap"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "price_change_24h"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "price_usd"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "symbol"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "total_supply"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "volume_24h"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "token"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "chain"
+                orig: "chain"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/tokens"
+          parts: [
+            "v1"
+            "tokens"
+          ]
+          select: {
+            exist: [
+              "chain"
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "token_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/tokens/{token_id}"
+          parts: [
+            "v1"
+            "tokens"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              token_id: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,22 @@
+# BasicExchangeFlow
+
+main: kit: flow: BasicExchangeFlow:
+{
+  entity: "exchange",
+  kind: "basic",
+  name: "BasicExchangeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "exchange_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicExchangeFlow"
+}

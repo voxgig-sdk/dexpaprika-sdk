@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// Dexpaprika SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+DexpaprikaUtility::setRegistrar(function (DexpaprikaUtility $u): void {
+    $u->clean = [DexpaprikaClean::class, 'call'];
+    $u->done = [DexpaprikaDone::class, 'call'];
+    $u->make_error = [DexpaprikaMakeError::class, 'call'];
+    $u->feature_add = [DexpaprikaFeatureAdd::class, 'call'];
+    $u->feature_hook = [DexpaprikaFeatureHook::class, 'call'];
+    $u->feature_init = [DexpaprikaFeatureInit::class, 'call'];
+    $u->fetcher = [DexpaprikaFetcher::class, 'call'];
+    $u->make_fetch_def = [DexpaprikaMakeFetchDef::class, 'call'];
+    $u->make_context = [DexpaprikaMakeContext::class, 'call'];
+    $u->make_options = [DexpaprikaMakeOptions::class, 'call'];
+    $u->make_request = [DexpaprikaMakeRequest::class, 'call'];
+    $u->make_response = [DexpaprikaMakeResponse::class, 'call'];
+    $u->make_result = [DexpaprikaMakeResult::class, 'call'];
+    $u->make_point = [DexpaprikaMakePoint::class, 'call'];
+    $u->make_spec = [DexpaprikaMakeSpec::class, 'call'];
+    $u->make_url = [DexpaprikaMakeUrl::class, 'call'];
+    $u->param = [DexpaprikaParam::class, 'call'];
+    $u->prepare_auth = [DexpaprikaPrepareAuth::class, 'call'];
+    $u->prepare_body = [DexpaprikaPrepareBody::class, 'call'];
+    $u->prepare_headers = [DexpaprikaPrepareHeaders::class, 'call'];
+    $u->prepare_method = [DexpaprikaPrepareMethod::class, 'call'];
+    $u->prepare_params = [DexpaprikaPrepareParams::class, 'call'];
+    $u->prepare_path = [DexpaprikaPreparePath::class, 'call'];
+    $u->prepare_query = [DexpaprikaPrepareQuery::class, 'call'];
+    $u->result_basic = [DexpaprikaResultBasic::class, 'call'];
+    $u->result_body = [DexpaprikaResultBody::class, 'call'];
+    $u->result_headers = [DexpaprikaResultHeaders::class, 'call'];
+    $u->transform_request = [DexpaprikaTransformRequest::class, 'call'];
+    $u->transform_response = [DexpaprikaTransformResponse::class, 'call'];
+});

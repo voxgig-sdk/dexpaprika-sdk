@@ -1,0 +1,989 @@
+{
+  "name": "dexpaprika",
+  "origin": "voxgig-sdk",
+  "def": "dexpaprika_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "name": "DexPaprika API Documentation",
+          "url": "https://docs.dexpaprika.com/"
+        },
+        "description": "DexPaprika provides access to comprehensive decentralized exchange (DEX) data, including real-time token prices, liquidity pools, and trading volumes. It is designed for developers creating trading dashboards, portfolio trackers, and DeFi applications.",
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "https://api.dexpaprika.com"
+          }
+        ],
+        "title": "DexPaprika API",
+        "version": "1.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "exchange": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "chain",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "liquidity_usd",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "trades_24h",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "volume_24h",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "exchange",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "method": "GET",
+                  "orig": "/v1/exchanges",
+                  "parts": [
+                    "v1",
+                    "exchanges"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "historical": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "data",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "token_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "historical",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "token_id",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "end",
+                        "orig": "end",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "1h",
+                        "kind": "query",
+                        "name": "interval",
+                        "orig": "interval",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "start",
+                        "orig": "start",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/v1/historical/{token_id}",
+                  "parts": [
+                    "v1",
+                    "historical",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "token_id": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "end",
+                      "id",
+                      "interval",
+                      "start"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "pool": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "address",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "apr",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "chain",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "dex",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "liquidity_usd",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "token0",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "token1",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "volume_24h",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "pool",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "dex",
+                        "orig": "dex",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 100,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/v1/pools",
+                  "parts": [
+                    "v1",
+                    "pools"
+                  ],
+                  "select": {
+                    "exist": [
+                      "dex",
+                      "limit"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ticker": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "price_change_24h",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "price_usd",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "symbol",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "volume_24h",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "name": "ticker",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "symbol",
+                        "orig": "symbol",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/v1/tickers",
+                  "parts": [
+                    "v1",
+                    "tickers"
+                  ],
+                  "select": {
+                    "exist": [
+                      "symbol"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "token": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "address",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "chain",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "decimal",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "last_updated",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "liquidity_usd",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "market_cap",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "price_change_24h",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "price_usd",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "symbol",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "total_supply",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "volume_24h",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "token",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "chain",
+                        "orig": "chain",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 100,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/v1/tokens",
+                  "parts": [
+                    "v1",
+                    "tokens"
+                  ],
+                  "select": {
+                    "exist": [
+                      "chain",
+                      "limit",
+                      "offset"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "token_id",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/v1/tokens/{token_id}",
+                  "parts": [
+                    "v1",
+                    "tokens",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "token_id": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicExchangeFlow": {
+          "entity": "exchange",
+          "kind": "basic",
+          "name": "BasicExchangeFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "exchange_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicExchangeFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicHistoricalFlow": {
+          "entity": "historical",
+          "kind": "basic",
+          "name": "BasicHistoricalFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "historical_ref01",
+                "srcdatavar": "historical_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "historical01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-historical_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicHistoricalFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicPoolFlow": {
+          "entity": "pool",
+          "kind": "basic",
+          "name": "BasicPoolFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "pool_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicPoolFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicTickerFlow": {
+          "entity": "ticker",
+          "kind": "basic",
+          "name": "BasicTickerFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "ticker_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicTickerFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicTokenFlow": {
+          "entity": "token",
+          "kind": "basic",
+          "name": "BasicTokenFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "token_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "token_ref01",
+                "srcdatavar": "token_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "token01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-token_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicTokenFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "dexpaprika"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "dexpaprika"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "dexpaprika"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "dexpaprika"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "dexpaprika"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "dexpaprika"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "dexpaprika",
+  "Name": "Dexpaprika",
+  "name_": "dexpaprika",
+  "name-": "dexpaprika",
+  "NAME": "DEXPAPRIKA"
+}

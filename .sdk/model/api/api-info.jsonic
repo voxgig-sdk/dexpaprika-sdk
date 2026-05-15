@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "DexPaprika API Documentation"
+        url: "https://docs.dexpaprika.com/"
+      }
+      description: "DexPaprika provides access to comprehensive decentralized exchange (DEX) data, including real-time token prices, liquidity pools, and trading volumes. It is designed for developers creating trading dashboards, portfolio trackers, and DeFi applications."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.dexpaprika.com"
+        }
+      ]
+      title: "DexPaprika API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,74 @@
+# Entity: ticker
+
+main: kit: entity: ticker: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "price_change_24h"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "price_usd"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "symbol"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "volume_24h"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "ticker"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/tickers"
+          parts: [
+            "v1"
+            "tickers"
+          ]
+          select: {
+            exist: [
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
