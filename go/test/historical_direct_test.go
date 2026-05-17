@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/dexpaprika-sdk"
-	"github.com/voxgig-sdk/dexpaprika-sdk/core"
+	sdk "github.com/voxgig-sdk/dexpaprika-sdk/go"
+	"github.com/voxgig-sdk/dexpaprika-sdk/go/core"
 )
 
 func TestHistoricalDirect(t *testing.T) {

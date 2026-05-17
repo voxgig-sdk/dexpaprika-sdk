@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/dexpaprika-sdk"
-	"github.com/voxgig-sdk/dexpaprika-sdk/core"
+	sdk "github.com/voxgig-sdk/dexpaprika-sdk/go"
+	"github.com/voxgig-sdk/dexpaprika-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/dexpaprika-sdk/go/utility/struct"
 )
 
 func TestHistoricalEntity(t *testing.T) {

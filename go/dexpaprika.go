@@ -1,10 +1,10 @@
 package voxgigdexpaprikasdk
 
 import (
-	"github.com/voxgig-sdk/dexpaprika-sdk/core"
-	"github.com/voxgig-sdk/dexpaprika-sdk/entity"
-	"github.com/voxgig-sdk/dexpaprika-sdk/feature"
-	_ "github.com/voxgig-sdk/dexpaprika-sdk/utility"
+	"github.com/voxgig-sdk/dexpaprika-sdk/go/core"
+	"github.com/voxgig-sdk/dexpaprika-sdk/go/entity"
+	"github.com/voxgig-sdk/dexpaprika-sdk/go/feature"
+	_ "github.com/voxgig-sdk/dexpaprika-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

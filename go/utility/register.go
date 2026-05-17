@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/dexpaprika-sdk/core"
+import "github.com/voxgig-sdk/dexpaprika-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

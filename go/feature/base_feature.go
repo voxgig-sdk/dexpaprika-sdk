@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/dexpaprika-sdk/core"
+	"github.com/voxgig-sdk/dexpaprika-sdk/go/core"
 )
 
 type BaseFeature struct {
