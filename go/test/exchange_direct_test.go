@@ -93,14 +93,12 @@ func exchangeDirectSetup(mockres any) *exchangeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DEXPAPRIKA_TEST_EXCHANGE_ENTID": map[string]any{},
 		"DEXPAPRIKA_TEST_LIVE":    "FALSE",
-		"DEXPAPRIKA_APIKEY":       "NONE",
 	})
 
 	live := env["DEXPAPRIKA_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["DEXPAPRIKA_APIKEY"],
 		}
 		client := sdk.NewDexpaprikaSDK(mergedOpts)
 

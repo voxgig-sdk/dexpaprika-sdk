@@ -68,14 +68,12 @@ function ticker_direct_setup($mockres)
     $env = Runner::env_override([
         "DEXPAPRIKA_TEST_TICKER_ENTID" => [],
         "DEXPAPRIKA_TEST_LIVE" => "FALSE",
-        "DEXPAPRIKA_APIKEY" => "NONE",
     ]);
 
     $live = $env["DEXPAPRIKA_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["DEXPAPRIKA_APIKEY"],
         ];
         $client = new DexpaprikaSDK($merged_opts);
         return [

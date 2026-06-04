@@ -119,7 +119,6 @@ func poolBasicSetup(extra map[string]any) *entityTestSetup {
 		"DEXPAPRIKA_TEST_POOL_ENTID": idmap,
 		"DEXPAPRIKA_TEST_LIVE":      "FALSE",
 		"DEXPAPRIKA_TEST_EXPLAIN":   "FALSE",
-		"DEXPAPRIKA_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DEXPAPRIKA_TEST_POOL_ENTID"])
@@ -130,7 +129,6 @@ func poolBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DEXPAPRIKA_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DEXPAPRIKA_APIKEY"],
 			},
 			extra,
 		})

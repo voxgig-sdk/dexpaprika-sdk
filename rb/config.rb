@@ -15,9 +15,6 @@ module DexpaprikaConfig
       },
       "options" => {
         "base" => "https://api.dexpaprika.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

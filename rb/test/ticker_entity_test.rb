@@ -83,7 +83,6 @@ def ticker_basic_setup(extra)
     "DEXPAPRIKA_TEST_TICKER_ENTID" => idmap,
     "DEXPAPRIKA_TEST_LIVE" => "FALSE",
     "DEXPAPRIKA_TEST_EXPLAIN" => "FALSE",
-    "DEXPAPRIKA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +94,6 @@ def ticker_basic_setup(extra)
   if env["DEXPAPRIKA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEXPAPRIKA_APIKEY"],
       },
       extra || {},
     ])

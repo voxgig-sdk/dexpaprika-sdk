@@ -17,7 +17,19 @@
           }
         ],
         "title": "DexPaprika API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Real-time decentralized exchange data covering token prices, liquidity pools, and swaps across 33+ blockchain networks",
+        "homepage": "https://dexpaprika.com",
+        "docs_url": "https://docs.dexpaprika.com/",
+        "about_md": "DexPaprika is a public REST API for on-chain decentralized exchange (DEX) data, developed by the team behind [CoinPaprika](https://coinpaprika.com). It exposes token prices, liquidity pool state, and swap-level transactions across more than 33 blockchain networks from a single endpoint at `https://api.dexpaprika.com`.\n\nWhat you get from the API:\n\n- Token data: latest USD price, 24h high/low, all-time high, fully diluted market cap, liquidity, and buy/sell activity\n- Pool data: reserves, fee tiers, transaction history, and filtering by volume, transactions, or creation date\n- Swap-level transactions with pagination and timing\n- Network metadata listing all supported chains via `GET /networks`\n- Optional Server-Sent Events streaming feeds at `streaming.dexpaprika.com` for per-second token prices and block-level reserve deltas\n\nThe public API requires no API key or registration. A paid Pro tier is offered for higher throughput and dedicated infrastructure. CORS is disabled on the public endpoint, so calls are typically made server-side.",
+        "entity_desc": {
+          "exchange": "Decentralized exchange venues (DEXes) running on each supported blockchain network",
+          "historical": "Historical price and volume series for tokens and pools",
+          "pool": "Liquidity pool resources exposing reserves, fee tiers, and swap history, e.g. `GET /networks/{network_id}/pools/{pool_id}`",
+          "ticker": "Per-token quote snapshots including USD price, 24h high/low, market cap, and trading volume",
+          "token": "On-chain token resources keyed by network and contract address, e.g. `GET /networks/{network_id}/tokens/{address}`"
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +37,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "exchange": {

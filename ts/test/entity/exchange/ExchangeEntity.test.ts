@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'DEXPAPRIKA_TEST_EXCHANGE_ENTID': idmap,
     'DEXPAPRIKA_TEST_LIVE': 'FALSE',
     'DEXPAPRIKA_TEST_EXPLAIN': 'FALSE',
-    'DEXPAPRIKA_APIKEY': 'NONE',
   })
 
   idmap = env['DEXPAPRIKA_TEST_EXCHANGE_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DexpaprikaSDK(merge([
       {
-        apikey: env.DEXPAPRIKA_APIKEY,
       },
       extra
     ]))

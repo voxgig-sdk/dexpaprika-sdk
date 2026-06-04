@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { DexpaprikaSDK } from 'dexpaprika'
 
-const client = new DexpaprikaSDK({
-  apikey: process.env.DEXPAPRIKA_APIKEY,
-})
+const client = new DexpaprikaSDK({})
 ```
 
 ### 2. List exchanges
@@ -84,7 +82,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DexpaprikaSDK({ apikey: '...' })
+const client = new DexpaprikaSDK()
 const testClient = client.tester()
 ```
 
@@ -120,7 +118,6 @@ const logger = {
 }
 
 const client = new DexpaprikaSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -131,7 +128,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DEXPAPRIKA_TEST_LIVE=TRUE
-DEXPAPRIKA_APIKEY=<your-key>
 ```
 
 Then run:
@@ -149,7 +145,6 @@ cd ts && npm test
 
 ```ts
 new DexpaprikaSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -160,7 +155,6 @@ new DexpaprikaSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
