@@ -10,7 +10,7 @@ The PHP SDK for the Dexpaprika API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/dexpaprika-sdk
+composer require voxgig-sdk/dexpaprika
 ```
 
 

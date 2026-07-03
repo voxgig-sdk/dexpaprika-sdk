@@ -10,7 +10,7 @@ The Lua SDK for the Dexpaprika API — an entity-oriented client using Lua conve
 
 ## Install
 ```bash
-luarocks install dexpaprika-sdk
+luarocks install voxgig-sdk-dexpaprika
 ```
 
 If the module is not yet published, add the source directory to

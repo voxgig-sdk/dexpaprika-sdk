@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/dexpaprika",
-  "description": "Dexpaprika SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the DexPaprika public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "dexpaprika"],
+  "homepage": "https://github.com/voxgig-sdk/dexpaprika-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/dexpaprika-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/dexpaprika-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

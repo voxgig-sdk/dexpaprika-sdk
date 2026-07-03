@@ -10,7 +10,7 @@ The TypeScript SDK for the Dexpaprika API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install dexpaprika
+npm install @voxgig-sdk/dexpaprika
 ```
 ## Tutorial: your first API call
 

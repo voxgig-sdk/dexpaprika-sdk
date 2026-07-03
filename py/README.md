@@ -10,7 +10,7 @@ The Python SDK for the Dexpaprika API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install dexpaprika-sdk
+pip install voxgig-sdk-dexpaprika
 ```
 
 Or install from source:

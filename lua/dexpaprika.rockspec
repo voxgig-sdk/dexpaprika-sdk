@@ -8,12 +8,14 @@ source = {
   dir = "dexpaprika-sdk/lua"
 }
 description = {
-  summary = "Dexpaprika SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the DexPaprika public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/dexpaprika-sdk",
+  issues_url = "https://github.com/voxgig-sdk/dexpaprika-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "dexpaprika" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

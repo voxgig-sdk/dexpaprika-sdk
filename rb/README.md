@@ -10,13 +10,13 @@ The Ruby SDK for the Dexpaprika API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install dexpaprika-sdk
+gem install voxgig-sdk-dexpaprika
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "dexpaprika-sdk"
+gem "voxgig-sdk-dexpaprika"
 ```
 
 Then run:
