@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -121,7 +121,7 @@ local exchange = client:Exchange(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Exchange(nil):list(nil, nil)
+local results, err = client:Exchange():list()
 ```
 
 ### Common Methods
@@ -174,7 +174,7 @@ local historical = client:Historical(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Historical(nil):load({ id = "historical_id" }, nil)
+local result, err = client:Historical():load({ id = "historical_id" })
 ```
 
 ### Common Methods
@@ -234,7 +234,7 @@ local pool = client:Pool(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Pool(nil):list(nil, nil)
+local results, err = client:Pool():list()
 ```
 
 ### Common Methods
@@ -290,7 +290,7 @@ local ticker = client:Ticker(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Ticker(nil):list(nil, nil)
+local results, err = client:Ticker():list()
 ```
 
 ### Common Methods
@@ -354,7 +354,7 @@ local token = client:Token(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Token(nil):list(nil, nil)
+local results, err = client:Token():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -362,7 +362,7 @@ local results, err = client:Token(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Token(nil):load({ id = "token_id" }, nil)
+local result, err = client:Token():load({ id = "token_id" })
 ```
 
 ### Common Methods

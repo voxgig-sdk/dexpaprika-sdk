@@ -80,12 +80,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DEXPAPRIKA_TEST_HISTORICAL_ENTID': {},
     'DEXPAPRIKA_TEST_LIVE': 'FALSE',
+    'DEXPAPRIKA_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DEXPAPRIKA_TEST_LIVE
 
   if (live) {
     const client = new DexpaprikaSDK({
+      apikey: env.DEXPAPRIKA_APIKEY,
     })
 
     let idmap: any = env['DEXPAPRIKA_TEST_HISTORICAL_ENTID']

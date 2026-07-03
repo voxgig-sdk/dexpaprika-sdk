@@ -69,12 +69,14 @@ def _historical_direct_setup(mockres):
     env = runner.env_override({
         "DEXPAPRIKA_TEST_HISTORICAL_ENTID": {},
         "DEXPAPRIKA_TEST_LIVE": "FALSE",
+        "DEXPAPRIKA_APIKEY": "NONE",
     })
 
     live = env.get("DEXPAPRIKA_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("DEXPAPRIKA_APIKEY"),
         }
         client = DexpaprikaSDK(merged_opts)
         return {

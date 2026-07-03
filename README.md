@@ -1,22 +1,8 @@
 # Dexpaprika SDK
 
-Real-time decentralized exchange data covering token prices, liquidity pools, and swaps across 33+ blockchain networks
+DexPaprika API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About DexPaprika API
-
-DexPaprika is a public REST API for on-chain decentralized exchange (DEX) data, developed by the team behind [CoinPaprika](https://coinpaprika.com). It exposes token prices, liquidity pool state, and swap-level transactions across more than 33 blockchain networks from a single endpoint at `https://api.dexpaprika.com`.
-
-What you get from the API:
-
-- Token data: latest USD price, 24h high/low, all-time high, fully diluted market cap, liquidity, and buy/sell activity
-- Pool data: reserves, fee tiers, transaction history, and filtering by volume, transactions, or creation date
-- Swap-level transactions with pagination and timing
-- Network metadata listing all supported chains via `GET /networks`
-- Optional Server-Sent Events streaming feeds at `streaming.dexpaprika.com` for per-second token prices and block-level reserve deltas
-
-The public API requires no API key or registration. A paid Pro tier is offered for higher throughput and dedicated infrastructure. CORS is disabled on the public endpoint, so calls are typically made server-side.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install dexpaprika-sdk
 luarocks install dexpaprika-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DexpaprikaSDK } from 'dexpaprika'
 
-const client = new DexpaprikaSDK({})
+const client = new DexpaprikaSDK({
+  apikey: process.env.DEXPAPRIKA_APIKEY,
+})
 
 // List all exchanges
 const exchanges = await client.Exchange().list()
+console.log(exchanges.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Exchange** | Decentralized exchange venues (DEXes) running on each supported blockchain network | `/v1/exchanges` |
-| **Historical** | Historical price and volume series for tokens and pools | `/v1/historical/{token_id}` |
-| **Pool** | Liquidity pool resources exposing reserves, fee tiers, and swap history, e.g. `GET /networks/{network_id}/pools/{pool_id}` | `/v1/pools` |
-| **Ticker** | Per-token quote snapshots including USD price, 24h high/low, market cap, and trading volume | `/v1/tickers` |
-| **Token** | On-chain token resources keyed by network and contract address, e.g. `GET /networks/{network_id}/tokens/{address}` | `/v1/tokens` |
+| **Exchange** |  | `/v1/exchanges` |
+| **Historical** |  | `/v1/historical/{token_id}` |
+| **Pool** |  | `/v1/pools` |
+| **Ticker** |  | `/v1/tickers` |
+| **Token** |  | `/v1/tokens` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -116,12 +104,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from dexpaprika_sdk import DexpaprikaSDK
 
-client = DexpaprikaSDK({})
+client = DexpaprikaSDK({
+    "apikey": os.environ.get("DEXPAPRIKA_APIKEY"),
+})
 
 # List all exchanges
-exchanges, err = client.Exchange(None).list(None, None)
+exchanges, err = client.Exchange().list()
+print(exchanges)
 ```
 
 ### PHP
@@ -130,10 +122,13 @@ exchanges, err = client.Exchange(None).list(None, None)
 <?php
 require_once 'dexpaprika_sdk.php';
 
-$client = new DexpaprikaSDK([]);
+$client = new DexpaprikaSDK([
+    "apikey" => getenv("DEXPAPRIKA_APIKEY"),
+]);
 
 // List all exchanges
-[$exchanges, $err] = $client->Exchange(null)->list(null, null);
+[$exchanges, $err] = $client->Exchange()->list();
+print_r($exchanges);
 ```
 
 ### Golang
@@ -141,10 +136,13 @@ $client = new DexpaprikaSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/dexpaprika-sdk/go"
 
-client := sdk.NewDexpaprikaSDK(map[string]any{})
+client := sdk.NewDexpaprikaSDK(map[string]any{
+    "apikey": os.Getenv("DEXPAPRIKA_APIKEY"),
+})
 
 // List all exchanges
 exchanges, err := client.Exchange(nil).List(nil, nil)
+fmt.Println(exchanges)
 ```
 
 ### Ruby
@@ -152,10 +150,13 @@ exchanges, err := client.Exchange(nil).List(nil, nil)
 ```ruby
 require_relative "Dexpaprika_sdk"
 
-client = DexpaprikaSDK.new({})
+client = DexpaprikaSDK.new({
+  "apikey" => ENV["DEXPAPRIKA_APIKEY"],
+})
 
 # List all exchanges
-exchanges, err = client.Exchange(nil).list(nil, nil)
+exchanges, err = client.Exchange().list
+puts exchanges
 ```
 
 ### Lua
@@ -163,10 +164,13 @@ exchanges, err = client.Exchange(nil).list(nil, nil)
 ```lua
 local sdk = require("dexpaprika_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DEXPAPRIKA_APIKEY"),
+})
 
 -- List all exchanges
-local exchanges, err = client:Exchange(nil):list(nil, nil)
+local exchanges, err = client:Exchange():list()
+print(exchanges)
 ```
 
 ## Unit testing in offline mode
@@ -185,25 +189,21 @@ const result = await client.Exchange().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DexpaprikaSDK.test(None, None)
-result, err = client.Exchange(None).load(
-    {"id": "test01"}, None
-)
+client = DexpaprikaSDK.test()
+result, err = client.Exchange().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DexpaprikaSDK::test(null, null);
-[$result, $err] = $client->Exchange(null)->load(
-    ["id" => "test01"], null
-);
+$client = DexpaprikaSDK::test();
+[$result, $err] = $client->Exchange()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Exchange(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -212,19 +212,15 @@ result, err := client.Exchange(nil).Load(
 ### Ruby
 
 ```ruby
-client = DexpaprikaSDK.test(nil, nil)
-result, err = client.Exchange(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DexpaprikaSDK.test
+result, err = client.Exchange().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Exchange(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Exchange():load({ id = "test01" })
 ```
 
 ## How it works
@@ -328,11 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the DexPaprika API
-
-- Upstream: [https://dexpaprika.com](https://dexpaprika.com)
-- API docs: [https://docs.dexpaprika.com/](https://docs.dexpaprika.com/)
 
 ---
 

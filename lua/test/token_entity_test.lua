@@ -102,6 +102,7 @@ function token_basic_setup(extra)
     ["DEXPAPRIKA_TEST_TOKEN_ENTID"] = idmap,
     ["DEXPAPRIKA_TEST_LIVE"] = "FALSE",
     ["DEXPAPRIKA_TEST_EXPLAIN"] = "FALSE",
+    ["DEXPAPRIKA_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -113,6 +114,7 @@ function token_basic_setup(extra)
   if env["DEXPAPRIKA_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["DEXPAPRIKA_APIKEY"],
       },
       extra or {},
     })
