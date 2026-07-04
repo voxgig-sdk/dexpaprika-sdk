@@ -28,15 +28,15 @@ import { DexpaprikaSDK } from '@voxgig-sdk/dexpaprika'
 const client = new DexpaprikaSDK()
 ```
 
-### 2. List exchanges
+### 2. List exchange records
+
+`list()` resolves to an array of Exchange objects — iterate it directly:
 
 ```ts
-const result = await client.exchange.list()
+const exchanges = await client.Exchange().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const exchange of exchanges) {
+  console.log(exchange)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DexpaprikaSDK.test()
 
-const result = await client.exchange.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const exchange = await client.Exchange().load({ id: 'test01' })
+// exchange is a bare entity populated with mock response data
+console.log(exchange)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.exchange
+const entity = client.Exchange()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -177,7 +180,7 @@ new DexpaprikaSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Exchange(data?)` | `ExchangeEntity` | Create a Exchange entity instance. |
+| `Exchange(data?)` | `ExchangeEntity` | Create an Exchange entity instance. |
 | `Historical(data?)` | `HistoricalEntity` | Create a Historical entity instance. |
 | `Pool(data?)` | `PoolEntity` | Create a Pool entity instance. |
 | `Ticker(data?)` | `TickerEntity` | Create a Ticker entity instance. |
@@ -198,29 +201,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): DexpaprikaSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -339,7 +343,7 @@ API path: `/v1/tokens`
 
 ### Exchange
 
-Create an instance: `const exchange = client.exchange`
+Create an instance: `const exchange = client.Exchange()`
 
 #### Operations
 
@@ -361,13 +365,13 @@ Create an instance: `const exchange = client.exchange`
 #### Example: List
 
 ```ts
-const exchanges = await client.exchange.list()
+const exchanges = await client.Exchange().list()
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.historical`
+Create an instance: `const historical = client.Historical()`
 
 #### Operations
 
@@ -385,13 +389,13 @@ Create an instance: `const historical = client.historical`
 #### Example: Load
 
 ```ts
-const historical = await client.historical.load({ id: 'historical_id' })
+const historical = await client.Historical().load({ id: 'historical_id' })
 ```
 
 
 ### Pool
 
-Create an instance: `const pool = client.pool`
+Create an instance: `const pool = client.Pool()`
 
 #### Operations
 
@@ -416,13 +420,13 @@ Create an instance: `const pool = client.pool`
 #### Example: List
 
 ```ts
-const pools = await client.pool.list()
+const pools = await client.Pool().list()
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `const ticker = client.Ticker()`
 
 #### Operations
 
@@ -443,13 +447,13 @@ Create an instance: `const ticker = client.ticker`
 #### Example: List
 
 ```ts
-const tickers = await client.ticker.list()
+const tickers = await client.Ticker().list()
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.token`
+Create an instance: `const token = client.Token()`
 
 #### Operations
 
@@ -479,13 +483,13 @@ Create an instance: `const token = client.token`
 #### Example: Load
 
 ```ts
-const token = await client.token.load({ id: 'token_id' })
+const token = await client.Token().load({ id: 'token_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tokens = await client.token.list()
+const tokens = await client.Token().list()
 ```
 
 
@@ -556,7 +560,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const exchange = client.exchange
+const exchange = client.Exchange()
 await exchange.load({ id: "example_id" })
 
 // exchange.data() now returns the loaded exchange data

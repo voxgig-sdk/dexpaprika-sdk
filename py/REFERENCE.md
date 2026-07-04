@@ -96,7 +96,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ExchangeEntity
 
 ```python
-exchange = client.exchange
+exchange = client.Exchange()
 ```
 
 ### Fields
@@ -117,7 +117,9 @@ exchange = client.exchange
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.exchange.list({})
+results = client.Exchange().list({})
+for exchange in results:
+    print(exchange)
 ```
 
 ### Common Methods
@@ -152,7 +154,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```python
-historical = client.historical
+historical = client.Historical()
 ```
 
 ### Fields
@@ -169,7 +171,7 @@ historical = client.historical
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.historical.load({"id": "historical_id"})
+result = client.Historical().load({"id": "historical_id"})
 ```
 
 ### Common Methods
@@ -204,7 +206,7 @@ Return the entity name.
 ## PoolEntity
 
 ```python
-pool = client.pool
+pool = client.Pool()
 ```
 
 ### Fields
@@ -228,7 +230,9 @@ pool = client.pool
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.pool.list({})
+results = client.Pool().list({})
+for pool in results:
+    print(pool)
 ```
 
 ### Common Methods
@@ -263,7 +267,7 @@ Return the entity name.
 ## TickerEntity
 
 ```python
-ticker = client.ticker
+ticker = client.Ticker()
 ```
 
 ### Fields
@@ -283,7 +287,9 @@ ticker = client.ticker
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.ticker.list({})
+results = client.Ticker().list({})
+for ticker in results:
+    print(ticker)
 ```
 
 ### Common Methods
@@ -318,7 +324,7 @@ Return the entity name.
 ## TokenEntity
 
 ```python
-token = client.token
+token = client.Token()
 ```
 
 ### Fields
@@ -346,7 +352,9 @@ token = client.token
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.token.list({})
+results = client.Token().list({})
+for token in results:
+    print(token)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -354,7 +362,7 @@ results = client.token.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.token.load({"id": "token_id"})
+result = client.Token().load({"id": "token_id"})
 ```
 
 ### Common Methods

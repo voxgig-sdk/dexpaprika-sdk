@@ -102,7 +102,7 @@ same parameters as `direct()`. Raises on error.
 ## ExchangeEntity
 
 ```ruby
-exchange = client.exchange
+exchange = client.Exchange
 ```
 
 ### Fields
@@ -123,7 +123,7 @@ exchange = client.exchange
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.exchange.list(nil)
+results = client.Exchange.list(nil)
 ```
 
 ### Common Methods
@@ -159,7 +159,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```ruby
-historical = client.historical
+historical = client.Historical
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ historical = client.historical
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.historical.load({ "id" => "historical_id" })
+result = client.Historical.load({ "id" => "historical_id" })
 ```
 
 ### Common Methods
@@ -212,7 +212,7 @@ Return the entity name.
 ## PoolEntity
 
 ```ruby
-pool = client.pool
+pool = client.Pool
 ```
 
 ### Fields
@@ -236,7 +236,7 @@ pool = client.pool
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.pool.list(nil)
+results = client.Pool.list(nil)
 ```
 
 ### Common Methods
@@ -272,7 +272,7 @@ Return the entity name.
 ## TickerEntity
 
 ```ruby
-ticker = client.ticker
+ticker = client.Ticker
 ```
 
 ### Fields
@@ -292,7 +292,7 @@ ticker = client.ticker
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.ticker.list(nil)
+results = client.Ticker.list(nil)
 ```
 
 ### Common Methods
@@ -328,7 +328,7 @@ Return the entity name.
 ## TokenEntity
 
 ```ruby
-token = client.token
+token = client.Token
 ```
 
 ### Fields
@@ -356,7 +356,7 @@ token = client.token
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.token.list(nil)
+results = client.Token.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -364,7 +364,7 @@ results = client.token.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.token.load({ "id" => "token_id" })
+result = client.Token.load({ "id" => "token_id" })
 ```
 
 ### Common Methods

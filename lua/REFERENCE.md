@@ -99,7 +99,7 @@ same parameters as `direct()`.
 ## ExchangeEntity
 
 ```lua
-local exchange = client:exchange(nil)
+local exchange = client:Exchange(nil)
 ```
 
 ### Fields
@@ -120,7 +120,7 @@ local exchange = client:exchange(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:exchange():list()
+local results, err = client:Exchange():list()
 ```
 
 ### Common Methods
@@ -156,7 +156,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```lua
-local historical = client:historical(nil)
+local historical = client:Historical(nil)
 ```
 
 ### Fields
@@ -173,7 +173,7 @@ local historical = client:historical(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:historical():load({ id = "historical_id" })
+local result, err = client:Historical():load({ id = "historical_id" })
 ```
 
 ### Common Methods
@@ -209,7 +209,7 @@ Return the entity name.
 ## PoolEntity
 
 ```lua
-local pool = client:pool(nil)
+local pool = client:Pool(nil)
 ```
 
 ### Fields
@@ -233,7 +233,7 @@ local pool = client:pool(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:pool():list()
+local results, err = client:Pool():list()
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ Return the entity name.
 ## TickerEntity
 
 ```lua
-local ticker = client:ticker(nil)
+local ticker = client:Ticker(nil)
 ```
 
 ### Fields
@@ -289,7 +289,7 @@ local ticker = client:ticker(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ticker():list()
+local results, err = client:Ticker():list()
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ Return the entity name.
 ## TokenEntity
 
 ```lua
-local token = client:token(nil)
+local token = client:Token(nil)
 ```
 
 ### Fields
@@ -353,7 +353,7 @@ local token = client:token(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:token():list()
+local results, err = client:Token():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -361,7 +361,7 @@ local results, err = client:token():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:token():load({ id = "token_id" })
+local result, err = client:Token():load({ id = "token_id" })
 ```
 
 ### Common Methods

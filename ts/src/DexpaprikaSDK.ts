@@ -208,70 +208,35 @@ class DexpaprikaSDK {
 
 
 
-  _exchange?: ExchangeEntity
-
-  // Idiomatic facade: `client.exchange.list()` / `client.exchange.load({ id })`.
-  get exchange(): ExchangeEntity {
-    return (this._exchange ??= new ExchangeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.exchange` instead. */
+  // Entity access: `client.Exchange().list()` / `client.Exchange().load({ id })`.
   Exchange(data?: any) {
     const self = this
     return new ExchangeEntity(self,data)
   }
 
 
-  _historical?: HistoricalEntity
-
-  // Idiomatic facade: `client.historical.list()` / `client.historical.load({ id })`.
-  get historical(): HistoricalEntity {
-    return (this._historical ??= new HistoricalEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.historical` instead. */
+  // Entity access: `client.Historical().list()` / `client.Historical().load({ id })`.
   Historical(data?: any) {
     const self = this
     return new HistoricalEntity(self,data)
   }
 
 
-  _pool?: PoolEntity
-
-  // Idiomatic facade: `client.pool.list()` / `client.pool.load({ id })`.
-  get pool(): PoolEntity {
-    return (this._pool ??= new PoolEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.pool` instead. */
+  // Entity access: `client.Pool().list()` / `client.Pool().load({ id })`.
   Pool(data?: any) {
     const self = this
     return new PoolEntity(self,data)
   }
 
 
-  _ticker?: TickerEntity
-
-  // Idiomatic facade: `client.ticker.list()` / `client.ticker.load({ id })`.
-  get ticker(): TickerEntity {
-    return (this._ticker ??= new TickerEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.ticker` instead. */
+  // Entity access: `client.Ticker().list()` / `client.Ticker().load({ id })`.
   Ticker(data?: any) {
     const self = this
     return new TickerEntity(self,data)
   }
 
 
-  _token?: TokenEntity
-
-  // Idiomatic facade: `client.token.list()` / `client.token.load({ id })`.
-  get token(): TokenEntity {
-    return (this._token ??= new TokenEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.token` instead. */
+  // Entity access: `client.Token().list()` / `client.Token().load({ id })`.
   Token(data?: any) {
     const self = this
     return new TokenEntity(self,data)

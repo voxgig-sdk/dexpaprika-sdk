@@ -208,65 +208,35 @@ class DexpaprikaSDK
   end
 
 
-  # Idiomatic facade: client.exchange.list / client.exchange.load({ "id" => ... })
-  def exchange
-    require_relative 'entity/exchange_entity'
-    @exchange ||= ExchangeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.exchange instead.
+  # Canonical facade: client.Exchange.list / client.Exchange.load({ "id" => ... })
   def Exchange(data = nil)
     require_relative 'entity/exchange_entity'
     ExchangeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.historical.list / client.historical.load({ "id" => ... })
-  def historical
-    require_relative 'entity/historical_entity'
-    @historical ||= HistoricalEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.historical instead.
+  # Canonical facade: client.Historical.list / client.Historical.load({ "id" => ... })
   def Historical(data = nil)
     require_relative 'entity/historical_entity'
     HistoricalEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.pool.list / client.pool.load({ "id" => ... })
-  def pool
-    require_relative 'entity/pool_entity'
-    @pool ||= PoolEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.pool instead.
+  # Canonical facade: client.Pool.list / client.Pool.load({ "id" => ... })
   def Pool(data = nil)
     require_relative 'entity/pool_entity'
     PoolEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.ticker.list / client.ticker.load({ "id" => ... })
-  def ticker
-    require_relative 'entity/ticker_entity'
-    @ticker ||= TickerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ticker instead.
+  # Canonical facade: client.Ticker.list / client.Ticker.load({ "id" => ... })
   def Ticker(data = nil)
     require_relative 'entity/ticker_entity'
     TickerEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.token.list / client.token.load({ "id" => ... })
-  def token
-    require_relative 'entity/token_entity'
-    @token ||= TokenEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.token instead.
+  # Canonical facade: client.Token.list / client.Token.load({ "id" => ... })
   def Token(data = nil)
     require_relative 'entity/token_entity'
     TokenEntity.new(self, data)

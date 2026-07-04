@@ -233,10 +233,10 @@ class DexpaprikaSDK
 
     private $_exchange = null;
 
-    // Idiomatic facade: $client->exchange()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Exchange() (PHP method
-    // names are case-insensitive).
-    public function exchange($data = null)
+    // Canonical facade: $client->Exchange()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->exchange()
+    // resolves here too.
+    public function Exchange($data = null)
     {
         require_once __DIR__ . '/entity/exchange_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DexpaprikaSDK
 
     private $_historical = null;
 
-    // Idiomatic facade: $client->historical()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Historical() (PHP method
-    // names are case-insensitive).
-    public function historical($data = null)
+    // Canonical facade: $client->Historical()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->historical()
+    // resolves here too.
+    public function Historical($data = null)
     {
         require_once __DIR__ . '/entity/historical_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DexpaprikaSDK
 
     private $_pool = null;
 
-    // Idiomatic facade: $client->pool()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Pool() (PHP method
-    // names are case-insensitive).
-    public function pool($data = null)
+    // Canonical facade: $client->Pool()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->pool()
+    // resolves here too.
+    public function Pool($data = null)
     {
         require_once __DIR__ . '/entity/pool_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class DexpaprikaSDK
 
     private $_ticker = null;
 
-    // Idiomatic facade: $client->ticker()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Ticker() (PHP method
-    // names are case-insensitive).
-    public function ticker($data = null)
+    // Canonical facade: $client->Ticker()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ticker()
+    // resolves here too.
+    public function Ticker($data = null)
     {
         require_once __DIR__ . '/entity/ticker_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class DexpaprikaSDK
 
     private $_token = null;
 
-    // Idiomatic facade: $client->token()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Token() (PHP method
-    // names are case-insensitive).
-    public function token($data = null)
+    // Canonical facade: $client->Token()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->token()
+    // resolves here too.
+    public function Token($data = null)
     {
         require_once __DIR__ . '/entity/token_entity.php';
         if ($data === null) {

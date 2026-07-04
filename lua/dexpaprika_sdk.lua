@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:exchange():list() / client:exchange():load({ id = ... })
-function DexpaprikaSDK:exchange(data)
+-- Idiomatic facade: client:Exchange():list() / client:Exchange():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DexpaprikaSDK:Exchange(data)
   local EntityMod = require("entity.exchange_entity")
   if data == nil then
     if self._exchange == nil then
@@ -256,15 +257,10 @@ function DexpaprikaSDK:exchange(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:exchange() instead.
-function DexpaprikaSDK:Exchange(data)
-  local EntityMod = require("entity.exchange_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:historical():list() / client:historical():load({ id = ... })
-function DexpaprikaSDK:historical(data)
+-- Idiomatic facade: client:Historical():list() / client:Historical():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DexpaprikaSDK:Historical(data)
   local EntityMod = require("entity.historical_entity")
   if data == nil then
     if self._historical == nil then
@@ -275,15 +271,10 @@ function DexpaprikaSDK:historical(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:historical() instead.
-function DexpaprikaSDK:Historical(data)
-  local EntityMod = require("entity.historical_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:pool():list() / client:pool():load({ id = ... })
-function DexpaprikaSDK:pool(data)
+-- Idiomatic facade: client:Pool():list() / client:Pool():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DexpaprikaSDK:Pool(data)
   local EntityMod = require("entity.pool_entity")
   if data == nil then
     if self._pool == nil then
@@ -294,15 +285,10 @@ function DexpaprikaSDK:pool(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:pool() instead.
-function DexpaprikaSDK:Pool(data)
-  local EntityMod = require("entity.pool_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ticker():list() / client:ticker():load({ id = ... })
-function DexpaprikaSDK:ticker(data)
+-- Idiomatic facade: client:Ticker():list() / client:Ticker():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DexpaprikaSDK:Ticker(data)
   local EntityMod = require("entity.ticker_entity")
   if data == nil then
     if self._ticker == nil then
@@ -313,15 +299,10 @@ function DexpaprikaSDK:ticker(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ticker() instead.
-function DexpaprikaSDK:Ticker(data)
-  local EntityMod = require("entity.ticker_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:token():list() / client:token():load({ id = ... })
-function DexpaprikaSDK:token(data)
+-- Idiomatic facade: client:Token():list() / client:Token():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DexpaprikaSDK:Token(data)
   local EntityMod = require("entity.token_entity")
   if data == nil then
     if self._token == nil then
@@ -329,12 +310,6 @@ function DexpaprikaSDK:token(data)
     end
     return self._token
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:token() instead.
-function DexpaprikaSDK:Token(data)
-  local EntityMod = require("entity.token_entity")
   return EntityMod.new(self, data)
 end
 

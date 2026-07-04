@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/dexpaprika-sdk/go=../dexpaprika-sdk/g
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/dexpaprika-sdk/go"
-    "github.com/voxgig-sdk/dexpaprika-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List exchanges
-
-```go
-    result, err := client.Exchange(nil).List(nil, nil)
+    // List exchange records — the value is the array of records itself.
+    exchanges, err := client.Exchange(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range exchanges.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Exchange(nil).Load(
+exchange, err := client.Exchange(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(exchange) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,7 +189,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Exchange` | `(data map[string]any) DexpaprikaEntity` | Create a Exchange entity instance. |
+| `Exchange` | `(data map[string]any) DexpaprikaEntity` | Create an Exchange entity instance. |
 | `Historical` | `(data map[string]any) DexpaprikaEntity` | Create a Historical entity instance. |
 | `Pool` | `(data map[string]any) DexpaprikaEntity` | Create a Pool entity instance. |
 | `Ticker` | `(data map[string]any) DexpaprikaEntity` | Create a Ticker entity instance. |
@@ -214,17 +213,24 @@ All entities implement the `DexpaprikaEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    exchange, err := client.Exchange(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // exchange is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -337,7 +343,11 @@ Create an instance: `exchange := client.Exchange(nil)`
 #### Example: List
 
 ```go
-results, err := client.Exchange(nil).List(nil, nil)
+exchanges, err := client.Exchange(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(exchanges) // the array of records
 ```
 
 
@@ -361,7 +371,11 @@ Create an instance: `historical := client.Historical(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Historical(nil).Load(map[string]any{"id": "historical_id"}, nil)
+historical, err := client.Historical(nil).Load(map[string]any{"id": "historical_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(historical) // the loaded record
 ```
 
 
@@ -392,7 +406,11 @@ Create an instance: `pool := client.Pool(nil)`
 #### Example: List
 
 ```go
-results, err := client.Pool(nil).List(nil, nil)
+pools, err := client.Pool(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(pools) // the array of records
 ```
 
 
@@ -419,7 +437,11 @@ Create an instance: `ticker := client.Ticker(nil)`
 #### Example: List
 
 ```go
-results, err := client.Ticker(nil).List(nil, nil)
+tickers, err := client.Ticker(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tickers) // the array of records
 ```
 
 
@@ -455,13 +477,21 @@ Create an instance: `token := client.Token(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Token(nil).Load(map[string]any{"id": "token_id"}, nil)
+token, err := client.Token(nil).Load(map[string]any{"id": "token_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(token) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Token(nil).List(nil, nil)
+tokens, err := client.Token(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tokens) // the array of records
 ```
 
 

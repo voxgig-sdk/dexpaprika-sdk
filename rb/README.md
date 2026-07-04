@@ -28,16 +28,14 @@ require_relative "Dexpaprika_sdk"
 client = DexpaprikaSDK.new
 ```
 
-### 2. List exchanges
+### 2. List exchange records
 
 ```ruby
 begin
-  result = client.exchange.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Exchange records — iterate directly.
+  exchanges = client.Exchange.list
+  exchanges.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DexpaprikaSDK.test
+client = DexpaprikaSDK.test({
+  "entity" => { "exchange" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.exchange.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+exchange = client.Exchange.load({ "id" => "test01" })
+puts exchange
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Exchange` | `(data) -> ExchangeEntity` | Create a Exchange entity instance. |
+| `Exchange` | `(data) -> ExchangeEntity` | Create an Exchange entity instance. |
 | `Historical` | `(data) -> HistoricalEntity` | Create a Historical entity instance. |
 | `Pool` | `(data) -> PoolEntity` | Create a Pool entity instance. |
 | `Ticker` | `(data) -> TickerEntity` | Create a Ticker entity instance. |
@@ -297,7 +299,7 @@ API path: `/v1/tokens`
 
 ### Exchange
 
-Create an instance: `const exchange = client.exchange`
+Create an instance: `exchange = client.Exchange`
 
 #### Operations
 
@@ -318,14 +320,15 @@ Create an instance: `const exchange = client.exchange`
 
 #### Example: List
 
-```ts
-const exchanges = await client.exchange.list()
+```ruby
+# list returns an Array of Exchange records (raises on error).
+exchanges = client.Exchange.list
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.historical`
+Create an instance: `historical = client.Historical`
 
 #### Operations
 
@@ -342,14 +345,15 @@ Create an instance: `const historical = client.historical`
 
 #### Example: Load
 
-```ts
-const historical = await client.historical.load({ id: 'historical_id' })
+```ruby
+# load returns the bare Historical record (raises on error).
+historical = client.Historical.load({ "id" => "historical_id" })
 ```
 
 
 ### Pool
 
-Create an instance: `const pool = client.pool`
+Create an instance: `pool = client.Pool`
 
 #### Operations
 
@@ -373,14 +377,15 @@ Create an instance: `const pool = client.pool`
 
 #### Example: List
 
-```ts
-const pools = await client.pool.list()
+```ruby
+# list returns an Array of Pool records (raises on error).
+pools = client.Pool.list
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `ticker = client.Ticker`
 
 #### Operations
 
@@ -400,14 +405,15 @@ Create an instance: `const ticker = client.ticker`
 
 #### Example: List
 
-```ts
-const tickers = await client.ticker.list()
+```ruby
+# list returns an Array of Ticker records (raises on error).
+tickers = client.Ticker.list
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.token`
+Create an instance: `token = client.Token`
 
 #### Operations
 
@@ -436,14 +442,16 @@ Create an instance: `const token = client.token`
 
 #### Example: Load
 
-```ts
-const token = await client.token.load({ id: 'token_id' })
+```ruby
+# load returns the bare Token record (raises on error).
+token = client.Token.load({ "id" => "token_id" })
 ```
 
 #### Example: List
 
-```ts
-const tokens = await client.token.list()
+```ruby
+# list returns an Array of Token records (raises on error).
+tokens = client.Token.list
 ```
 
 
@@ -518,7 +526,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-exchange = client.exchange
+exchange = client.Exchange
 exchange.load({ "id" => "example_id" })
 
 # exchange.data_get now returns the loaded exchange data

@@ -220,89 +220,39 @@ class DexpaprikaSDK:
         }
 
 
-    @property
-    def exchange(self):
-        """Idiomatic facade: client.exchange.list() / client.exchange.load({"id": ...})."""
-        from entity.exchange_entity import ExchangeEntity
-        cached = getattr(self, "_exchange", None)
-        if cached is None:
-            cached = ExchangeEntity(self, None)
-            self._exchange = cached
-        return cached
-
-    def Exchange(self, data=None):
-        # Deprecated: use client.exchange instead.
+    def Exchange(self, data=None) -> "ExchangeEntity":
+        """Entity factory: client.Exchange().list({}) / client.Exchange().load({"id": ...})."""
         from entity.exchange_entity import ExchangeEntity
         return ExchangeEntity(self, data)
 
 
-    @property
-    def historical(self):
-        """Idiomatic facade: client.historical.list() / client.historical.load({"id": ...})."""
-        from entity.historical_entity import HistoricalEntity
-        cached = getattr(self, "_historical", None)
-        if cached is None:
-            cached = HistoricalEntity(self, None)
-            self._historical = cached
-        return cached
-
-    def Historical(self, data=None):
-        # Deprecated: use client.historical instead.
+    def Historical(self, data=None) -> "HistoricalEntity":
+        """Entity factory: client.Historical().list({}) / client.Historical().load({"id": ...})."""
         from entity.historical_entity import HistoricalEntity
         return HistoricalEntity(self, data)
 
 
-    @property
-    def pool(self):
-        """Idiomatic facade: client.pool.list() / client.pool.load({"id": ...})."""
-        from entity.pool_entity import PoolEntity
-        cached = getattr(self, "_pool", None)
-        if cached is None:
-            cached = PoolEntity(self, None)
-            self._pool = cached
-        return cached
-
-    def Pool(self, data=None):
-        # Deprecated: use client.pool instead.
+    def Pool(self, data=None) -> "PoolEntity":
+        """Entity factory: client.Pool().list({}) / client.Pool().load({"id": ...})."""
         from entity.pool_entity import PoolEntity
         return PoolEntity(self, data)
 
 
-    @property
-    def ticker(self):
-        """Idiomatic facade: client.ticker.list() / client.ticker.load({"id": ...})."""
-        from entity.ticker_entity import TickerEntity
-        cached = getattr(self, "_ticker", None)
-        if cached is None:
-            cached = TickerEntity(self, None)
-            self._ticker = cached
-        return cached
-
-    def Ticker(self, data=None):
-        # Deprecated: use client.ticker instead.
+    def Ticker(self, data=None) -> "TickerEntity":
+        """Entity factory: client.Ticker().list({}) / client.Ticker().load({"id": ...})."""
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 
 
-    @property
-    def token(self):
-        """Idiomatic facade: client.token.list() / client.token.load({"id": ...})."""
-        from entity.token_entity import TokenEntity
-        cached = getattr(self, "_token", None)
-        if cached is None:
-            cached = TokenEntity(self, None)
-            self._token = cached
-        return cached
-
-    def Token(self, data=None):
-        # Deprecated: use client.token instead.
+    def Token(self, data=None) -> "TokenEntity":
+        """Entity factory: client.Token().list({}) / client.Token().load({"id": ...})."""
         from entity.token_entity import TokenEntity
         return TokenEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DexpaprikaSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class DexpaprikaSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.exchange_entity import ExchangeEntity
+    from entity.historical_entity import HistoricalEntity
+    from entity.pool_entity import PoolEntity
+    from entity.ticker_entity import TickerEntity
+    from entity.token_entity import TokenEntity

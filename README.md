@@ -26,9 +26,11 @@ import { DexpaprikaSDK } from '@voxgig-sdk/dexpaprika'
 
 const client = new DexpaprikaSDK()
 
-// List all exchanges
-const exchanges = await client.exchange.list()
-console.log(exchanges.data)
+// List all exchanges (returns Exchange[])
+const exchanges = await client.Exchange().list()
+for (const exchange of exchanges) {
+  console.log(exchange)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -87,9 +89,10 @@ from dexpaprika_sdk import DexpaprikaSDK
 
 client = DexpaprikaSDK()
 
-# List all exchanges
-exchanges = client.exchange.list()
-print(exchanges)
+# List all exchanges (returns a list, raises on error)
+exchanges = client.Exchange().list({})
+for exchange in exchanges:
+    print(exchange)
 ```
 
 ### PHP
@@ -100,8 +103,8 @@ require_once 'dexpaprika_sdk.php';
 
 $client = new DexpaprikaSDK();
 
-// List all exchanges (throws on error)
-$exchanges = $client->exchange()->list();
+// List all exchanges (returns an array; throws on error)
+$exchanges = $client->Exchange()->list();
 print_r($exchanges);
 ```
 
@@ -124,8 +127,8 @@ require_relative "Dexpaprika_sdk"
 
 client = DexpaprikaSDK.new
 
-# List all exchanges
-exchanges = client.exchange.list
+# List all exchanges (returns an Array; raises on error)
+exchanges = client.Exchange.list
 puts exchanges
 ```
 
@@ -137,7 +140,7 @@ local sdk = require("dexpaprika_sdk")
 local client = sdk.new()
 
 -- List all exchanges
-local exchanges, err = client:exchange():list()
+local exchanges, err = client:Exchange():list()
 print(exchanges)
 ```
 
@@ -150,22 +153,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DexpaprikaSDK.test()
-const result = await client.exchange.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const exchange = await client.Exchange().load({ id: 'test01' })
+// exchange is a bare Exchange populated with mock data
+console.log(exchange)
 ```
 
 ### Python
 
 ```python
 client = DexpaprikaSDK.test()
-result = client.exchange.load({"id": "test01"})
+exchange = client.Exchange().load({"id": "test01"})
+print(exchange)
 ```
 
 ### PHP
 
 ```php
-$client = DexpaprikaSDK::test();
-$result = $client->exchange()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DexpaprikaSDK::test([
+    "entity" => ["exchange" => ["test01" => ["id" => "test01"]]],
+]);
+$exchange = $client->Exchange()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +188,18 @@ result, err := client.Exchange(nil).Load(
 ### Ruby
 
 ```ruby
-client = DexpaprikaSDK.test
-result = client.exchange.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DexpaprikaSDK.test({
+  "entity" => { "exchange" => { "test01" => { "id" => "test01" } } },
+})
+exchange = client.Exchange.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:exchange():load({ id = "test01" })
+local result, err = client:Exchange():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +247,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

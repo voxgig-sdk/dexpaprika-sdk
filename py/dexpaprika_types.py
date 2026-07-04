@@ -4,123 +4,116 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Exchange:
-    chain: Optional[str] = None
-    id: Optional[str] = None
-    liquidity_usd: Optional[float] = None
-    name: Optional[str] = None
-    trades_24h: Optional[int] = None
-    volume_24h: Optional[float] = None
+class Exchange(TypedDict, total=False):
+    chain: str
+    id: str
+    liquidity_usd: float
+    name: str
+    trades_24h: int
+    volume_24h: float
 
 
-@dataclass
-class ExchangeListMatch:
-    chain: Optional[str] = None
-    id: Optional[str] = None
-    liquidity_usd: Optional[float] = None
-    name: Optional[str] = None
-    trades_24h: Optional[int] = None
-    volume_24h: Optional[float] = None
+class ExchangeListMatch(TypedDict, total=False):
+    chain: str
+    id: str
+    liquidity_usd: float
+    name: str
+    trades_24h: int
+    volume_24h: float
 
 
-@dataclass
-class Historical:
-    data: Optional[list] = None
-    token_id: Optional[str] = None
+class Historical(TypedDict, total=False):
+    data: list
+    token_id: str
 
 
-@dataclass
-class HistoricalLoadMatch:
+class HistoricalLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Pool:
-    address: Optional[str] = None
-    apr: Optional[float] = None
-    chain: Optional[str] = None
-    dex: Optional[str] = None
-    id: Optional[str] = None
-    liquidity_usd: Optional[float] = None
-    token0: Optional[dict] = None
-    token1: Optional[dict] = None
-    volume_24h: Optional[float] = None
+class Pool(TypedDict, total=False):
+    address: str
+    apr: float
+    chain: str
+    dex: str
+    id: str
+    liquidity_usd: float
+    token0: dict
+    token1: dict
+    volume_24h: float
 
 
-@dataclass
-class PoolListMatch:
-    address: Optional[str] = None
-    apr: Optional[float] = None
-    chain: Optional[str] = None
-    dex: Optional[str] = None
-    id: Optional[str] = None
-    liquidity_usd: Optional[float] = None
-    token0: Optional[dict] = None
-    token1: Optional[dict] = None
-    volume_24h: Optional[float] = None
+class PoolListMatch(TypedDict, total=False):
+    address: str
+    apr: float
+    chain: str
+    dex: str
+    id: str
+    liquidity_usd: float
+    token0: dict
+    token1: dict
+    volume_24h: float
 
 
-@dataclass
-class Ticker:
-    price_change_24h: Optional[float] = None
-    price_usd: Optional[float] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[str] = None
-    volume_24h: Optional[float] = None
+class Ticker(TypedDict, total=False):
+    price_change_24h: float
+    price_usd: float
+    symbol: str
+    timestamp: str
+    volume_24h: float
 
 
-@dataclass
-class TickerListMatch:
-    price_change_24h: Optional[float] = None
-    price_usd: Optional[float] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[str] = None
-    volume_24h: Optional[float] = None
+class TickerListMatch(TypedDict, total=False):
+    price_change_24h: float
+    price_usd: float
+    symbol: str
+    timestamp: str
+    volume_24h: float
 
 
-@dataclass
-class Token:
-    address: Optional[str] = None
-    chain: Optional[str] = None
-    decimal: Optional[int] = None
-    id: Optional[str] = None
-    last_updated: Optional[str] = None
-    liquidity_usd: Optional[float] = None
-    market_cap: Optional[float] = None
-    name: Optional[str] = None
-    price_change_24h: Optional[float] = None
-    price_usd: Optional[float] = None
-    symbol: Optional[str] = None
-    total_supply: Optional[float] = None
-    volume_24h: Optional[float] = None
+class Token(TypedDict, total=False):
+    address: str
+    chain: str
+    decimal: int
+    id: str
+    last_updated: str
+    liquidity_usd: float
+    market_cap: float
+    name: str
+    price_change_24h: float
+    price_usd: float
+    symbol: str
+    total_supply: float
+    volume_24h: float
 
 
-@dataclass
-class TokenLoadMatch:
+class TokenLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class TokenListMatch:
-    address: Optional[str] = None
-    chain: Optional[str] = None
-    decimal: Optional[int] = None
-    id: Optional[str] = None
-    last_updated: Optional[str] = None
-    liquidity_usd: Optional[float] = None
-    market_cap: Optional[float] = None
-    name: Optional[str] = None
-    price_change_24h: Optional[float] = None
-    price_usd: Optional[float] = None
-    symbol: Optional[str] = None
-    total_supply: Optional[float] = None
-    volume_24h: Optional[float] = None
-
+class TokenListMatch(TypedDict, total=False):
+    address: str
+    chain: str
+    decimal: int
+    id: str
+    last_updated: str
+    liquidity_usd: float
+    market_cap: float
+    name: str
+    price_change_24h: float
+    price_usd: float
+    symbol: str
+    total_supply: float
+    volume_24h: float

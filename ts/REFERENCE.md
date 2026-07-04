@@ -157,7 +157,7 @@ Alias for `DexpaprikaSDK.test()`.
 ## ExchangeEntity
 
 ```ts
-const exchange = client.exchange
+const exchange = client.Exchange()
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ const exchange = client.exchange
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.exchange.list()
+const results = await client.Exchange().list()
 ```
 
 ### Common Methods
@@ -212,7 +212,7 @@ Return a copy of the entity options.
 ## HistoricalEntity
 
 ```ts
-const historical = client.historical
+const historical = client.Historical()
 ```
 
 ### Fields
@@ -229,7 +229,7 @@ const historical = client.historical
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.historical.load({ id: 'historical_id' })
+const result = await client.Historical().load({ id: 'historical_id' })
 ```
 
 ### Common Methods
@@ -263,7 +263,7 @@ Return a copy of the entity options.
 ## PoolEntity
 
 ```ts
-const pool = client.pool
+const pool = client.Pool()
 ```
 
 ### Fields
@@ -287,7 +287,7 @@ const pool = client.pool
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.pool.list()
+const results = await client.Pool().list()
 ```
 
 ### Common Methods
@@ -321,7 +321,7 @@ Return a copy of the entity options.
 ## TickerEntity
 
 ```ts
-const ticker = client.ticker
+const ticker = client.Ticker()
 ```
 
 ### Fields
@@ -341,7 +341,7 @@ const ticker = client.ticker
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ticker.list()
+const results = await client.Ticker().list()
 ```
 
 ### Common Methods
@@ -375,7 +375,7 @@ Return a copy of the entity options.
 ## TokenEntity
 
 ```ts
-const token = client.token
+const token = client.Token()
 ```
 
 ### Fields
@@ -403,7 +403,7 @@ const token = client.token
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.token.list()
+const results = await client.Token().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -411,7 +411,7 @@ const results = await client.token.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.token.load({ id: 'token_id' })
+const result = await client.Token().load({ id: 'token_id' })
 ```
 
 ### Common Methods

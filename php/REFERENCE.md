@@ -101,7 +101,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ExchangeEntity
 
 ```php
-$exchange = $client->exchange();
+$exchange = $client->Exchange();
 ```
 
 ### Fields
@@ -122,7 +122,7 @@ $exchange = $client->exchange();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->exchange()->list([]);
+$results = $client->Exchange()->list([]);
 ```
 
 ### Common Methods
@@ -158,7 +158,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```php
-$historical = $client->historical();
+$historical = $client->Historical();
 ```
 
 ### Fields
@@ -175,7 +175,7 @@ $historical = $client->historical();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->historical()->load(["id" => "historical_id"]);
+$result = $client->Historical()->load(["id" => "historical_id"]);
 ```
 
 ### Common Methods
@@ -211,7 +211,7 @@ Return the entity name.
 ## PoolEntity
 
 ```php
-$pool = $client->pool();
+$pool = $client->Pool();
 ```
 
 ### Fields
@@ -235,7 +235,7 @@ $pool = $client->pool();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->pool()->list([]);
+$results = $client->Pool()->list([]);
 ```
 
 ### Common Methods
@@ -271,7 +271,7 @@ Return the entity name.
 ## TickerEntity
 
 ```php
-$ticker = $client->ticker();
+$ticker = $client->Ticker();
 ```
 
 ### Fields
@@ -291,7 +291,7 @@ $ticker = $client->ticker();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->ticker()->list([]);
+$results = $client->Ticker()->list([]);
 ```
 
 ### Common Methods
@@ -327,7 +327,7 @@ Return the entity name.
 ## TokenEntity
 
 ```php
-$token = $client->token();
+$token = $client->Token();
 ```
 
 ### Fields
@@ -355,7 +355,7 @@ $token = $client->token();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->token()->list([]);
+$results = $client->Token()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -363,7 +363,7 @@ $results = $client->token()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->token()->load(["id" => "token_id"]);
+$result = $client->Token()->load(["id" => "token_id"]);
 ```
 
 ### Common Methods
