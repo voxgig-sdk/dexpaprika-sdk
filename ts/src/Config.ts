@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.dexpaprika.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -176,7 +172,8 @@ class Config {
                     "name": "id",
                     "orig": "token_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -613,7 +610,8 @@ class Config {
                     "name": "id",
                     "orig": "token_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

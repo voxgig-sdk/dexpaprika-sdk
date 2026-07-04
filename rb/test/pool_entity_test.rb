@@ -43,8 +43,7 @@ class PoolEntityTest < Minitest::Test
     pool_ref01_ent = client.Pool(nil)
     pool_ref01_match = {}
 
-    pool_ref01_list_result, err = pool_ref01_ent.list(pool_ref01_match, nil)
-    assert_nil err
+    pool_ref01_list_result = pool_ref01_ent.list(pool_ref01_match, nil)
     assert pool_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def pool_basic_setup(extra)
     "DEXPAPRIKA_TEST_POOL_ENTID" => idmap,
     "DEXPAPRIKA_TEST_LIVE" => "FALSE",
     "DEXPAPRIKA_TEST_EXPLAIN" => "FALSE",
-    "DEXPAPRIKA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def pool_basic_setup(extra)
   if env["DEXPAPRIKA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEXPAPRIKA_APIKEY"],
       },
       extra || {},
     ])

@@ -244,30 +244,95 @@ end
 
 
 
+-- Idiomatic facade: client:exchange():list() / client:exchange():load({ id = ... })
+function DexpaprikaSDK:exchange(data)
+  local EntityMod = require("entity.exchange_entity")
+  if data == nil then
+    if self._exchange == nil then
+      self._exchange = EntityMod.new(self, nil)
+    end
+    return self._exchange
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:exchange() instead.
 function DexpaprikaSDK:Exchange(data)
   local EntityMod = require("entity.exchange_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:historical():list() / client:historical():load({ id = ... })
+function DexpaprikaSDK:historical(data)
+  local EntityMod = require("entity.historical_entity")
+  if data == nil then
+    if self._historical == nil then
+      self._historical = EntityMod.new(self, nil)
+    end
+    return self._historical
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:historical() instead.
 function DexpaprikaSDK:Historical(data)
   local EntityMod = require("entity.historical_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:pool():list() / client:pool():load({ id = ... })
+function DexpaprikaSDK:pool(data)
+  local EntityMod = require("entity.pool_entity")
+  if data == nil then
+    if self._pool == nil then
+      self._pool = EntityMod.new(self, nil)
+    end
+    return self._pool
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:pool() instead.
 function DexpaprikaSDK:Pool(data)
   local EntityMod = require("entity.pool_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:ticker():list() / client:ticker():load({ id = ... })
+function DexpaprikaSDK:ticker(data)
+  local EntityMod = require("entity.ticker_entity")
+  if data == nil then
+    if self._ticker == nil then
+      self._ticker = EntityMod.new(self, nil)
+    end
+    return self._ticker
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:ticker() instead.
 function DexpaprikaSDK:Ticker(data)
   local EntityMod = require("entity.ticker_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:token():list() / client:token():load({ id = ... })
+function DexpaprikaSDK:token(data)
+  local EntityMod = require("entity.token_entity")
+  if data == nil then
+    if self._token == nil then
+      self._token = EntityMod.new(self, nil)
+    end
+    return self._token
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:token() instead.
 function DexpaprikaSDK:Token(data)
   local EntityMod = require("entity.token_entity")
   return EntityMod.new(self, data)

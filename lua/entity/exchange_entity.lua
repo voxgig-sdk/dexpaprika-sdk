@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ExchangeListMatch
+---@param ctrl? table
+---@return Exchange[]
+---@return string? err
 function ExchangeEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

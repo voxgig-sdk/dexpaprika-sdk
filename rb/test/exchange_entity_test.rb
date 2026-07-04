@@ -43,8 +43,7 @@ class ExchangeEntityTest < Minitest::Test
     exchange_ref01_ent = client.Exchange(nil)
     exchange_ref01_match = {}
 
-    exchange_ref01_list_result, err = exchange_ref01_ent.list(exchange_ref01_match, nil)
-    assert_nil err
+    exchange_ref01_list_result = exchange_ref01_ent.list(exchange_ref01_match, nil)
     assert exchange_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def exchange_basic_setup(extra)
     "DEXPAPRIKA_TEST_EXCHANGE_ENTID" => idmap,
     "DEXPAPRIKA_TEST_LIVE" => "FALSE",
     "DEXPAPRIKA_TEST_EXPLAIN" => "FALSE",
-    "DEXPAPRIKA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def exchange_basic_setup(extra)
   if env["DEXPAPRIKA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEXPAPRIKA_APIKEY"],
       },
       extra || {},
     ])

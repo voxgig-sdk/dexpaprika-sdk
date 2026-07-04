@@ -50,8 +50,7 @@ class TestExchangeEntity:
         exchange_ref01_ent = client.Exchange(None)
         exchange_ref01_match = {}
 
-        exchange_ref01_list_result, err = exchange_ref01_ent.list(exchange_ref01_match, None)
-        assert err is None
+        exchange_ref01_list_result = exchange_ref01_ent.list(exchange_ref01_match, None)
         assert isinstance(exchange_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _exchange_basic_setup(extra):
         "DEXPAPRIKA_TEST_EXCHANGE_ENTID": idmap,
         "DEXPAPRIKA_TEST_LIVE": "FALSE",
         "DEXPAPRIKA_TEST_EXPLAIN": "FALSE",
-        "DEXPAPRIKA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _exchange_basic_setup(extra):
     if env.get("DEXPAPRIKA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEXPAPRIKA_APIKEY"),
             },
             extra or {},
         ])

@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Dexpaprika_types'
+
 
 class DexpaprikaSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class DexpaprikaSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class DexpaprikaSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue DexpaprikaError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = DexpaprikaHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class DexpaprikaSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class DexpaprikaSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.exchange.list / client.exchange.load({ "id" => ... })
+  def exchange
+    require_relative 'entity/exchange_entity'
+    @exchange ||= ExchangeEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.exchange instead.
   def Exchange(data = nil)
     require_relative 'entity/exchange_entity'
     ExchangeEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.historical.list / client.historical.load({ "id" => ... })
+  def historical
+    require_relative 'entity/historical_entity'
+    @historical ||= HistoricalEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.historical instead.
   def Historical(data = nil)
     require_relative 'entity/historical_entity'
     HistoricalEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.pool.list / client.pool.load({ "id" => ... })
+  def pool
+    require_relative 'entity/pool_entity'
+    @pool ||= PoolEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.pool instead.
   def Pool(data = nil)
     require_relative 'entity/pool_entity'
     PoolEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.ticker.list / client.ticker.load({ "id" => ... })
+  def ticker
+    require_relative 'entity/ticker_entity'
+    @ticker ||= TickerEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.ticker instead.
   def Ticker(data = nil)
     require_relative 'entity/ticker_entity'
     TickerEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.token.list / client.token.load({ "id" => ... })
+  def token
+    require_relative 'entity/token_entity'
+    @token ||= TokenEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.token instead.
   def Token(data = nil)
     require_relative 'entity/token_entity'
     TokenEntity.new(self, data)

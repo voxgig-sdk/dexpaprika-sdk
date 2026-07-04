@@ -245,26 +245,41 @@ func (sdk *DexpaprikaSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// Exchange returns a Exchange entity bound to this client.
+// Idiomatic usage: client.Exchange(nil).List(nil, nil) or
+// client.Exchange(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DexpaprikaSDK) Exchange(data map[string]any) DexpaprikaEntity {
 	return NewExchangeEntityFunc(sdk, data)
 }
 
 
+// Historical returns a Historical entity bound to this client.
+// Idiomatic usage: client.Historical(nil).List(nil, nil) or
+// client.Historical(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DexpaprikaSDK) Historical(data map[string]any) DexpaprikaEntity {
 	return NewHistoricalEntityFunc(sdk, data)
 }
 
 
+// Pool returns a Pool entity bound to this client.
+// Idiomatic usage: client.Pool(nil).List(nil, nil) or
+// client.Pool(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DexpaprikaSDK) Pool(data map[string]any) DexpaprikaEntity {
 	return NewPoolEntityFunc(sdk, data)
 }
 
 
+// Ticker returns a Ticker entity bound to this client.
+// Idiomatic usage: client.Ticker(nil).List(nil, nil) or
+// client.Ticker(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DexpaprikaSDK) Ticker(data map[string]any) DexpaprikaEntity {
 	return NewTickerEntityFunc(sdk, data)
 }
 
 
+// Token returns a Token entity bound to this client.
+// Idiomatic usage: client.Token(nil).List(nil, nil) or
+// client.Token(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DexpaprikaSDK) Token(data map[string]any) DexpaprikaEntity {
 	return NewTokenEntityFunc(sdk, data)
 }

@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "DexPaprika API Documentation"
         url: "https://docs.dexpaprika.com/"

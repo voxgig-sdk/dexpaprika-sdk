@@ -144,16 +144,23 @@ class DexpaprikaSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class DexpaprikaSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class DexpaprikaSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def exchange(self):
+        """Idiomatic facade: client.exchange.list() / client.exchange.load({"id": ...})."""
+        from entity.exchange_entity import ExchangeEntity
+        cached = getattr(self, "_exchange", None)
+        if cached is None:
+            cached = ExchangeEntity(self, None)
+            self._exchange = cached
+        return cached
 
     def Exchange(self, data=None):
+        # Deprecated: use client.exchange instead.
         from entity.exchange_entity import ExchangeEntity
         return ExchangeEntity(self, data)
 
 
+    @property
+    def historical(self):
+        """Idiomatic facade: client.historical.list() / client.historical.load({"id": ...})."""
+        from entity.historical_entity import HistoricalEntity
+        cached = getattr(self, "_historical", None)
+        if cached is None:
+            cached = HistoricalEntity(self, None)
+            self._historical = cached
+        return cached
+
     def Historical(self, data=None):
+        # Deprecated: use client.historical instead.
         from entity.historical_entity import HistoricalEntity
         return HistoricalEntity(self, data)
 
 
+    @property
+    def pool(self):
+        """Idiomatic facade: client.pool.list() / client.pool.load({"id": ...})."""
+        from entity.pool_entity import PoolEntity
+        cached = getattr(self, "_pool", None)
+        if cached is None:
+            cached = PoolEntity(self, None)
+            self._pool = cached
+        return cached
+
     def Pool(self, data=None):
+        # Deprecated: use client.pool instead.
         from entity.pool_entity import PoolEntity
         return PoolEntity(self, data)
 
 
+    @property
+    def ticker(self):
+        """Idiomatic facade: client.ticker.list() / client.ticker.load({"id": ...})."""
+        from entity.ticker_entity import TickerEntity
+        cached = getattr(self, "_ticker", None)
+        if cached is None:
+            cached = TickerEntity(self, None)
+            self._ticker = cached
+        return cached
+
     def Ticker(self, data=None):
+        # Deprecated: use client.ticker instead.
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 
 
+    @property
+    def token(self):
+        """Idiomatic facade: client.token.list() / client.token.load({"id": ...})."""
+        from entity.token_entity import TokenEntity
+        cached = getattr(self, "_token", None)
+        if cached is None:
+            cached = TokenEntity(self, None)
+            self._token = cached
+        return cached
+
     def Token(self, data=None):
+        # Deprecated: use client.token instead.
         from entity.token_entity import TokenEntity
         return TokenEntity(self, data)
 

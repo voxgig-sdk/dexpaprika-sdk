@@ -72,14 +72,12 @@ function historical_direct_setup(mockres)
   local env = runner.env_override({
     ["DEXPAPRIKA_TEST_HISTORICAL_ENTID"] = {},
     ["DEXPAPRIKA_TEST_LIVE"] = "FALSE",
-    ["DEXPAPRIKA_APIKEY"] = "NONE",
   })
 
   local live = env["DEXPAPRIKA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["DEXPAPRIKA_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

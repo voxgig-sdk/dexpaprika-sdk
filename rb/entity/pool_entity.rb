@@ -45,6 +45,7 @@ class PoolEntity
     end
   end
 
+  # @return [Pool, Hash] the current Pool data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class PoolEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Pool fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class PoolEntity
   
 
   
+  # List Pool items matching the given filter.
+  #
+  # @param reqmatch [PoolListMatch, Hash, nil] match filter (any subset of Pool fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Pool>, Array] the matching Pool items; raises DexpaprikaError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

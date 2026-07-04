@@ -45,6 +45,7 @@ class TokenEntity
     end
   end
 
+  # @return [Token, Hash] the current Token data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class TokenEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Token fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Token.
+  #
+  # @param reqmatch [TokenLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Token, Hash] the loaded Token; raises DexpaprikaError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class TokenEntity
 
 
   
+  # List Token items matching the given filter.
+  #
+  # @param reqmatch [TokenListMatch, Hash, nil] match filter (any subset of Token fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Token>, Array] the matching Token items; raises DexpaprikaError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

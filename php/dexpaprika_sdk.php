@@ -103,7 +103,7 @@ class DexpaprikaSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class DexpaprikaSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class DexpaprikaSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,52 +216,107 @@ class DexpaprikaSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Exchange($data = null)
+    private $_exchange = null;
+
+    // Idiomatic facade: $client->exchange()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Exchange() (PHP method
+    // names are case-insensitive).
+    public function exchange($data = null)
     {
         require_once __DIR__ . '/entity/exchange_entity.php';
+        if ($data === null) {
+            if ($this->_exchange === null) {
+                $this->_exchange = new ExchangeEntity($this, null);
+            }
+            return $this->_exchange;
+        }
         return new ExchangeEntity($this, $data);
     }
 
 
-    public function Historical($data = null)
+    private $_historical = null;
+
+    // Idiomatic facade: $client->historical()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Historical() (PHP method
+    // names are case-insensitive).
+    public function historical($data = null)
     {
         require_once __DIR__ . '/entity/historical_entity.php';
+        if ($data === null) {
+            if ($this->_historical === null) {
+                $this->_historical = new HistoricalEntity($this, null);
+            }
+            return $this->_historical;
+        }
         return new HistoricalEntity($this, $data);
     }
 
 
-    public function Pool($data = null)
+    private $_pool = null;
+
+    // Idiomatic facade: $client->pool()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Pool() (PHP method
+    // names are case-insensitive).
+    public function pool($data = null)
     {
         require_once __DIR__ . '/entity/pool_entity.php';
+        if ($data === null) {
+            if ($this->_pool === null) {
+                $this->_pool = new PoolEntity($this, null);
+            }
+            return $this->_pool;
+        }
         return new PoolEntity($this, $data);
     }
 
 
-    public function Ticker($data = null)
+    private $_ticker = null;
+
+    // Idiomatic facade: $client->ticker()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Ticker() (PHP method
+    // names are case-insensitive).
+    public function ticker($data = null)
     {
         require_once __DIR__ . '/entity/ticker_entity.php';
+        if ($data === null) {
+            if ($this->_ticker === null) {
+                $this->_ticker = new TickerEntity($this, null);
+            }
+            return $this->_ticker;
+        }
         return new TickerEntity($this, $data);
     }
 
 
-    public function Token($data = null)
+    private $_token = null;
+
+    // Idiomatic facade: $client->token()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Token() (PHP method
+    // names are case-insensitive).
+    public function token($data = null)
     {
         require_once __DIR__ . '/entity/token_entity.php';
+        if ($data === null) {
+            if ($this->_token === null) {
+                $this->_token = new TokenEntity($this, null);
+            }
+            return $this->_token;
+        }
         return new TokenEntity($this, $data);
     }
 

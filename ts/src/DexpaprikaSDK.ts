@@ -6,6 +6,8 @@ import { PoolEntity } from './entity/PoolEntity'
 import { TickerEntity } from './entity/TickerEntity'
 import { TokenEntity } from './entity/TokenEntity'
 
+export type * from './DexpaprikaTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -206,30 +208,70 @@ class DexpaprikaSDK {
 
 
 
+  _exchange?: ExchangeEntity
+
+  // Idiomatic facade: `client.exchange.list()` / `client.exchange.load({ id })`.
+  get exchange(): ExchangeEntity {
+    return (this._exchange ??= new ExchangeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.exchange` instead. */
   Exchange(data?: any) {
     const self = this
     return new ExchangeEntity(self,data)
   }
 
 
+  _historical?: HistoricalEntity
+
+  // Idiomatic facade: `client.historical.list()` / `client.historical.load({ id })`.
+  get historical(): HistoricalEntity {
+    return (this._historical ??= new HistoricalEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.historical` instead. */
   Historical(data?: any) {
     const self = this
     return new HistoricalEntity(self,data)
   }
 
 
+  _pool?: PoolEntity
+
+  // Idiomatic facade: `client.pool.list()` / `client.pool.load({ id })`.
+  get pool(): PoolEntity {
+    return (this._pool ??= new PoolEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.pool` instead. */
   Pool(data?: any) {
     const self = this
     return new PoolEntity(self,data)
   }
 
 
+  _ticker?: TickerEntity
+
+  // Idiomatic facade: `client.ticker.list()` / `client.ticker.load({ id })`.
+  get ticker(): TickerEntity {
+    return (this._ticker ??= new TickerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ticker` instead. */
   Ticker(data?: any) {
     const self = this
     return new TickerEntity(self,data)
   }
 
 
+  _token?: TokenEntity
+
+  // Idiomatic facade: `client.token.list()` / `client.token.load({ id })`.
+  get token(): TokenEntity {
+    return (this._token ??= new TokenEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.token` instead. */
   Token(data?: any) {
     const self = this
     return new TokenEntity(self,data)

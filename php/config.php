@@ -20,9 +20,6 @@ class DexpaprikaConfig
             ],
             "options" => [
                 "base" => "https://api.dexpaprika.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -144,6 +141,7 @@ class DexpaprikaConfig
                         'orig' => 'token_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -581,6 +579,7 @@ class DexpaprikaConfig
                         'orig' => 'token_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

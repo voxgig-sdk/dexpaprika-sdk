@@ -50,8 +50,7 @@ class PoolEntityTest extends TestCase
         $pool_ref01_ent = $client->Pool(null);
         $pool_ref01_match = [];
 
-        [$pool_ref01_list_result, $err] = $pool_ref01_ent->list($pool_ref01_match, null);
-        $this->assertNull($err);
+        $pool_ref01_list_result = $pool_ref01_ent->list($pool_ref01_match, null);
         $this->assertIsArray($pool_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function pool_basic_setup($extra)
         "DEXPAPRIKA_TEST_POOL_ENTID" => $idmap,
         "DEXPAPRIKA_TEST_LIVE" => "FALSE",
         "DEXPAPRIKA_TEST_EXPLAIN" => "FALSE",
-        "DEXPAPRIKA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function pool_basic_setup($extra)
     if ($env["DEXPAPRIKA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEXPAPRIKA_APIKEY"],
             ],
             $extra ?? [],
         ]);

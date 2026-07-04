@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PoolListMatch
+---@param ctrl? table
+---@return Pool[]
+---@return string? err
 function PoolEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

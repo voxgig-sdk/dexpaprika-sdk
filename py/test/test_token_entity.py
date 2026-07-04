@@ -50,16 +50,14 @@ class TestTokenEntity:
         token_ref01_ent = client.Token(None)
         token_ref01_match = {}
 
-        token_ref01_list_result, err = token_ref01_ent.list(token_ref01_match, None)
-        assert err is None
+        token_ref01_list_result = token_ref01_ent.list(token_ref01_match, None)
         assert isinstance(token_ref01_list_result, list)
 
         # LOAD
         token_ref01_match_dt0 = {
             "id": token_ref01_data["id"],
         }
-        token_ref01_data_dt0_loaded, err = token_ref01_ent.load(token_ref01_match_dt0, None)
-        assert err is None
+        token_ref01_data_dt0_loaded = token_ref01_ent.load(token_ref01_match_dt0, None)
         token_ref01_data_dt0_load_result = helpers.to_map(token_ref01_data_dt0_loaded)
         assert token_ref01_data_dt0_load_result is not None
         assert token_ref01_data_dt0_load_result["id"] == token_ref01_data["id"]
@@ -102,7 +100,6 @@ def _token_basic_setup(extra):
         "DEXPAPRIKA_TEST_TOKEN_ENTID": idmap,
         "DEXPAPRIKA_TEST_LIVE": "FALSE",
         "DEXPAPRIKA_TEST_EXPLAIN": "FALSE",
-        "DEXPAPRIKA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _token_basic_setup(extra):
     if env.get("DEXPAPRIKA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEXPAPRIKA_APIKEY"),
             },
             extra or {},
         ])

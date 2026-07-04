@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Pool,
+  PoolListMatch,
+} from '../DexpaprikaTypes'
 
 // TODO: needs Entity superclass
-class PoolEntity extends DexpaprikaEntityBase {
+class PoolEntity extends DexpaprikaEntityBase<Pool> {
 
   constructor(client: DexpaprikaSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class PoolEntity extends DexpaprikaEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: PoolListMatch, ctrl?: Control): Promise<Pool[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class PoolEntity extends DexpaprikaEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Pool[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

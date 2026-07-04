@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TokenLoadMatch
+---@param ctrl? table
+---@return Token
+---@return string? err
 function TokenEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch TokenListMatch
+---@param ctrl? table
+---@return Token[]
+---@return string? err
 function TokenEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

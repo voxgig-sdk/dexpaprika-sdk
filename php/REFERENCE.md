@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -72,7 +71,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -86,11 +88,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -98,7 +101,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## ExchangeEntity
 
 ```php
-$exchange = $client->Exchange();
+$exchange = $client->exchange();
 ```
 
 ### Fields
@@ -114,12 +117,12 @@ $exchange = $client->Exchange();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Exchange()->list([]);
+$results = $client->exchange()->list([]);
 ```
 
 ### Common Methods
@@ -155,7 +158,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```php
-$historical = $client->Historical();
+$historical = $client->historical();
 ```
 
 ### Fields
@@ -167,12 +170,12 @@ $historical = $client->Historical();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Historical()->load(["id" => "historical_id"]);
+$result = $client->historical()->load(["id" => "historical_id"]);
 ```
 
 ### Common Methods
@@ -208,7 +211,7 @@ Return the entity name.
 ## PoolEntity
 
 ```php
-$pool = $client->Pool();
+$pool = $client->pool();
 ```
 
 ### Fields
@@ -227,12 +230,12 @@ $pool = $client->Pool();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Pool()->list([]);
+$results = $client->pool()->list([]);
 ```
 
 ### Common Methods
@@ -268,7 +271,7 @@ Return the entity name.
 ## TickerEntity
 
 ```php
-$ticker = $client->Ticker();
+$ticker = $client->ticker();
 ```
 
 ### Fields
@@ -283,12 +286,12 @@ $ticker = $client->Ticker();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Ticker()->list([]);
+$results = $client->ticker()->list([]);
 ```
 
 ### Common Methods
@@ -324,7 +327,7 @@ Return the entity name.
 ## TokenEntity
 
 ```php
-$token = $client->Token();
+$token = $client->token();
 ```
 
 ### Fields
@@ -347,20 +350,20 @@ $token = $client->Token();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Token()->list([]);
+$results = $client->token()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Token()->load(["id" => "token_id"]);
+$result = $client->token()->load(["id" => "token_id"]);
 ```
 
 ### Common Methods

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Ticker,
+  TickerListMatch,
+} from '../DexpaprikaTypes'
 
 // TODO: needs Entity superclass
-class TickerEntity extends DexpaprikaEntityBase {
+class TickerEntity extends DexpaprikaEntityBase<Ticker> {
 
   constructor(client: DexpaprikaSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class TickerEntity extends DexpaprikaEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: TickerListMatch, ctrl?: Control): Promise<Ticker[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class TickerEntity extends DexpaprikaEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Ticker[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

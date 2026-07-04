@@ -50,8 +50,7 @@ class ExchangeEntityTest extends TestCase
         $exchange_ref01_ent = $client->Exchange(null);
         $exchange_ref01_match = [];
 
-        [$exchange_ref01_list_result, $err] = $exchange_ref01_ent->list($exchange_ref01_match, null);
-        $this->assertNull($err);
+        $exchange_ref01_list_result = $exchange_ref01_ent->list($exchange_ref01_match, null);
         $this->assertIsArray($exchange_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function exchange_basic_setup($extra)
         "DEXPAPRIKA_TEST_EXCHANGE_ENTID" => $idmap,
         "DEXPAPRIKA_TEST_LIVE" => "FALSE",
         "DEXPAPRIKA_TEST_EXPLAIN" => "FALSE",
-        "DEXPAPRIKA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function exchange_basic_setup($extra)
     if ($env["DEXPAPRIKA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEXPAPRIKA_APIKEY"],
             ],
             $extra ?? [],
         ]);

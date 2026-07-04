@@ -45,6 +45,7 @@ class ExchangeEntity
     end
   end
 
+  # @return [Exchange, Hash] the current Exchange data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ExchangeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Exchange fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ExchangeEntity
   
 
   
+  # List Exchange items matching the given filter.
+  #
+  # @param reqmatch [ExchangeListMatch, Hash, nil] match filter (any subset of Exchange fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Exchange>, Array] the matching Exchange items; raises DexpaprikaError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

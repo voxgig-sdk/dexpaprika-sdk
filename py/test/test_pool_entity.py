@@ -50,8 +50,7 @@ class TestPoolEntity:
         pool_ref01_ent = client.Pool(None)
         pool_ref01_match = {}
 
-        pool_ref01_list_result, err = pool_ref01_ent.list(pool_ref01_match, None)
-        assert err is None
+        pool_ref01_list_result = pool_ref01_ent.list(pool_ref01_match, None)
         assert isinstance(pool_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _pool_basic_setup(extra):
         "DEXPAPRIKA_TEST_POOL_ENTID": idmap,
         "DEXPAPRIKA_TEST_LIVE": "FALSE",
         "DEXPAPRIKA_TEST_EXPLAIN": "FALSE",
-        "DEXPAPRIKA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _pool_basic_setup(extra):
     if env.get("DEXPAPRIKA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEXPAPRIKA_APIKEY"),
             },
             extra or {},
         ])

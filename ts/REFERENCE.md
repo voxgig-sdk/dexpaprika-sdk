@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -158,7 +157,7 @@ Alias for `DexpaprikaSDK.test()`.
 ## ExchangeEntity
 
 ```ts
-const exchange = client.Exchange()
+const exchange = client.exchange
 ```
 
 ### Fields
@@ -179,7 +178,7 @@ const exchange = client.Exchange()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Exchange().list()
+const results = await client.exchange.list()
 ```
 
 ### Common Methods
@@ -213,7 +212,7 @@ Return a copy of the entity options.
 ## HistoricalEntity
 
 ```ts
-const historical = client.Historical()
+const historical = client.historical
 ```
 
 ### Fields
@@ -230,7 +229,7 @@ const historical = client.Historical()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Historical().load({ id: 'historical_id' })
+const result = await client.historical.load({ id: 'historical_id' })
 ```
 
 ### Common Methods
@@ -264,7 +263,7 @@ Return a copy of the entity options.
 ## PoolEntity
 
 ```ts
-const pool = client.Pool()
+const pool = client.pool
 ```
 
 ### Fields
@@ -288,7 +287,7 @@ const pool = client.Pool()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Pool().list()
+const results = await client.pool.list()
 ```
 
 ### Common Methods
@@ -322,7 +321,7 @@ Return a copy of the entity options.
 ## TickerEntity
 
 ```ts
-const ticker = client.Ticker()
+const ticker = client.ticker
 ```
 
 ### Fields
@@ -342,7 +341,7 @@ const ticker = client.Ticker()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Ticker().list()
+const results = await client.ticker.list()
 ```
 
 ### Common Methods
@@ -376,7 +375,7 @@ Return a copy of the entity options.
 ## TokenEntity
 
 ```ts
-const token = client.Token()
+const token = client.token
 ```
 
 ### Fields
@@ -404,7 +403,7 @@ const token = client.Token()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Token().list()
+const results = await client.token.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -412,7 +411,7 @@ const results = await client.Token().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Token().load({ id: 'token_id' })
+const result = await client.token.load({ id: 'token_id' })
 ```
 
 ### Common Methods

@@ -9,9 +9,12 @@ The TypeScript SDK for the Dexpaprika API — a type-safe, entity-oriented clien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/dexpaprika
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/dexpaprika-sdk/releases](https://github.com/voxgig-sdk/dexpaprika-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DexpaprikaSDK } from 'dexpaprika'
+import { DexpaprikaSDK } from '@voxgig-sdk/dexpaprika'
 
-const client = new DexpaprikaSDK({
-  apikey: process.env.DEXPAPRIKA_APIKEY,
-})
+const client = new DexpaprikaSDK()
 ```
 
 ### 2. List exchanges
 
 ```ts
-const result = await client.Exchange().list()
+const result = await client.exchange.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DexpaprikaSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.exchange.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DexpaprikaSDK({ apikey: '...' })
+const client = new DexpaprikaSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.exchange
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new DexpaprikaSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DEXPAPRIKA_TEST_LIVE=TRUE
-DEXPAPRIKA_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new DexpaprikaSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new DexpaprikaSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -342,7 +339,7 @@ API path: `/v1/tokens`
 
 ### Exchange
 
-Create an instance: `const exchange = client.Exchange()`
+Create an instance: `const exchange = client.exchange`
 
 #### Operations
 
@@ -364,13 +361,13 @@ Create an instance: `const exchange = client.Exchange()`
 #### Example: List
 
 ```ts
-const exchanges = await client.Exchange().list()
+const exchanges = await client.exchange.list()
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.Historical()`
+Create an instance: `const historical = client.historical`
 
 #### Operations
 
@@ -388,13 +385,13 @@ Create an instance: `const historical = client.Historical()`
 #### Example: Load
 
 ```ts
-const historical = await client.Historical().load({ id: 'historical_id' })
+const historical = await client.historical.load({ id: 'historical_id' })
 ```
 
 
 ### Pool
 
-Create an instance: `const pool = client.Pool()`
+Create an instance: `const pool = client.pool`
 
 #### Operations
 
@@ -419,13 +416,13 @@ Create an instance: `const pool = client.Pool()`
 #### Example: List
 
 ```ts
-const pools = await client.Pool().list()
+const pools = await client.pool.list()
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -446,13 +443,13 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: List
 
 ```ts
-const tickers = await client.Ticker().list()
+const tickers = await client.ticker.list()
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.Token()`
+Create an instance: `const token = client.token`
 
 #### Operations
 
@@ -482,13 +479,13 @@ Create an instance: `const token = client.Token()`
 #### Example: Load
 
 ```ts
-const token = await client.Token().load({ id: 'token_id' })
+const token = await client.token.load({ id: 'token_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tokens = await client.Token().list()
+const tokens = await client.token.list()
 ```
 
 
@@ -549,7 +546,7 @@ dexpaprika/
 Import the SDK from the package root:
 
 ```ts
-import { DexpaprikaSDK } from 'dexpaprika'
+import { DexpaprikaSDK } from '@voxgig-sdk/dexpaprika'
 ```
 
 ### Entity state
@@ -559,11 +556,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const exchange = client.exchange
+await exchange.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// exchange.data() now returns the loaded exchange data
+// exchange.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

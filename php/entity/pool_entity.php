@@ -55,6 +55,9 @@ class PoolEntity
         return new PoolEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Pool|array $args Pool data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class PoolEntity
         }
     }
 
+    /**
+     * @return Pool|array The current Pool data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Pool fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class PoolEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Pool fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class PoolEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Pool items matching the given filter.
+     *
+     * @param PoolListMatch|array|null $reqmatch Match filter (any subset
+     *   of Pool fields) as an assoc-array; PoolListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Pool[]|array A list of Pool items as assoc-arrays at
+     *   the SDK boundary; throws DexpaprikaError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class PoolEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

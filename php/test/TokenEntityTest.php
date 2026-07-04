@@ -50,16 +50,14 @@ class TokenEntityTest extends TestCase
         $token_ref01_ent = $client->Token(null);
         $token_ref01_match = [];
 
-        [$token_ref01_list_result, $err] = $token_ref01_ent->list($token_ref01_match, null);
-        $this->assertNull($err);
+        $token_ref01_list_result = $token_ref01_ent->list($token_ref01_match, null);
         $this->assertIsArray($token_ref01_list_result);
 
         // LOAD
         $token_ref01_match_dt0 = [
             "id" => $token_ref01_data["id"],
         ];
-        [$token_ref01_data_dt0_loaded, $err] = $token_ref01_ent->load($token_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $token_ref01_data_dt0_loaded = $token_ref01_ent->load($token_ref01_match_dt0, null);
         $token_ref01_data_dt0_load_result = Helpers::to_map($token_ref01_data_dt0_loaded);
         $this->assertNotNull($token_ref01_data_dt0_load_result);
         $this->assertEquals($token_ref01_data_dt0_load_result["id"], $token_ref01_data["id"]);
@@ -96,7 +94,6 @@ function token_basic_setup($extra)
         "DEXPAPRIKA_TEST_TOKEN_ENTID" => $idmap,
         "DEXPAPRIKA_TEST_LIVE" => "FALSE",
         "DEXPAPRIKA_TEST_EXPLAIN" => "FALSE",
-        "DEXPAPRIKA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function token_basic_setup($extra)
     if ($env["DEXPAPRIKA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEXPAPRIKA_APIKEY"],
             ],
             $extra ?? [],
         ]);

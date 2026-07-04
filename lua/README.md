@@ -9,12 +9,9 @@ The Lua SDK for the Dexpaprika API — an entity-oriented client using Lua conve
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-dexpaprika
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/dexpaprika-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("dexpaprika_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("DEXPAPRIKA_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List exchanges
 
 ```lua
-local result, err = client:Exchange():list()
+local result, err = client:exchange():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Dexpaprika():load({ id = "test01" })
+local result, err = client:exchange():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -127,7 +122,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DEXPAPRIKA_TEST_LIVE=TRUE
-DEXPAPRIKA_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -301,7 +294,7 @@ API path: `/v1/tokens`
 
 ### Exchange
 
-Create an instance: `const exchange = client.Exchange()`
+Create an instance: `const exchange = client.exchange`
 
 #### Operations
 
@@ -323,13 +316,13 @@ Create an instance: `const exchange = client.Exchange()`
 #### Example: List
 
 ```ts
-const exchanges = await client.Exchange().list()
+const exchanges = await client.exchange.list()
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.Historical()`
+Create an instance: `const historical = client.historical`
 
 #### Operations
 
@@ -347,13 +340,13 @@ Create an instance: `const historical = client.Historical()`
 #### Example: Load
 
 ```ts
-const historical = await client.Historical().load({ id: 'historical_id' })
+const historical = await client.historical.load({ id: 'historical_id' })
 ```
 
 
 ### Pool
 
-Create an instance: `const pool = client.Pool()`
+Create an instance: `const pool = client.pool`
 
 #### Operations
 
@@ -378,13 +371,13 @@ Create an instance: `const pool = client.Pool()`
 #### Example: List
 
 ```ts
-const pools = await client.Pool().list()
+const pools = await client.pool.list()
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -405,13 +398,13 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: List
 
 ```ts
-const tickers = await client.Ticker().list()
+const tickers = await client.ticker.list()
 ```
 
 
 ### Token
 
-Create an instance: `const token = client.Token()`
+Create an instance: `const token = client.token`
 
 #### Operations
 
@@ -441,13 +434,13 @@ Create an instance: `const token = client.Token()`
 #### Example: Load
 
 ```ts
-const token = await client.Token().load({ id: 'token_id' })
+const token = await client.token.load({ id: 'token_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tokens = await client.Token().list()
+const tokens = await client.token.list()
 ```
 
 
@@ -522,11 +515,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local exchange = client:exchange()
+exchange:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- exchange:data_get() now returns the loaded exchange data
+-- exchange:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
