@@ -37,7 +37,7 @@ Exchange = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Exchange#list (any subset of Exchange fields).
+# Request payload for Exchange#list.
 #
 # @!attribute [rw] chain
 #   @return [String, nil]
@@ -129,7 +129,7 @@ Pool = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Pool#list (any subset of Pool fields).
+# Request payload for Pool#list.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -195,7 +195,7 @@ Ticker = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Ticker#list (any subset of Ticker fields).
+# Request payload for Ticker#list.
 #
 # @!attribute [rw] price_change_24h
 #   @return [Float, nil]
@@ -286,7 +286,7 @@ TokenLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Token#list (any subset of Token fields).
+# Request payload for Token#list.
 #
 # @!attribute [rw] address
 #   @return [String, nil]

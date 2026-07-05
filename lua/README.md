@@ -4,6 +4,8 @@
 
 The Lua SDK for the Dexpaprika API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Exchange()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,8 +43,30 @@ local exchanges, err = client:Exchange():list()
 if err then error(err) end
 
 for _, item in ipairs(exchanges) do
-  print(item["id"], item["name"])
+  print(item["id"], item["chain"])
 end
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local exchanges, err = client:Exchange():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -88,8 +112,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Exchange():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Exchange():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -181,9 +205,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -198,12 +219,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local exchange, err = client:Exchange():load({ id = "example_id" })
+    local exchange, err = client:Exchange():load()
     if err then error(err) end
     -- exchange is the loaded record
 
@@ -311,12 +332,12 @@ Create an instance: `local exchange = client:Exchange(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chain` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `liquidity_usd` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `trades_24h` | ``$INTEGER`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `chain` | `string` |  |
+| `id` | `string` |  |
+| `liquidity_usd` | `number` |  |
+| `name` | `string` |  |
+| `trades_24h` | `number` |  |
+| `volume_24h` | `number` |  |
 
 #### Example: List
 
@@ -339,8 +360,8 @@ Create an instance: `local historical = client:Historical(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `token_id` | ``$STRING`` |  |
+| `data` | `table` |  |
+| `token_id` | `string` |  |
 
 #### Example: Load
 
@@ -363,15 +384,15 @@ Create an instance: `local pool = client:Pool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `apr` | ``$NUMBER`` |  |
-| `chain` | ``$STRING`` |  |
-| `dex` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `liquidity_usd` | ``$NUMBER`` |  |
-| `token0` | ``$OBJECT`` |  |
-| `token1` | ``$OBJECT`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `address` | `string` |  |
+| `apr` | `number` |  |
+| `chain` | `string` |  |
+| `dex` | `string` |  |
+| `id` | `string` |  |
+| `liquidity_usd` | `number` |  |
+| `token0` | `table` |  |
+| `token1` | `table` |  |
+| `volume_24h` | `number` |  |
 
 #### Example: List
 
@@ -394,11 +415,11 @@ Create an instance: `local ticker = client:Ticker(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `price_change_24h` | ``$NUMBER`` |  |
-| `price_usd` | ``$NUMBER`` |  |
-| `symbol` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `price_change_24h` | `number` |  |
+| `price_usd` | `number` |  |
+| `symbol` | `string` |  |
+| `timestamp` | `string` |  |
+| `volume_24h` | `number` |  |
 
 #### Example: List
 
@@ -422,19 +443,19 @@ Create an instance: `local token = client:Token(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `chain` | ``$STRING`` |  |
-| `decimal` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `liquidity_usd` | ``$NUMBER`` |  |
-| `market_cap` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `price_change_24h` | ``$NUMBER`` |  |
-| `price_usd` | ``$NUMBER`` |  |
-| `symbol` | ``$STRING`` |  |
-| `total_supply` | ``$NUMBER`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `address` | `string` |  |
+| `chain` | `string` |  |
+| `decimal` | `number` |  |
+| `id` | `string` |  |
+| `last_updated` | `string` |  |
+| `liquidity_usd` | `number` |  |
+| `market_cap` | `number` |  |
+| `name` | `string` |  |
+| `price_change_24h` | `number` |  |
+| `price_usd` | `number` |  |
+| `symbol` | `string` |  |
+| `total_supply` | `number` |  |
+| `volume_24h` | `number` |  |
 
 #### Example: Load
 
@@ -449,12 +470,16 @@ local tokens, err = client:Token():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -471,8 +496,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -516,14 +542,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local exchange = client:Exchange()
-exchange:load({ id = "example_id" })
+exchange:list()
 
--- exchange:data_get() now returns the loaded exchange data
+-- exchange:data_get() now returns the exchange data from the last list
 -- exchange:match_get() returns the last match criteria
 ```
 

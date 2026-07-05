@@ -4,6 +4,11 @@
 
 The Python SDK for the Dexpaprika API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Exchange()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,11 +43,39 @@ error — iterate it directly.
 
 ```python
 try:
-    exchanges = client.Exchange().list({})
+    exchanges = client.Exchange().list()
     for exchange in exchanges:
         print(exchange)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    exchanges = client.Exchange().list()
+    print(exchanges)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -63,7 +96,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -89,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = DexpaprikaSDK.test()
 
 # Entity ops return the bare record and raise on error.
-exchange = client.Exchange().load({"id": "test01"})
+exchange = client.Exchange().list()
 # exchange contains the mock response record
 ```
 
@@ -180,9 +216,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -303,23 +336,23 @@ Create an instance: `exchange = client.Exchange()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chain` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `liquidity_usd` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `trades_24h` | ``$INTEGER`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `chain` | `str` |  |
+| `id` | `str` |  |
+| `liquidity_usd` | `float` |  |
+| `name` | `str` |  |
+| `trades_24h` | `int` |  |
+| `volume_24h` | `float` |  |
 
 #### Example: List
 
 ```python
-exchanges = client.Exchange().list({})
+exchanges = client.Exchange().list()
 ```
 
 
@@ -337,8 +370,8 @@ Create an instance: `historical = client.Historical()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `token_id` | ``$STRING`` |  |
+| `data` | `list` |  |
+| `token_id` | `str` |  |
 
 #### Example: Load
 
@@ -355,26 +388,26 @@ Create an instance: `pool = client.Pool()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `apr` | ``$NUMBER`` |  |
-| `chain` | ``$STRING`` |  |
-| `dex` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `liquidity_usd` | ``$NUMBER`` |  |
-| `token0` | ``$OBJECT`` |  |
-| `token1` | ``$OBJECT`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `address` | `str` |  |
+| `apr` | `float` |  |
+| `chain` | `str` |  |
+| `dex` | `str` |  |
+| `id` | `str` |  |
+| `liquidity_usd` | `float` |  |
+| `token0` | `dict` |  |
+| `token1` | `dict` |  |
+| `volume_24h` | `float` |  |
 
 #### Example: List
 
 ```python
-pools = client.Pool().list({})
+pools = client.Pool().list()
 ```
 
 
@@ -386,22 +419,22 @@ Create an instance: `ticker = client.Ticker()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `price_change_24h` | ``$NUMBER`` |  |
-| `price_usd` | ``$NUMBER`` |  |
-| `symbol` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `price_change_24h` | `float` |  |
+| `price_usd` | `float` |  |
+| `symbol` | `str` |  |
+| `timestamp` | `str` |  |
+| `volume_24h` | `float` |  |
 
 #### Example: List
 
 ```python
-tickers = client.Ticker().list({})
+tickers = client.Ticker().list()
 ```
 
 
@@ -413,26 +446,26 @@ Create an instance: `token = client.Token()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `chain` | ``$STRING`` |  |
-| `decimal` | ``$INTEGER`` |  |
-| `id` | ``$STRING`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `liquidity_usd` | ``$NUMBER`` |  |
-| `market_cap` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `price_change_24h` | ``$NUMBER`` |  |
-| `price_usd` | ``$NUMBER`` |  |
-| `symbol` | ``$STRING`` |  |
-| `total_supply` | ``$NUMBER`` |  |
-| `volume_24h` | ``$NUMBER`` |  |
+| `address` | `str` |  |
+| `chain` | `str` |  |
+| `decimal` | `int` |  |
+| `id` | `str` |  |
+| `last_updated` | `str` |  |
+| `liquidity_usd` | `float` |  |
+| `market_cap` | `float` |  |
+| `name` | `str` |  |
+| `price_change_24h` | `float` |  |
+| `price_usd` | `float` |  |
+| `symbol` | `str` |  |
+| `total_supply` | `float` |  |
+| `volume_24h` | `float` |  |
 
 #### Example: Load
 
@@ -443,16 +476,20 @@ token = client.Token().load({"id": "token_id"})
 #### Example: List
 
 ```python
-tokens = client.Token().list({})
+tokens = client.Token().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -469,8 +506,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -513,14 +551,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 exchange = client.Exchange()
-exchange.load({"id": "example_id"})
+exchange.list()
 
-# exchange.data_get() now returns the loaded exchange data
+# exchange.data_get() now returns the exchange data from the last list
 # exchange.match_get() returns the last match criteria
 ```
 

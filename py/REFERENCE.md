@@ -103,21 +103,21 @@ exchange = client.Exchange()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `trades_24h` | ``$INTEGER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `chain` | `str` | No |  |
+| `id` | `str` | No |  |
+| `liquidity_usd` | `float` | No |  |
+| `name` | `str` | No |  |
+| `trades_24h` | `int` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Exchange().list({})
+results = client.Exchange().list()
 for exchange in results:
     print(exchange)
 ```
@@ -161,8 +161,8 @@ historical = client.Historical()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `token_id` | ``$STRING`` | No |  |
+| `data` | `list` | No |  |
+| `token_id` | `str` | No |  |
 
 ### Operations
 
@@ -213,24 +213,24 @@ pool = client.Pool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `apr` | ``$NUMBER`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `dex` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `token0` | ``$OBJECT`` | No |  |
-| `token1` | ``$OBJECT`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `str` | No |  |
+| `apr` | `float` | No |  |
+| `chain` | `str` | No |  |
+| `dex` | `str` | No |  |
+| `id` | `str` | No |  |
+| `liquidity_usd` | `float` | No |  |
+| `token0` | `dict` | No |  |
+| `token1` | `dict` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Pool().list({})
+results = client.Pool().list()
 for pool in results:
     print(pool)
 ```
@@ -274,20 +274,20 @@ ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `price_change_24h` | `float` | No |  |
+| `price_usd` | `float` | No |  |
+| `symbol` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Ticker().list({})
+results = client.Ticker().list()
 for ticker in results:
     print(ticker)
 ```
@@ -331,28 +331,28 @@ token = client.Token()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `decimal` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `market_cap` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `total_supply` | ``$NUMBER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `str` | No |  |
+| `chain` | `str` | No |  |
+| `decimal` | `int` | No |  |
+| `id` | `str` | No |  |
+| `last_updated` | `str` | No |  |
+| `liquidity_usd` | `float` | No |  |
+| `market_cap` | `float` | No |  |
+| `name` | `str` | No |  |
+| `price_change_24h` | `float` | No |  |
+| `price_usd` | `float` | No |  |
+| `symbol` | `str` | No |  |
+| `total_supply` | `float` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Token().list({})
+results = client.Token().list()
 for token in results:
     print(token)
 ```

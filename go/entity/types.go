@@ -18,8 +18,7 @@ type Exchange struct {
 	Volume24h *float64 `json:"volume_24h,omitempty"`
 }
 
-// ExchangeListMatch mirrors the exchange fields as an all-optional match
-// filter (Go analog of Partial<Exchange>).
+// ExchangeListMatch is the typed request payload for Exchange.ListTyped.
 type ExchangeListMatch struct {
 	Chain *string `json:"chain,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -53,8 +52,7 @@ type Pool struct {
 	Volume24h *float64 `json:"volume_24h,omitempty"`
 }
 
-// PoolListMatch mirrors the pool fields as an all-optional match
-// filter (Go analog of Partial<Pool>).
+// PoolListMatch is the typed request payload for Pool.ListTyped.
 type PoolListMatch struct {
 	Address *string `json:"address,omitempty"`
 	Apr *float64 `json:"apr,omitempty"`
@@ -76,8 +74,7 @@ type Ticker struct {
 	Volume24h *float64 `json:"volume_24h,omitempty"`
 }
 
-// TickerListMatch mirrors the ticker fields as an all-optional match
-// filter (Go analog of Partial<Ticker>).
+// TickerListMatch is the typed request payload for Ticker.ListTyped.
 type TickerListMatch struct {
 	PriceChange24h *float64 `json:"price_change_24h,omitempty"`
 	PriceUsd *float64 `json:"price_usd,omitempty"`
@@ -108,8 +105,7 @@ type TokenLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// TokenListMatch mirrors the token fields as an all-optional match
-// filter (Go analog of Partial<Token>).
+// TokenListMatch is the typed request payload for Token.ListTyped.
 type TokenListMatch struct {
 	Address *string `json:"address,omitempty"`
 	Chain *string `json:"chain,omitempty"`

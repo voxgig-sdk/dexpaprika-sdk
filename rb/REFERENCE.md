@@ -8,7 +8,7 @@ Complete API reference for the Dexpaprika Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'dexpaprika_sdk'
+require_relative 'Dexpaprika_sdk'
 
 client = DexpaprikaSDK.new(options)
 ```
@@ -109,21 +109,21 @@ exchange = client.Exchange
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `trades_24h` | ``$INTEGER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `chain` | `String` | No |  |
+| `id` | `String` | No |  |
+| `liquidity_usd` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `trades_24h` | `Integer` | No |  |
+| `volume_24h` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Exchange.list(nil)
+results = client.Exchange.list
 ```
 
 ### Common Methods
@@ -166,8 +166,8 @@ historical = client.Historical
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `token_id` | ``$STRING`` | No |  |
+| `data` | `Array` | No |  |
+| `token_id` | `String` | No |  |
 
 ### Operations
 
@@ -219,24 +219,24 @@ pool = client.Pool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `apr` | ``$NUMBER`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `dex` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `token0` | ``$OBJECT`` | No |  |
-| `token1` | ``$OBJECT`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `String` | No |  |
+| `apr` | `Float` | No |  |
+| `chain` | `String` | No |  |
+| `dex` | `String` | No |  |
+| `id` | `String` | No |  |
+| `liquidity_usd` | `Float` | No |  |
+| `token0` | `Hash` | No |  |
+| `token1` | `Hash` | No |  |
+| `volume_24h` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Pool.list(nil)
+results = client.Pool.list
 ```
 
 ### Common Methods
@@ -279,20 +279,20 @@ ticker = client.Ticker
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `price_change_24h` | `Float` | No |  |
+| `price_usd` | `Float` | No |  |
+| `symbol` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `volume_24h` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Ticker.list(nil)
+results = client.Ticker.list
 ```
 
 ### Common Methods
@@ -335,28 +335,28 @@ token = client.Token
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `decimal` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `market_cap` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `total_supply` | ``$NUMBER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `String` | No |  |
+| `chain` | `String` | No |  |
+| `decimal` | `Integer` | No |  |
+| `id` | `String` | No |  |
+| `last_updated` | `String` | No |  |
+| `liquidity_usd` | `Float` | No |  |
+| `market_cap` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `price_change_24h` | `Float` | No |  |
+| `price_usd` | `Float` | No |  |
+| `symbol` | `String` | No |  |
+| `total_supply` | `Float` | No |  |
+| `volume_24h` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Token.list(nil)
+results = client.Token.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

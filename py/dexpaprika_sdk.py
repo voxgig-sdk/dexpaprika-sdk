@@ -221,31 +221,31 @@ class DexpaprikaSDK:
 
 
     def Exchange(self, data=None) -> "ExchangeEntity":
-        """Entity factory: client.Exchange().list({}) / client.Exchange().load({"id": ...})."""
+        """Entity factory: client.Exchange().list() / client.Exchange().load({"id": ...})."""
         from entity.exchange_entity import ExchangeEntity
         return ExchangeEntity(self, data)
 
 
     def Historical(self, data=None) -> "HistoricalEntity":
-        """Entity factory: client.Historical().list({}) / client.Historical().load({"id": ...})."""
+        """Entity factory: client.Historical().list() / client.Historical().load({"id": ...})."""
         from entity.historical_entity import HistoricalEntity
         return HistoricalEntity(self, data)
 
 
     def Pool(self, data=None) -> "PoolEntity":
-        """Entity factory: client.Pool().list({}) / client.Pool().load({"id": ...})."""
+        """Entity factory: client.Pool().list() / client.Pool().load({"id": ...})."""
         from entity.pool_entity import PoolEntity
         return PoolEntity(self, data)
 
 
     def Ticker(self, data=None) -> "TickerEntity":
-        """Entity factory: client.Ticker().list({}) / client.Ticker().load({"id": ...})."""
+        """Entity factory: client.Ticker().list() / client.Ticker().load({"id": ...})."""
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 
 
     def Token(self, data=None) -> "TokenEntity":
-        """Entity factory: client.Token().list({}) / client.Token().load({"id": ...})."""
+        """Entity factory: client.Token().list() / client.Token().load({"id": ...})."""
         from entity.token_entity import TokenEntity
         return TokenEntity(self, data)
 

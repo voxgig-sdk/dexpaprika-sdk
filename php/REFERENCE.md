@@ -61,11 +61,11 @@ Create a new `TickerEntity` instance. Pass `null` for no initial data.
 
 Create a new `TokenEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): DexpaprikaUtility`
 
 Return a copy of the SDK utility object.
 
@@ -108,38 +108,38 @@ $exchange = $client->Exchange();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `trades_24h` | ``$INTEGER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `chain` | `string` | No |  |
+| `id` | `string` | No |  |
+| `liquidity_usd` | `float` | No |  |
+| `name` | `string` | No |  |
+| `trades_24h` | `int` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Exchange()->list([]);
+$results = $client->Exchange()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -148,7 +148,7 @@ Set the entity match criteria.
 Create a new `ExchangeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -165,8 +165,8 @@ $historical = $client->Historical();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `token_id` | ``$STRING`` | No |  |
+| `data` | `array` | No |  |
+| `token_id` | `string` | No |  |
 
 ### Operations
 
@@ -180,19 +180,19 @@ $result = $client->Historical()->load(["id" => "historical_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -201,7 +201,7 @@ Set the entity match criteria.
 Create a new `HistoricalEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -218,41 +218,41 @@ $pool = $client->Pool();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `apr` | ``$NUMBER`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `dex` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `token0` | ``$OBJECT`` | No |  |
-| `token1` | ``$OBJECT`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `string` | No |  |
+| `apr` | `float` | No |  |
+| `chain` | `string` | No |  |
+| `dex` | `string` | No |  |
+| `id` | `string` | No |  |
+| `liquidity_usd` | `float` | No |  |
+| `token0` | `array` | No |  |
+| `token1` | `array` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Pool()->list([]);
+$results = $client->Pool()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -261,7 +261,7 @@ Set the entity match criteria.
 Create a new `PoolEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -278,37 +278,37 @@ $ticker = $client->Ticker();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `price_change_24h` | `float` | No |  |
+| `price_usd` | `float` | No |  |
+| `symbol` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Ticker()->list([]);
+$results = $client->Ticker()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -317,7 +317,7 @@ Set the entity match criteria.
 Create a new `TickerEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -334,28 +334,28 @@ $token = $client->Token();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `decimal` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `market_cap` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `total_supply` | ``$NUMBER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `string` | No |  |
+| `chain` | `string` | No |  |
+| `decimal` | `int` | No |  |
+| `id` | `string` | No |  |
+| `last_updated` | `string` | No |  |
+| `liquidity_usd` | `float` | No |  |
+| `market_cap` | `float` | No |  |
+| `name` | `string` | No |  |
+| `price_change_24h` | `float` | No |  |
+| `price_usd` | `float` | No |  |
+| `symbol` | `string` | No |  |
+| `total_supply` | `float` | No |  |
+| `volume_24h` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Token()->list([]);
+$results = $client->Token()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -368,19 +368,19 @@ $result = $client->Token()->load(["id" => "token_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -389,7 +389,7 @@ Set the entity match criteria.
 Create a new `TokenEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

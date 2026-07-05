@@ -106,12 +106,12 @@ local exchange = client:Exchange(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `trades_24h` | ``$INTEGER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `chain` | `string` | No |  |
+| `id` | `string` | No |  |
+| `liquidity_usd` | `number` | No |  |
+| `name` | `string` | No |  |
+| `trades_24h` | `number` | No |  |
+| `volume_24h` | `number` | No |  |
 
 ### Operations
 
@@ -163,8 +163,8 @@ local historical = client:Historical(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `token_id` | ``$STRING`` | No |  |
+| `data` | `table` | No |  |
+| `token_id` | `string` | No |  |
 
 ### Operations
 
@@ -216,15 +216,15 @@ local pool = client:Pool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `apr` | ``$NUMBER`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `dex` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `token0` | ``$OBJECT`` | No |  |
-| `token1` | ``$OBJECT`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `string` | No |  |
+| `apr` | `number` | No |  |
+| `chain` | `string` | No |  |
+| `dex` | `string` | No |  |
+| `id` | `string` | No |  |
+| `liquidity_usd` | `number` | No |  |
+| `token0` | `table` | No |  |
+| `token1` | `table` | No |  |
+| `volume_24h` | `number` | No |  |
 
 ### Operations
 
@@ -276,11 +276,11 @@ local ticker = client:Ticker(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `price_change_24h` | `number` | No |  |
+| `price_usd` | `number` | No |  |
+| `symbol` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `volume_24h` | `number` | No |  |
 
 ### Operations
 
@@ -332,19 +332,19 @@ local token = client:Token(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `chain` | ``$STRING`` | No |  |
-| `decimal` | ``$INTEGER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `liquidity_usd` | ``$NUMBER`` | No |  |
-| `market_cap` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `price_change_24h` | ``$NUMBER`` | No |  |
-| `price_usd` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `total_supply` | ``$NUMBER`` | No |  |
-| `volume_24h` | ``$NUMBER`` | No |  |
+| `address` | `string` | No |  |
+| `chain` | `string` | No |  |
+| `decimal` | `number` | No |  |
+| `id` | `string` | No |  |
+| `last_updated` | `string` | No |  |
+| `liquidity_usd` | `number` | No |  |
+| `market_cap` | `number` | No |  |
+| `name` | `string` | No |  |
+| `price_change_24h` | `number` | No |  |
+| `price_usd` | `number` | No |  |
+| `symbol` | `string` | No |  |
+| `total_supply` | `number` | No |  |
+| `volume_24h` | `number` | No |  |
 
 ### Operations
 

@@ -23,7 +23,7 @@ class Exchange
     public ?float $volume_24h = null;
 }
 
-/** Match filter for Exchange#list (any subset of Exchange fields). */
+/** Request payload for Exchange#list. */
 class ExchangeListMatch
 {
     public ?string $chain = null;
@@ -61,7 +61,7 @@ class Pool
     public ?float $volume_24h = null;
 }
 
-/** Match filter for Pool#list (any subset of Pool fields). */
+/** Request payload for Pool#list. */
 class PoolListMatch
 {
     public ?string $address = null;
@@ -85,7 +85,7 @@ class Ticker
     public ?float $volume_24h = null;
 }
 
-/** Match filter for Ticker#list (any subset of Ticker fields). */
+/** Request payload for Ticker#list. */
 class TickerListMatch
 {
     public ?float $price_change_24h = null;
@@ -119,7 +119,7 @@ class TokenLoadMatch
     public string $id;
 }
 
-/** Match filter for Token#list (any subset of Token fields). */
+/** Request payload for Token#list. */
 class TokenListMatch
 {
     public ?string $address = null;
