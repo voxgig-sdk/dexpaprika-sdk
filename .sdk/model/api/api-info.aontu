@@ -16,9 +16,9 @@ main: {
           url: "https://api.dexpaprika.com"
         }
       ]
+      summary: "DexPaprika provides access to comprehensive decentralized exchange (DEX) data, including real-time token prices, liquidity pools, and trading volumes."
       title: "DexPaprika API"
       version: "1.0.0"
+      website: "https://dexpaprika.com"
     }
   }
-}
-

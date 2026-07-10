@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -848,14 +845,17 @@
           "url": "https://docs.dexpaprika.com/"
         },
         "description": "DexPaprika provides access to comprehensive decentralized exchange (DEX) data, including real-time token prices, liquidity pools, and trading volumes. It is designed for developers creating trading dashboards, portfolio trackers, and DeFi applications.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.dexpaprika.com"
           }
         ],
+        "summary": "DexPaprika provides access to comprehensive decentralized exchange (DEX) data, including real-time token prices, liquidity pools, and trading volumes.",
         "title": "DexPaprika API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://dexpaprika.com"
       },
       "option": {},
       "target": {
@@ -908,6 +908,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -958,6 +961,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

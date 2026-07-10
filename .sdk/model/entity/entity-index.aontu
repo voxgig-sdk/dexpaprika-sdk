@@ -1,0 +1,7 @@
+# Entity Models
+
+@"exchange.aontu"
+@"historical.aontu"
+@"pool.aontu"
+@"ticker.aontu"
+@"token.aontu"

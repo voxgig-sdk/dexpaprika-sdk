@@ -107,6 +107,7 @@ same parameters as `Direct()`.
 
 ```go
 exchange := client.Exchange(nil)
+fmt.Println(exchange.GetName()) // "exchange"
 ```
 
 ### Fields
@@ -128,6 +129,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Exchange(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -158,6 +163,7 @@ Return the entity name.
 
 ```go
 historical := client.Historical(nil)
+fmt.Println(historical.GetName()) // "historical"
 ```
 
 ### Fields
@@ -175,6 +181,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Historical(nil).Load(map[string]any{"id": "historical_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -205,6 +215,7 @@ Return the entity name.
 
 ```go
 pool := client.Pool(nil)
+fmt.Println(pool.GetName()) // "pool"
 ```
 
 ### Fields
@@ -229,6 +240,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Pool(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -259,6 +274,7 @@ Return the entity name.
 
 ```go
 ticker := client.Ticker(nil)
+fmt.Println(ticker.GetName()) // "ticker"
 ```
 
 ### Fields
@@ -279,6 +295,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Ticker(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -309,6 +329,7 @@ Return the entity name.
 
 ```go
 token := client.Token(nil)
+fmt.Println(token.GetName()) // "token"
 ```
 
 ### Fields
@@ -337,6 +358,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Token(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -345,6 +370,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Token(nil).Load(map[string]any{"id": "token_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
