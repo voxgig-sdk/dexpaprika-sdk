@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewDexpaprikaSDK(nil)
+	// Configure from the environment: DEXPAPRIKA_APIKEY carries the API key and
+	// DEXPAPRIKA_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("DEXPAPRIKA_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("DEXPAPRIKA_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewDexpaprikaSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {
