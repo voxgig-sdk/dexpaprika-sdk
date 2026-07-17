@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Dexpaprika SDK exists test
 
 local sdk = require("dexpaprika_sdk")
 
