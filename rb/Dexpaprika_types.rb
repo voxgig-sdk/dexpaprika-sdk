@@ -228,7 +228,7 @@ TickerListMatch = Struct.new(
 # @!attribute [rw] chain
 #   @return [String, nil]
 #
-# @!attribute [rw] decimal
+# @!attribute [rw] decimals
 #   @return [Integer, nil]
 #
 # @!attribute [rw] id
@@ -263,7 +263,7 @@ TickerListMatch = Struct.new(
 Token = Struct.new(
   :address,
   :chain,
-  :decimal,
+  :decimals,
   :id,
   :last_updated,
   :liquidity_usd,
@@ -294,7 +294,7 @@ TokenLoadMatch = Struct.new(
 # @!attribute [rw] chain
 #   @return [String, nil]
 #
-# @!attribute [rw] decimal
+# @!attribute [rw] decimals
 #   @return [Integer, nil]
 #
 # @!attribute [rw] id
@@ -329,7 +329,7 @@ TokenLoadMatch = Struct.new(
 TokenListMatch = Struct.new(
   :address,
   :chain,
-  :decimal,
+  :decimals,
   :id,
   :last_updated,
   :liquidity_usd,

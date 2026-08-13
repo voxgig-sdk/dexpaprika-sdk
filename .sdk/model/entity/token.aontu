@@ -16,7 +16,7 @@ main: kit: entity: token: {
       type: "`$STRING`"
     }
     {
-      name: "decimal"
+      name: "decimals"
       req: false
       type: "`$INTEGER`"
     }

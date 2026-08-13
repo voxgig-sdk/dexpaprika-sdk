@@ -63,7 +63,7 @@ describe('ExchangeEntity', async () => {
     const exchange_ref01_ent = client.Exchange()
     const exchange_ref01_match: any = {}
 
-    const exchange_ref01_list = await exchange_ref01_ent.list(exchange_ref01_match)
+    const exchange_ref01_list = (await exchange_ref01_ent.list(exchange_ref01_match)).map((e: any) => e.data())
 
 
   })

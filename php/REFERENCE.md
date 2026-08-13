@@ -336,7 +336,7 @@ $token = $client->Token();
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `chain` | `string` | No |  |
-| `decimal` | `int` | No |  |
+| `decimals` | `int` | No |  |
 | `id` | `string` | No |  |
 | `last_updated` | `string` | No |  |
 | `liquidity_usd` | `float` | No |  |

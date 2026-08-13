@@ -86,6 +86,7 @@ class DexpaprikaConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/exchanges',
                   'parts' => [
@@ -172,6 +173,7 @@ class DexpaprikaConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/historical/{token_id}',
                   'parts' => [
@@ -301,6 +303,7 @@ class DexpaprikaConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/pools',
                   'parts' => [
@@ -385,6 +388,7 @@ class DexpaprikaConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/tickers',
                   'parts' => [
@@ -428,7 +432,7 @@ class DexpaprikaConfig
             ],
             [
               'active' => true,
-              'name' => 'decimal',
+              'name' => 'decimals',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 2,
@@ -542,6 +546,7 @@ class DexpaprikaConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/tokens',
                   'parts' => [
@@ -583,6 +588,7 @@ class DexpaprikaConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/tokens/{token_id}',
                   'parts' => [

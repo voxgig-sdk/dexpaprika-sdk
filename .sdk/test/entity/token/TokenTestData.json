@@ -4,7 +4,7 @@
       "TOKEN00": {
         "address": "s82",
         "chain": "s83",
-        "decimal": "s84",
+        "decimals": "s84",
         "id": "TOKEN00",
         "last_updated": "s86",
         "liquidity_usd": 135,
@@ -19,7 +19,7 @@
       "TOKEN01": {
         "address": "s104",
         "chain": "s105",
-        "decimal": "s106",
+        "decimals": "s106",
         "id": "TOKEN01",
         "last_updated": "s108",
         "liquidity_usd": 265,
@@ -34,7 +34,7 @@
       "TOKEN02": {
         "address": "s186",
         "chain": "s187",
-        "decimal": "s188",
+        "decimals": "s188",
         "id": "TOKEN02",
         "last_updated": "s18a",
         "liquidity_usd": 395,
@@ -53,7 +53,7 @@
       "token_ref01": {
         "address": "s208",
         "chain": "s209",
-        "decimal": "s20a",
+        "decimals": "s20a",
         "last_updated": "s20c",
         "liquidity_usd": 525,
         "market_cap": 526,

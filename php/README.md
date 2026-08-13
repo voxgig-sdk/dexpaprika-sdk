@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $exchanges = $client->Exchange()->list();
+    $tickers = $client->Ticker()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DexpaprikaSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$exchange = $client->Exchange()->list();
-print_r($exchange);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$ticker = $client->Ticker()->list();
+print_r($ticker);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +230,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -311,7 +312,7 @@ API path: `/v1/tickers`
 | --- | --- |
 | `address` |  |
 | `chain` |  |
-| `decimal` |  |
+| `decimals` |  |
 | `id` |  |
 | `last_updated` |  |
 | `liquidity_usd` |  |
@@ -381,7 +382,7 @@ Create an instance: `$historical = $client->Historical();`
 #### Example: Load
 
 ```php
-// load() returns the bare Historical record (throws on error).
+// load() returns the ENTITY — call data_get() for the Historical record (throws on error).
 $historical = $client->Historical()->load(["id" => "historical_id"]);
 ```
 
@@ -463,7 +464,7 @@ Create an instance: `$token = $client->Token();`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `chain` | `string` |  |
-| `decimal` | `int` |  |
+| `decimals` | `int` |  |
 | `id` | `string` |  |
 | `last_updated` | `string` |  |
 | `liquidity_usd` | `float` |  |
@@ -478,7 +479,7 @@ Create an instance: `$token = $client->Token();`
 #### Example: Load
 
 ```php
-// load() returns the bare Token record (throws on error).
+// load() returns the ENTITY — call data_get() for the Token record (throws on error).
 $token = $client->Token()->load(["id" => "token_id"]);
 ```
 
@@ -566,11 +567,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$exchange = $client->Exchange();
-$exchange->list();
+$ticker = $client->Ticker();
+$ticker->list();
 
-// $exchange->data_get() now returns the exchange data from the last list
-// $exchange->match_get() returns the last match criteria
+// $ticker->data_get() now returns the ticker data from the last list
+// $ticker->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

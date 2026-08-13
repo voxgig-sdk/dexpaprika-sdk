@@ -100,7 +100,7 @@ class Token
 {
     public ?string $address = null;
     public ?string $chain = null;
-    public ?int $decimal = null;
+    public ?int $decimals = null;
     public ?string $id = null;
     public ?string $last_updated = null;
     public ?float $liquidity_usd = null;
@@ -124,7 +124,7 @@ class TokenListMatch
 {
     public ?string $address = null;
     public ?string $chain = null;
-    public ?int $decimal = null;
+    public ?int $decimals = null;
     public ?string $id = null;
     public ?string $last_updated = null;
     public ?float $liquidity_usd = null;

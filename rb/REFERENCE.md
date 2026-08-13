@@ -337,7 +337,7 @@ token = client.Token
 | --- | --- | --- | --- |
 | `address` | `String` | No |  |
 | `chain` | `String` | No |  |
-| `decimal` | `Integer` | No |  |
+| `decimals` | `Integer` | No |  |
 | `id` | `String` | No |  |
 | `last_updated` | `String` | No |  |
 | `liquidity_usd` | `Float` | No |  |

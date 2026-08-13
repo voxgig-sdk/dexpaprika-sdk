@@ -333,7 +333,7 @@ token = client.Token()
 | --- | --- | --- | --- |
 | `address` | `str` | No |  |
 | `chain` | `str` | No |  |
-| `decimal` | `int` | No |  |
+| `decimals` | `int` | No |  |
 | `id` | `str` | No |  |
 | `last_updated` | `str` | No |  |
 | `liquidity_usd` | `float` | No |  |

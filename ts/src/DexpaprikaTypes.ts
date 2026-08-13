@@ -75,7 +75,7 @@ export interface TickerListMatch {
 export interface Token {
   address?: string
   chain?: string
-  decimal?: number
+  decimals?: number
   id?: string
   last_updated?: string
   liquidity_usd?: number
@@ -95,7 +95,7 @@ export interface TokenLoadMatch {
 export interface TokenListMatch {
   address?: string
   chain?: string
-  decimal?: number
+  decimals?: number
   id?: string
   last_updated?: string
   liquidity_usd?: number

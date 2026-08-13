@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-exchanges, err := client.Exchange(nil).List(nil, nil)
+tickers, err := client.Ticker(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = exchanges
+_ = tickers
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-exchange, err := client.Exchange(nil).List(
+ticker, err := client.Ticker(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(exchange) // the returned mock data
+fmt.Println(ticker) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -326,7 +326,7 @@ API path: `/v1/tickers`
 | --- | --- |
 | `"address"` |  |
 | `"chain"` |  |
-| `"decimal"` |  |
+| `"decimals"` |  |
 | `"id"` |  |
 | `"last_updated"` |  |
 | `"liquidity_usd"` |  |
@@ -490,7 +490,7 @@ Create an instance: `token := client.Token(nil)`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `chain` | `string` |  |
-| `decimal` | `int` |  |
+| `decimals` | `int` |  |
 | `id` | `string` |  |
 | `last_updated` | `string` |  |
 | `liquidity_usd` | `float64` |  |
@@ -596,11 +596,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-exchange := client.Exchange(nil)
-exchange.List(nil, nil)
+ticker := client.Ticker(nil)
+ticker.List(nil, nil)
 
-// exchange.Data() now returns the exchange data from the last list
-// exchange.Match() returns the last match criteria
+// ticker.Data() now returns the ticker data from the last list
+// ticker.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

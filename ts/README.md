@@ -35,7 +35,9 @@ const client = new DexpaprikaSDK()
 
 ### 2. List exchange records
 
-`list()` resolves to an array of Exchange objects — iterate it directly:
+`list()` resolves to an array of Exchange ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const exchanges = await client.Exchange().list()
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const exchanges = await client.Exchange().list()
-  console.log(exchanges)
+  const tickers = await client.Ticker().list()
+  console.log(tickers)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DexpaprikaSDK.test()
 
-const exchange = await client.Exchange().list()
-// exchange is a bare entity populated with mock response data
-console.log(exchange)
+const ticker = await client.Ticker().list()
+// ticker is the entity, populated with mock response data
+// — call ticker.data() for the record itself
+console.log(ticker)
 ```
 
 You can also use the instance method:
@@ -136,14 +139,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Exchange()
+const entity = client.Ticker()
 
 // First call runs the operation and stores its result
 await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id)
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -350,7 +353,7 @@ API path: `/v1/tickers`
 | --- | --- |
 | `address` |  |
 | `chain` |  |
-| `decimal` |  |
+| `decimals` |  |
 | `id` |  |
 | `last_updated` |  |
 | `liquidity_usd` |  |
@@ -498,7 +501,7 @@ Create an instance: `const token = client.Token()`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `chain` | `string` |  |
-| `decimal` | `number` |  |
+| `decimals` | `number` |  |
 | `id` | `string` |  |
 | `last_updated` | `string` |  |
 | `liquidity_usd` | `number` |  |
@@ -592,11 +595,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const exchange = client.Exchange()
-await exchange.list()
+const ticker = client.Ticker()
+await ticker.list()
 
-// exchange.data() now returns the exchange data from the last `list`
-// exchange.match() returns the last match criteria
+// ticker.data() now returns the ticker data from the last `list`
+// ticker.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

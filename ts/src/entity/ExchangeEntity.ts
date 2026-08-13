@@ -37,7 +37,7 @@ class ExchangeEntity extends DexpaprikaEntityBase<Exchange> {
 
 
 
-  async list(this: any, reqmatch?: ExchangeListMatch, ctrl?: Control): Promise<Exchange[]> {
+  async list(this: any, reqmatch?: ExchangeListMatch, ctrl?: Control): Promise<ExchangeEntity[]> {
 
     const utility = this._utility
 

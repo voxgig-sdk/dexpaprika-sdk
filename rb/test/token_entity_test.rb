@@ -87,7 +87,7 @@ class TokenEntityTest < Minitest::Test
       "id" => token_ref01_data["id"],
     }
     token_ref01_data_dt0_loaded = token_ref01_ent.load(token_ref01_match_dt0, nil)
-    token_ref01_data_dt0_load_result = Helpers.to_map(token_ref01_data_dt0_loaded)
+    token_ref01_data_dt0_load_result = Helpers.to_map(token_ref01_data_dt0_loaded.respond_to?(:data_get) ? token_ref01_data_dt0_loaded.data_get : token_ref01_data_dt0_loaded)
     assert !token_ref01_data_dt0_load_result.nil?
     assert_equal token_ref01_data_dt0_load_result["id"], token_ref01_data["id"]
 

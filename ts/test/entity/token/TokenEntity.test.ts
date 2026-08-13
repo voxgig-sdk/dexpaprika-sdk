@@ -63,13 +63,13 @@ describe('TokenEntity', async () => {
     const token_ref01_ent = client.Token()
     const token_ref01_match: any = {}
 
-    const token_ref01_list = await token_ref01_ent.list(token_ref01_match)
+    const token_ref01_list = (await token_ref01_ent.list(token_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const token_ref01_match_dt0: any = {}
     token_ref01_match_dt0.id = token_ref01_data.id
-    const token_ref01_data_dt0 = await token_ref01_ent.load(token_ref01_match_dt0)
+    const token_ref01_data_dt0 = (await token_ref01_ent.load(token_ref01_match_dt0)).data()
     assert(token_ref01_data_dt0.id === token_ref01_data.id)
 
 

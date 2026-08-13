@@ -97,7 +97,7 @@ class TokenEntityTest extends TestCase
             "id" => $token_ref01_data["id"],
         ];
         $token_ref01_data_dt0_loaded = $token_ref01_ent->load($token_ref01_match_dt0, null);
-        $token_ref01_data_dt0_load_result = Helpers::to_map($token_ref01_data_dt0_loaded);
+        $token_ref01_data_dt0_load_result = Helpers::to_map(is_object($token_ref01_data_dt0_loaded) && method_exists($token_ref01_data_dt0_loaded, 'data_get') ? $token_ref01_data_dt0_loaded->data_get() : $token_ref01_data_dt0_loaded);
         $this->assertNotNull($token_ref01_data_dt0_load_result);
         $this->assertEquals($token_ref01_data_dt0_load_result["id"], $token_ref01_data["id"]);
 

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Dexpaprika',
   }
 
 
@@ -118,6 +118,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/exchanges",
               "parts": [
@@ -204,6 +205,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/historical/{token_id}",
               "parts": [
@@ -333,6 +335,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/pools",
               "parts": [
@@ -417,6 +420,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/tickers",
               "parts": [
@@ -460,7 +464,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "decimal",
+          "name": "decimals",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 2
@@ -574,6 +578,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/tokens",
               "parts": [
@@ -615,6 +620,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/tokens/{token_id}",
               "parts": [

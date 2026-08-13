@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DexpaprikaSDK
-from core.error import DexpaprikaError
-from core.result import DexpaprikaResult
-from core.response import DexpaprikaResponse
-from core.spec import DexpaprikaSpec
-from feature.base_feature import DexpaprikaBaseFeature
+from projectname_sdk.core.error import DexpaprikaError
+from projectname_sdk.core.result import DexpaprikaResult
+from projectname_sdk.core.response import DexpaprikaResponse
+from projectname_sdk.core.spec import DexpaprikaSpec
+from projectname_sdk.feature.base_feature import DexpaprikaBaseFeature
 
 
 def _client():

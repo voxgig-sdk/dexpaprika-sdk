@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Dexpaprika SDK exists test
 
 import pytest
 from dexpaprika_sdk import DexpaprikaSDK

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ DexpaprikaUtility.registrar = ->(u) {
   u.prepare_params = DexpaprikaUtilities::PrepareParams
   u.prepare_path = DexpaprikaUtilities::PreparePath
   u.prepare_query = DexpaprikaUtilities::PrepareQuery
+  u.graphql_body = DexpaprikaUtilities::GraphqlBody
+  u.graphql_errors = DexpaprikaUtilities::GraphqlErrors
   u.result_basic = DexpaprikaUtilities::ResultBasic
   u.result_body = DexpaprikaUtilities::ResultBody
   u.result_headers = DexpaprikaUtilities::ResultHeaders

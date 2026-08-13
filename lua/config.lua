@@ -80,6 +80,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/exchanges",
                 ["parts"] = {
@@ -166,6 +167,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/historical/{token_id}",
                 ["parts"] = {
@@ -295,6 +297,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/pools",
                 ["parts"] = {
@@ -379,6 +382,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/tickers",
                 ["parts"] = {
@@ -422,7 +426,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "decimal",
+            ["name"] = "decimals",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 2,
@@ -536,6 +540,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/tokens",
                 ["parts"] = {
@@ -577,6 +582,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/tokens/{token_id}",
                 ["parts"] = {

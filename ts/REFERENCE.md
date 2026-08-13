@@ -384,7 +384,7 @@ const token = client.Token()
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `chain` | `string` | No |  |
-| `decimal` | `number` | No |  |
+| `decimals` | `number` | No |  |
 | `id` | `string` | No |  |
 | `last_updated` | `string` | No |  |
 | `liquidity_usd` | `number` | No |  |

@@ -37,7 +37,7 @@ class PoolEntity extends DexpaprikaEntityBase<Pool> {
 
 
 
-  async list(this: any, reqmatch?: PoolListMatch, ctrl?: Control): Promise<Pool[]> {
+  async list(this: any, reqmatch?: PoolListMatch, ctrl?: Control): Promise<PoolEntity[]> {
 
     const utility = this._utility
 

@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local exchanges, err = client:Exchange():list()
+local tickers, err = client:Ticker():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Exchange():list()
+local result, err = client:Ticker():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -224,9 +224,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local exchange, err = client:Exchange():load()
+    local historical, err = client:Historical():load({ id = "example_id" })
     if err then error(err) end
-    -- exchange is the loaded record
+    -- historical is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -297,7 +297,7 @@ API path: `/v1/tickers`
 | --- | --- |
 | `address` |  |
 | `chain` |  |
-| `decimal` |  |
+| `decimals` |  |
 | `id` |  |
 | `last_updated` |  |
 | `liquidity_usd` |  |
@@ -445,7 +445,7 @@ Create an instance: `local token = client:Token(nil)`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `chain` | `string` |  |
-| `decimal` | `number` |  |
+| `decimals` | `number` |  |
 | `id` | `string` |  |
 | `last_updated` | `string` |  |
 | `liquidity_usd` | `number` |  |
@@ -546,11 +546,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local exchange = client:Exchange()
-exchange:list()
+local ticker = client:Ticker()
+ticker:list()
 
--- exchange:data_get() now returns the exchange data from the last list
--- exchange:match_get() returns the last match criteria
+-- ticker:data_get() now returns the ticker data from the last list
+-- ticker:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

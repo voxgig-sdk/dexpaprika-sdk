@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = DexpaprikaSDK.test()
-const exchanges = await client.Exchange().list()
-// exchanges is an array of bare Exchange records populated with mock data
-console.log(exchanges)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = DexpaprikaSDK.test({
+  entity: {
+    ticker: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const tickers = await client.Ticker().list()
+// tickers is an array of Ticker entities, populated with mock data
+// — call tickers[0].data() for the record itself
+console.log(tickers)
 ```
 
 ### Python
 
 ```python
 client = DexpaprikaSDK.test()
-exchanges = client.Exchange().list()
-print(exchanges)
+tickers = client.Ticker().list()
+print(tickers)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(exchanges)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = DexpaprikaSDK::test([
-    "entity" => ["exchange" => ["test01" => []]],
+    "entity" => ["ticker" => ["test01" => []]],
 ]);
-$exchanges = $client->Exchange()->list();
+$tickers = $client->Ticker()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Exchange(nil).List(
+result, err := client.Ticker(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Exchange(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = DexpaprikaSDK.test({
-  "entity" => { "exchange" => { "test01" => {} } },
+  "entity" => { "ticker" => { "test01" => {} } },
 })
-exchanges = client.Exchange.list()
+tickers = client.Ticker.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Exchange():list()
+local results, err = client:Ticker():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { DexpaprikaSDK } from '@voxgig-sdk/dexpaprika'
 
 const client = new DexpaprikaSDK()
 
-// List all exchanges (returns Exchange[])
+// List all exchanges (returns ExchangeEntity[] — .data() for the record)
 const exchanges = await client.Exchange().list()
 for (const exchange of exchanges) {
   console.log(exchange)
@@ -347,6 +356,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://docs.dexpaprika.com/](https://docs.dexpaprika.com/)
 

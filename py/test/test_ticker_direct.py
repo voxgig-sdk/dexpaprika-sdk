@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from dexpaprika_sdk.utility.voxgig_struct import voxgig_struct as vs
 from dexpaprika_sdk import DexpaprikaSDK
-from core import helpers
+from dexpaprika_sdk.core import helpers
 from test import runner
 
 

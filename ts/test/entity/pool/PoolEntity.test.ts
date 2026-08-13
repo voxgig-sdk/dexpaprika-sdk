@@ -63,7 +63,7 @@ describe('PoolEntity', async () => {
     const pool_ref01_ent = client.Pool()
     const pool_ref01_match: any = {}
 
-    const pool_ref01_list = await pool_ref01_ent.list(pool_ref01_match)
+    const pool_ref01_list = (await pool_ref01_ent.list(pool_ref01_match)).map((e: any) => e.data())
 
 
   })

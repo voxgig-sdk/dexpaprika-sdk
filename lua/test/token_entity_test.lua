@@ -97,7 +97,7 @@ describe("TokenEntity", function()
     }
     local token_ref01_data_dt0_loaded, err = token_ref01_ent:load(token_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local token_ref01_data_dt0_load_result = helpers.to_map(token_ref01_data_dt0_loaded)
+    local token_ref01_data_dt0_load_result = helpers.to_map(type(token_ref01_data_dt0_loaded) == 'table' and token_ref01_data_dt0_loaded.data_get and token_ref01_data_dt0_loaded:data_get() or token_ref01_data_dt0_loaded)
     assert.is_not_nil(token_ref01_data_dt0_load_result)
     assert.are.equal(token_ref01_data_dt0_load_result["id"], token_ref01_data["id"])
 

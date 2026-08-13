@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ DexpaprikaUtility::setRegistrar(function (DexpaprikaUtility $u): void {
     $u->prepare_params = [DexpaprikaPrepareParams::class, 'call'];
     $u->prepare_path = [DexpaprikaPreparePath::class, 'call'];
     $u->prepare_query = [DexpaprikaPrepareQuery::class, 'call'];
+    $u->graphql_body = [DexpaprikaGraphql::class, 'body'];
+    $u->graphql_errors = [DexpaprikaGraphql::class, 'errors'];
     $u->result_basic = [DexpaprikaResultBasic::class, 'call'];
     $u->result_body = [DexpaprikaResultBody::class, 'call'];
     $u->result_headers = [DexpaprikaResultHeaders::class, 'call'];

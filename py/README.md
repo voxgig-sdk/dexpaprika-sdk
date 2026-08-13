@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    exchanges = client.Exchange().list()
-    print(exchanges)
+    tickers = client.Ticker().list()
+    print(tickers)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DexpaprikaSDK.test()
 
-# Entity ops return the bare record and raise on error.
-exchange = client.Exchange().list()
-# exchange contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+ticker = client.Ticker().list()
+# ticker contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -307,7 +308,7 @@ API path: `/v1/tickers`
 | --- | --- |
 | `address` |  |
 | `chain` |  |
-| `decimal` |  |
+| `decimals` |  |
 | `id` |  |
 | `last_updated` |  |
 | `liquidity_usd` |  |
@@ -455,7 +456,7 @@ Create an instance: `token = client.Token()`
 | --- | --- | --- |
 | `address` | `str` |  |
 | `chain` | `str` |  |
-| `decimal` | `int` |  |
+| `decimals` | `int` |  |
 | `id` | `str` |  |
 | `last_updated` | `str` |  |
 | `liquidity_usd` | `float` |  |
@@ -555,11 +556,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-exchange = client.Exchange()
-exchange.list()
+ticker = client.Ticker()
+ticker.list()
 
-# exchange.data_get() now returns the exchange data from the last list
-# exchange.match_get() returns the last match criteria
+# ticker.data_get() now returns the ticker data from the last list
+# ticker.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

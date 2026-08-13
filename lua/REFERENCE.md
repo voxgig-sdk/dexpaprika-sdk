@@ -334,7 +334,7 @@ local token = client:Token(nil)
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `chain` | `string` | No |  |
-| `decimal` | `number` | No |  |
+| `decimals` | `number` | No |  |
 | `id` | `string` | No |  |
 | `last_updated` | `string` | No |  |
 | `liquidity_usd` | `number` | No |  |

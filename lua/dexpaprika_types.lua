@@ -68,7 +68,7 @@
 ---@class Token
 ---@field address? string
 ---@field chain? string
----@field decimal? number
+---@field decimals? number
 ---@field id? string
 ---@field last_updated? string
 ---@field liquidity_usd? number
@@ -86,7 +86,7 @@
 ---@class TokenListMatch
 ---@field address? string
 ---@field chain? string
----@field decimal? number
+---@field decimals? number
 ---@field id? string
 ---@field last_updated? string
 ---@field liquidity_usd? number
