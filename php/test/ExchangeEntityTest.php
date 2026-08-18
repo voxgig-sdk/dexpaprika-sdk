@@ -40,7 +40,7 @@ class ExchangeEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = DexpaprikaConfig::make_config();
+        $cfg = DexpaprikaConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = DexpaprikaSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

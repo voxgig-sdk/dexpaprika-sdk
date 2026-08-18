@@ -15,7 +15,7 @@ require_relative "../Dexpaprika_sdk"
 module DexpaprikaFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = DexpaprikaConfig.make_config["feature"]
+    f = DexpaprikaConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

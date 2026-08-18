@@ -40,7 +40,7 @@ class DexpaprikaSDK
         $utility = new DexpaprikaUtility();
         $this->_utility = $utility;
 
-        $config = DexpaprikaConfig::make_config();
+        $config = DexpaprikaConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

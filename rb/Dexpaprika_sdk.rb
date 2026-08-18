@@ -28,7 +28,7 @@ class DexpaprikaSDK
     utility = DexpaprikaUtility.new
     @_utility = utility
 
-    config = DexpaprikaConfig.make_config
+    config = DexpaprikaConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
