@@ -1,0 +1,74 @@
+# Entity: exchange
+
+main: kit: entity: exchange: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "chain"
+      req: false
+      short: "Blockchain network"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Exchange identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "liquidity_usd"
+      req: false
+      short: "Total liquidity in USD"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Exchange name"
+      type: "`$STRING`"
+    }
+    {
+      name: "trades_24h"
+      req: false
+      short: "Number of trades in last 24 hours"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "volume_24h"
+      req: false
+      short: "24-hour trading volume"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "exchange"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/v1/exchanges"
+          parts: [
+            "v1"
+            "exchanges"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

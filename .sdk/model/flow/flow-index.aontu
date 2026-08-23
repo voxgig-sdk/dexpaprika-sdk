@@ -1,7 +1,0 @@
-# Flows
-
-@"BasicExchangeFlow.aontu"
-@"BasicHistoricalFlow.aontu"
-@"BasicPoolFlow.aontu"
-@"BasicTickerFlow.aontu"
-@"BasicTokenFlow.aontu"

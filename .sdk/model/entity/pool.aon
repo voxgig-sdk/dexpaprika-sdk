@@ -1,0 +1,115 @@
+# Entity: pool
+
+main: kit: entity: pool: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      short: "Pool contract address"
+      type: "`$STRING`"
+    }
+    {
+      name: "apr"
+      req: false
+      short: "Annual percentage rate"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "chain"
+      req: false
+      short: "Blockchain network"
+      type: "`$STRING`"
+    }
+    {
+      name: "dex"
+      req: false
+      short: "DEX platform name"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique pool identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "liquidity_usd"
+      req: false
+      short: "Total liquidity in USD"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "token0"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "token1"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "volume_24h"
+      req: false
+      short: "24-hour trading volume"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "pool"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "dex"
+                orig: "dex"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/pools"
+          parts: [
+            "v1"
+            "pools"
+          ]
+          select: {
+            exist: [
+              "dex"
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

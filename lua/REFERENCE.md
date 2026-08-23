@@ -106,12 +106,12 @@ local exchange = client:Exchange(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | `string` | No |  |
-| `id` | `string` | No |  |
-| `liquidity_usd` | `number` | No |  |
-| `name` | `string` | No |  |
-| `trades_24h` | `number` | No |  |
-| `volume_24h` | `number` | No |  |
+| `chain` | `string` | No | Blockchain network |
+| `id` | `string` | No | Exchange identifier |
+| `liquidity_usd` | `number` | No | Total liquidity in USD |
+| `name` | `string` | No | Exchange name |
+| `trades_24h` | `number` | No | Number of trades in last 24 hours |
+| `volume_24h` | `number` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -164,7 +164,7 @@ local historical = client:Historical(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `table` | No |  |
-| `token_id` | `string` | No |  |
+| `token_id` | `string` | No | Token identifier |
 
 ### Operations
 
@@ -216,15 +216,15 @@ local pool = client:Pool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `apr` | `number` | No |  |
-| `chain` | `string` | No |  |
-| `dex` | `string` | No |  |
-| `id` | `string` | No |  |
-| `liquidity_usd` | `number` | No |  |
+| `address` | `string` | No | Pool contract address |
+| `apr` | `number` | No | Annual percentage rate |
+| `chain` | `string` | No | Blockchain network |
+| `dex` | `string` | No | DEX platform name |
+| `id` | `string` | No | Unique pool identifier |
+| `liquidity_usd` | `number` | No | Total liquidity in USD |
 | `token0` | `table` | No |  |
 | `token1` | `table` | No |  |
-| `volume_24h` | `number` | No |  |
+| `volume_24h` | `number` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -276,11 +276,11 @@ local ticker = client:Ticker(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | `number` | No |  |
-| `price_usd` | `number` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `volume_24h` | `number` | No |  |
+| `price_change_24h` | `number` | No | 24-hour price change percentage |
+| `price_usd` | `number` | No | Current price in USD |
+| `symbol` | `string` | No | Token symbol |
+| `timestamp` | `string` | No | Timestamp of ticker data |
+| `volume_24h` | `number` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -332,19 +332,19 @@ local token = client:Token(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `chain` | `string` | No |  |
-| `decimals` | `number` | No |  |
-| `id` | `string` | No |  |
-| `last_updated` | `string` | No |  |
-| `liquidity_usd` | `number` | No |  |
-| `market_cap` | `number` | No |  |
-| `name` | `string` | No |  |
-| `price_change_24h` | `number` | No |  |
-| `price_usd` | `number` | No |  |
-| `symbol` | `string` | No |  |
-| `total_supply` | `number` | No |  |
-| `volume_24h` | `number` | No |  |
+| `address` | `string` | No | Token contract address |
+| `chain` | `string` | No | Blockchain network |
+| `decimals` | `number` | No | Token decimal places |
+| `id` | `string` | No | Unique token identifier |
+| `last_updated` | `string` | No | Timestamp of last data update |
+| `liquidity_usd` | `number` | No | Total liquidity in USD |
+| `market_cap` | `number` | No | Market capitalization in USD |
+| `name` | `string` | No | Token name |
+| `price_change_24h` | `number` | No | 24-hour price change percentage |
+| `price_usd` | `number` | No | Current price in USD |
+| `symbol` | `string` | No | Token symbol |
+| `total_supply` | `number` | No | Total token supply |
+| `volume_24h` | `number` | No | 24-hour trading volume |
 
 ### Operations
 

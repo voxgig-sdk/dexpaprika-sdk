@@ -36,36 +36,42 @@
               "active": true,
               "name": "chain",
               "req": false,
+              "short": "Blockchain network",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Exchange identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "liquidity_usd",
               "req": false,
+              "short": "Total liquidity in USD",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Exchange name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "trades_24h",
               "req": false,
+              "short": "Number of trades in last 24 hours",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "volume_24h",
               "req": false,
+              "short": "24-hour trading volume",
               "type": "`$NUMBER`"
             }
           ],
@@ -118,6 +124,7 @@
               "active": true,
               "name": "token_id",
               "req": false,
+              "short": "Token identifier",
               "type": "`$STRING`"
             }
           ],
@@ -211,36 +218,42 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "Pool contract address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "apr",
               "req": false,
+              "short": "Annual percentage rate",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "chain",
               "req": false,
+              "short": "Blockchain network",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "dex",
               "req": false,
+              "short": "DEX platform name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique pool identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "liquidity_usd",
               "req": false,
+              "short": "Total liquidity in USD",
               "type": "`$NUMBER`"
             },
             {
@@ -259,6 +272,7 @@
               "active": true,
               "name": "volume_24h",
               "req": false,
+              "short": "24-hour trading volume",
               "type": "`$NUMBER`"
             }
           ],
@@ -330,30 +344,35 @@
               "active": true,
               "name": "price_change_24h",
               "req": false,
+              "short": "24-hour price change percentage",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "price_usd",
               "req": false,
+              "short": "Current price in USD",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "symbol",
               "req": false,
+              "short": "Token symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp of ticker data",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "volume_24h",
               "req": false,
+              "short": "24-hour trading volume",
               "type": "`$NUMBER`"
             }
           ],
@@ -411,78 +430,91 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "Token contract address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "chain",
               "req": false,
+              "short": "Blockchain network",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "decimals",
               "req": false,
+              "short": "Token decimal places",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique token identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "last_updated",
               "req": false,
+              "short": "Timestamp of last data update",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "liquidity_usd",
               "req": false,
+              "short": "Total liquidity in USD",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "market_cap",
               "req": false,
+              "short": "Market capitalization in USD",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Token name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "price_change_24h",
               "req": false,
+              "short": "24-hour price change percentage",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "price_usd",
               "req": false,
+              "short": "Current price in USD",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "symbol",
               "req": false,
+              "short": "Token symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "total_supply",
               "req": false,
+              "short": "Total token supply",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "volume_24h",
               "req": false,
+              "short": "24-hour trading volume",
               "type": "`$NUMBER`"
             }
           ],

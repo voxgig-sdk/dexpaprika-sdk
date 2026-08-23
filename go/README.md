@@ -6,7 +6,7 @@ The Golang SDK for the Dexpaprika API — an entity-oriented client using standa
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Exchange(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -266,12 +266,12 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"chain"` |  |
-| `"id"` |  |
-| `"liquidity_usd"` |  |
-| `"name"` |  |
-| `"trades_24h"` |  |
-| `"volume_24h"` |  |
+| `"chain"` | Blockchain network |
+| `"id"` | Exchange identifier |
+| `"liquidity_usd"` | Total liquidity in USD |
+| `"name"` | Exchange name |
+| `"trades_24h"` | Number of trades in last 24 hours |
+| `"volume_24h"` | 24-hour trading volume |
 
 Operations: List.
 
@@ -282,7 +282,7 @@ API path: `/v1/exchanges`
 | Field | Description |
 | --- | --- |
 | `"data"` |  |
-| `"token_id"` |  |
+| `"token_id"` | Token identifier |
 
 Operations: Load.
 
@@ -292,15 +292,15 @@ API path: `/v1/historical/{token_id}`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"apr"` |  |
-| `"chain"` |  |
-| `"dex"` |  |
-| `"id"` |  |
-| `"liquidity_usd"` |  |
+| `"address"` | Pool contract address |
+| `"apr"` | Annual percentage rate |
+| `"chain"` | Blockchain network |
+| `"dex"` | DEX platform name |
+| `"id"` | Unique pool identifier |
+| `"liquidity_usd"` | Total liquidity in USD |
 | `"token0"` |  |
 | `"token1"` |  |
-| `"volume_24h"` |  |
+| `"volume_24h"` | 24-hour trading volume |
 
 Operations: List.
 
@@ -310,11 +310,11 @@ API path: `/v1/pools`
 
 | Field | Description |
 | --- | --- |
-| `"price_change_24h"` |  |
-| `"price_usd"` |  |
-| `"symbol"` |  |
-| `"timestamp"` |  |
-| `"volume_24h"` |  |
+| `"price_change_24h"` | 24-hour price change percentage |
+| `"price_usd"` | Current price in USD |
+| `"symbol"` | Token symbol |
+| `"timestamp"` | Timestamp of ticker data |
+| `"volume_24h"` | 24-hour trading volume |
 
 Operations: List.
 
@@ -324,19 +324,19 @@ API path: `/v1/tickers`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"chain"` |  |
-| `"decimals"` |  |
-| `"id"` |  |
-| `"last_updated"` |  |
-| `"liquidity_usd"` |  |
-| `"market_cap"` |  |
-| `"name"` |  |
-| `"price_change_24h"` |  |
-| `"price_usd"` |  |
-| `"symbol"` |  |
-| `"total_supply"` |  |
-| `"volume_24h"` |  |
+| `"address"` | Token contract address |
+| `"chain"` | Blockchain network |
+| `"decimals"` | Token decimal places |
+| `"id"` | Unique token identifier |
+| `"last_updated"` | Timestamp of last data update |
+| `"liquidity_usd"` | Total liquidity in USD |
+| `"market_cap"` | Market capitalization in USD |
+| `"name"` | Token name |
+| `"price_change_24h"` | 24-hour price change percentage |
+| `"price_usd"` | Current price in USD |
+| `"symbol"` | Token symbol |
+| `"total_supply"` | Total token supply |
+| `"volume_24h"` | 24-hour trading volume |
 
 Operations: List, Load.
 
@@ -361,12 +361,12 @@ Create an instance: `exchange := client.Exchange(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chain` | `string` |  |
-| `id` | `string` |  |
-| `liquidity_usd` | `float64` |  |
-| `name` | `string` |  |
-| `trades_24h` | `int` |  |
-| `volume_24h` | `float64` |  |
+| `chain` | `string` | Blockchain network |
+| `id` | `string` | Exchange identifier |
+| `liquidity_usd` | `float64` | Total liquidity in USD |
+| `name` | `string` | Exchange name |
+| `trades_24h` | `int` | Number of trades in last 24 hours |
+| `volume_24h` | `float64` | 24-hour trading volume |
 
 #### Example: List
 
@@ -394,7 +394,7 @@ Create an instance: `historical := client.Historical(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `[]any` |  |
-| `token_id` | `string` |  |
+| `token_id` | `string` | Token identifier |
 
 #### Example: Load
 
@@ -421,15 +421,15 @@ Create an instance: `pool := client.Pool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `apr` | `float64` |  |
-| `chain` | `string` |  |
-| `dex` | `string` |  |
-| `id` | `string` |  |
-| `liquidity_usd` | `float64` |  |
+| `address` | `string` | Pool contract address |
+| `apr` | `float64` | Annual percentage rate |
+| `chain` | `string` | Blockchain network |
+| `dex` | `string` | DEX platform name |
+| `id` | `string` | Unique pool identifier |
+| `liquidity_usd` | `float64` | Total liquidity in USD |
 | `token0` | `map[string]any` |  |
 | `token1` | `map[string]any` |  |
-| `volume_24h` | `float64` |  |
+| `volume_24h` | `float64` | 24-hour trading volume |
 
 #### Example: List
 
@@ -456,11 +456,11 @@ Create an instance: `ticker := client.Ticker(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `price_change_24h` | `float64` |  |
-| `price_usd` | `float64` |  |
-| `symbol` | `string` |  |
-| `timestamp` | `string` |  |
-| `volume_24h` | `float64` |  |
+| `price_change_24h` | `float64` | 24-hour price change percentage |
+| `price_usd` | `float64` | Current price in USD |
+| `symbol` | `string` | Token symbol |
+| `timestamp` | `string` | Timestamp of ticker data |
+| `volume_24h` | `float64` | 24-hour trading volume |
 
 #### Example: List
 
@@ -488,19 +488,19 @@ Create an instance: `token := client.Token(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `chain` | `string` |  |
-| `decimals` | `int` |  |
-| `id` | `string` |  |
-| `last_updated` | `string` |  |
-| `liquidity_usd` | `float64` |  |
-| `market_cap` | `float64` |  |
-| `name` | `string` |  |
-| `price_change_24h` | `float64` |  |
-| `price_usd` | `float64` |  |
-| `symbol` | `string` |  |
-| `total_supply` | `float64` |  |
-| `volume_24h` | `float64` |  |
+| `address` | `string` | Token contract address |
+| `chain` | `string` | Blockchain network |
+| `decimals` | `int` | Token decimal places |
+| `id` | `string` | Unique token identifier |
+| `last_updated` | `string` | Timestamp of last data update |
+| `liquidity_usd` | `float64` | Total liquidity in USD |
+| `market_cap` | `float64` | Market capitalization in USD |
+| `name` | `string` | Token name |
+| `price_change_24h` | `float64` | 24-hour price change percentage |
+| `price_usd` | `float64` | Current price in USD |
+| `symbol` | `string` | Token symbol |
+| `total_supply` | `float64` | Total token supply |
+| `volume_24h` | `float64` | 24-hour trading volume |
 
 #### Example: Load
 

@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -293,12 +293,12 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `chain` |  |
-| `id` |  |
-| `liquidity_usd` |  |
-| `name` |  |
-| `trades_24h` |  |
-| `volume_24h` |  |
+| `chain` | Blockchain network |
+| `id` | Exchange identifier |
+| `liquidity_usd` | Total liquidity in USD |
+| `name` | Exchange name |
+| `trades_24h` | Number of trades in last 24 hours |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: list.
 
@@ -309,7 +309,7 @@ API path: `/v1/exchanges`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `token_id` |  |
+| `token_id` | Token identifier |
 
 Operations: load.
 
@@ -319,15 +319,15 @@ API path: `/v1/historical/{token_id}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `apr` |  |
-| `chain` |  |
-| `dex` |  |
-| `id` |  |
-| `liquidity_usd` |  |
+| `address` | Pool contract address |
+| `apr` | Annual percentage rate |
+| `chain` | Blockchain network |
+| `dex` | DEX platform name |
+| `id` | Unique pool identifier |
+| `liquidity_usd` | Total liquidity in USD |
 | `token0` |  |
 | `token1` |  |
-| `volume_24h` |  |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: list.
 
@@ -337,11 +337,11 @@ API path: `/v1/pools`
 
 | Field | Description |
 | --- | --- |
-| `price_change_24h` |  |
-| `price_usd` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `volume_24h` |  |
+| `price_change_24h` | 24-hour price change percentage |
+| `price_usd` | Current price in USD |
+| `symbol` | Token symbol |
+| `timestamp` | Timestamp of ticker data |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: list.
 
@@ -351,19 +351,19 @@ API path: `/v1/tickers`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `chain` |  |
-| `decimals` |  |
-| `id` |  |
-| `last_updated` |  |
-| `liquidity_usd` |  |
-| `market_cap` |  |
-| `name` |  |
-| `price_change_24h` |  |
-| `price_usd` |  |
-| `symbol` |  |
-| `total_supply` |  |
-| `volume_24h` |  |
+| `address` | Token contract address |
+| `chain` | Blockchain network |
+| `decimals` | Token decimal places |
+| `id` | Unique token identifier |
+| `last_updated` | Timestamp of last data update |
+| `liquidity_usd` | Total liquidity in USD |
+| `market_cap` | Market capitalization in USD |
+| `name` | Token name |
+| `price_change_24h` | 24-hour price change percentage |
+| `price_usd` | Current price in USD |
+| `symbol` | Token symbol |
+| `total_supply` | Total token supply |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: list, load.
 
@@ -388,12 +388,12 @@ Create an instance: `const exchange = client.Exchange()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chain` | `string` |  |
-| `id` | `string` |  |
-| `liquidity_usd` | `number` |  |
-| `name` | `string` |  |
-| `trades_24h` | `number` |  |
-| `volume_24h` | `number` |  |
+| `chain` | `string` | Blockchain network |
+| `id` | `string` | Exchange identifier |
+| `liquidity_usd` | `number` | Total liquidity in USD |
+| `name` | `string` | Exchange name |
+| `trades_24h` | `number` | Number of trades in last 24 hours |
+| `volume_24h` | `number` | 24-hour trading volume |
 
 #### Example: List
 
@@ -417,7 +417,7 @@ Create an instance: `const historical = client.Historical()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `any[]` |  |
-| `token_id` | `string` |  |
+| `token_id` | `string` | Token identifier |
 
 #### Example: Load
 
@@ -440,15 +440,15 @@ Create an instance: `const pool = client.Pool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `apr` | `number` |  |
-| `chain` | `string` |  |
-| `dex` | `string` |  |
-| `id` | `string` |  |
-| `liquidity_usd` | `number` |  |
+| `address` | `string` | Pool contract address |
+| `apr` | `number` | Annual percentage rate |
+| `chain` | `string` | Blockchain network |
+| `dex` | `string` | DEX platform name |
+| `id` | `string` | Unique pool identifier |
+| `liquidity_usd` | `number` | Total liquidity in USD |
 | `token0` | `Record<string, any>` |  |
 | `token1` | `Record<string, any>` |  |
-| `volume_24h` | `number` |  |
+| `volume_24h` | `number` | 24-hour trading volume |
 
 #### Example: List
 
@@ -471,11 +471,11 @@ Create an instance: `const ticker = client.Ticker()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `price_change_24h` | `number` |  |
-| `price_usd` | `number` |  |
-| `symbol` | `string` |  |
-| `timestamp` | `string` |  |
-| `volume_24h` | `number` |  |
+| `price_change_24h` | `number` | 24-hour price change percentage |
+| `price_usd` | `number` | Current price in USD |
+| `symbol` | `string` | Token symbol |
+| `timestamp` | `string` | Timestamp of ticker data |
+| `volume_24h` | `number` | 24-hour trading volume |
 
 #### Example: List
 
@@ -499,19 +499,19 @@ Create an instance: `const token = client.Token()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `chain` | `string` |  |
-| `decimals` | `number` |  |
-| `id` | `string` |  |
-| `last_updated` | `string` |  |
-| `liquidity_usd` | `number` |  |
-| `market_cap` | `number` |  |
-| `name` | `string` |  |
-| `price_change_24h` | `number` |  |
-| `price_usd` | `number` |  |
-| `symbol` | `string` |  |
-| `total_supply` | `number` |  |
-| `volume_24h` | `number` |  |
+| `address` | `string` | Token contract address |
+| `chain` | `string` | Blockchain network |
+| `decimals` | `number` | Token decimal places |
+| `id` | `string` | Unique token identifier |
+| `last_updated` | `string` | Timestamp of last data update |
+| `liquidity_usd` | `number` | Total liquidity in USD |
+| `market_cap` | `number` | Market capitalization in USD |
+| `name` | `string` | Token name |
+| `price_change_24h` | `number` | 24-hour price change percentage |
+| `price_usd` | `number` | Current price in USD |
+| `symbol` | `string` | Token symbol |
+| `total_supply` | `number` | Total token supply |
+| `volume_24h` | `number` | 24-hour trading volume |
 
 #### Example: Load
 

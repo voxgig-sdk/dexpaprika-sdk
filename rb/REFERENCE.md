@@ -109,12 +109,12 @@ exchange = client.Exchange
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | `String` | No |  |
-| `id` | `String` | No |  |
-| `liquidity_usd` | `Float` | No |  |
-| `name` | `String` | No |  |
-| `trades_24h` | `Integer` | No |  |
-| `volume_24h` | `Float` | No |  |
+| `chain` | `String` | No | Blockchain network |
+| `id` | `String` | No | Exchange identifier |
+| `liquidity_usd` | `Float` | No | Total liquidity in USD |
+| `name` | `String` | No | Exchange name |
+| `trades_24h` | `Integer` | No | Number of trades in last 24 hours |
+| `volume_24h` | `Float` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -167,7 +167,7 @@ historical = client.Historical
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Array` | No |  |
-| `token_id` | `String` | No |  |
+| `token_id` | `String` | No | Token identifier |
 
 ### Operations
 
@@ -219,15 +219,15 @@ pool = client.Pool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `apr` | `Float` | No |  |
-| `chain` | `String` | No |  |
-| `dex` | `String` | No |  |
-| `id` | `String` | No |  |
-| `liquidity_usd` | `Float` | No |  |
+| `address` | `String` | No | Pool contract address |
+| `apr` | `Float` | No | Annual percentage rate |
+| `chain` | `String` | No | Blockchain network |
+| `dex` | `String` | No | DEX platform name |
+| `id` | `String` | No | Unique pool identifier |
+| `liquidity_usd` | `Float` | No | Total liquidity in USD |
 | `token0` | `Hash` | No |  |
 | `token1` | `Hash` | No |  |
-| `volume_24h` | `Float` | No |  |
+| `volume_24h` | `Float` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -279,11 +279,11 @@ ticker = client.Ticker
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | `Float` | No |  |
-| `price_usd` | `Float` | No |  |
-| `symbol` | `String` | No |  |
-| `timestamp` | `String` | No |  |
-| `volume_24h` | `Float` | No |  |
+| `price_change_24h` | `Float` | No | 24-hour price change percentage |
+| `price_usd` | `Float` | No | Current price in USD |
+| `symbol` | `String` | No | Token symbol |
+| `timestamp` | `String` | No | Timestamp of ticker data |
+| `volume_24h` | `Float` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -335,19 +335,19 @@ token = client.Token
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `chain` | `String` | No |  |
-| `decimals` | `Integer` | No |  |
-| `id` | `String` | No |  |
-| `last_updated` | `String` | No |  |
-| `liquidity_usd` | `Float` | No |  |
-| `market_cap` | `Float` | No |  |
-| `name` | `String` | No |  |
-| `price_change_24h` | `Float` | No |  |
-| `price_usd` | `Float` | No |  |
-| `symbol` | `String` | No |  |
-| `total_supply` | `Float` | No |  |
-| `volume_24h` | `Float` | No |  |
+| `address` | `String` | No | Token contract address |
+| `chain` | `String` | No | Blockchain network |
+| `decimals` | `Integer` | No | Token decimal places |
+| `id` | `String` | No | Unique token identifier |
+| `last_updated` | `String` | No | Timestamp of last data update |
+| `liquidity_usd` | `Float` | No | Total liquidity in USD |
+| `market_cap` | `Float` | No | Market capitalization in USD |
+| `name` | `String` | No | Token name |
+| `price_change_24h` | `Float` | No | 24-hour price change percentage |
+| `price_usd` | `Float` | No | Current price in USD |
+| `symbol` | `String` | No | Token symbol |
+| `total_supply` | `Float` | No | Total token supply |
+| `volume_24h` | `Float` | No | 24-hour trading volume |
 
 ### Operations
 

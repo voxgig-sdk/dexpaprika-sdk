@@ -108,12 +108,12 @@ $exchange = $client->Exchange();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | `string` | No |  |
-| `id` | `string` | No |  |
-| `liquidity_usd` | `float` | No |  |
-| `name` | `string` | No |  |
-| `trades_24h` | `int` | No |  |
-| `volume_24h` | `float` | No |  |
+| `chain` | `string` | No | Blockchain network |
+| `id` | `string` | No | Exchange identifier |
+| `liquidity_usd` | `float` | No | Total liquidity in USD |
+| `name` | `string` | No | Exchange name |
+| `trades_24h` | `int` | No | Number of trades in last 24 hours |
+| `volume_24h` | `float` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -166,7 +166,7 @@ $historical = $client->Historical();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `array` | No |  |
-| `token_id` | `string` | No |  |
+| `token_id` | `string` | No | Token identifier |
 
 ### Operations
 
@@ -218,15 +218,15 @@ $pool = $client->Pool();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `apr` | `float` | No |  |
-| `chain` | `string` | No |  |
-| `dex` | `string` | No |  |
-| `id` | `string` | No |  |
-| `liquidity_usd` | `float` | No |  |
+| `address` | `string` | No | Pool contract address |
+| `apr` | `float` | No | Annual percentage rate |
+| `chain` | `string` | No | Blockchain network |
+| `dex` | `string` | No | DEX platform name |
+| `id` | `string` | No | Unique pool identifier |
+| `liquidity_usd` | `float` | No | Total liquidity in USD |
 | `token0` | `array` | No |  |
 | `token1` | `array` | No |  |
-| `volume_24h` | `float` | No |  |
+| `volume_24h` | `float` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -278,11 +278,11 @@ $ticker = $client->Ticker();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | `float` | No |  |
-| `price_usd` | `float` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `volume_24h` | `float` | No |  |
+| `price_change_24h` | `float` | No | 24-hour price change percentage |
+| `price_usd` | `float` | No | Current price in USD |
+| `symbol` | `string` | No | Token symbol |
+| `timestamp` | `string` | No | Timestamp of ticker data |
+| `volume_24h` | `float` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -334,19 +334,19 @@ $token = $client->Token();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `chain` | `string` | No |  |
-| `decimals` | `int` | No |  |
-| `id` | `string` | No |  |
-| `last_updated` | `string` | No |  |
-| `liquidity_usd` | `float` | No |  |
-| `market_cap` | `float` | No |  |
-| `name` | `string` | No |  |
-| `price_change_24h` | `float` | No |  |
-| `price_usd` | `float` | No |  |
-| `symbol` | `string` | No |  |
-| `total_supply` | `float` | No |  |
-| `volume_24h` | `float` | No |  |
+| `address` | `string` | No | Token contract address |
+| `chain` | `string` | No | Blockchain network |
+| `decimals` | `int` | No | Token decimal places |
+| `id` | `string` | No | Unique token identifier |
+| `last_updated` | `string` | No | Timestamp of last data update |
+| `liquidity_usd` | `float` | No | Total liquidity in USD |
+| `market_cap` | `float` | No | Market capitalization in USD |
+| `name` | `string` | No | Token name |
+| `price_change_24h` | `float` | No | 24-hour price change percentage |
+| `price_usd` | `float` | No | Current price in USD |
+| `symbol` | `string` | No | Token symbol |
+| `total_supply` | `float` | No | Total token supply |
+| `volume_24h` | `float` | No | 24-hour trading volume |
 
 ### Operations
 

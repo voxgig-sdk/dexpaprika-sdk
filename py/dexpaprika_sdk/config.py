@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Dexpaprika",
+            "slug": "dexpaprika",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -54,26 +57,32 @@ def make_config():
         "fields": [
           {
             "name": "chain",
+            "short": "Blockchain network",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Exchange identifier",
             "type": "`$STRING`",
           },
           {
             "name": "liquidity_usd",
+            "short": "Total liquidity in USD",
             "type": "`$NUMBER`",
           },
           {
             "name": "name",
+            "short": "Exchange name",
             "type": "`$STRING`",
           },
           {
             "name": "trades_24h",
+            "short": "Number of trades in last 24 hours",
             "type": "`$INTEGER`",
           },
           {
             "name": "volume_24h",
+            "short": "24-hour trading volume",
             "type": "`$NUMBER`",
           },
         ],
@@ -113,6 +122,7 @@ def make_config():
           },
           {
             "name": "token_id",
+            "short": "Token identifier",
             "type": "`$STRING`",
           },
         ],
@@ -192,26 +202,32 @@ def make_config():
         "fields": [
           {
             "name": "address",
+            "short": "Pool contract address",
             "type": "`$STRING`",
           },
           {
             "name": "apr",
+            "short": "Annual percentage rate",
             "type": "`$NUMBER`",
           },
           {
             "name": "chain",
+            "short": "Blockchain network",
             "type": "`$STRING`",
           },
           {
             "name": "dex",
+            "short": "DEX platform name",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Unique pool identifier",
             "type": "`$STRING`",
           },
           {
             "name": "liquidity_usd",
+            "short": "Total liquidity in USD",
             "type": "`$NUMBER`",
           },
           {
@@ -224,6 +240,7 @@ def make_config():
           },
           {
             "name": "volume_24h",
+            "short": "24-hour trading volume",
             "type": "`$NUMBER`",
           },
         ],
@@ -280,22 +297,27 @@ def make_config():
         "fields": [
           {
             "name": "price_change_24h",
+            "short": "24-hour price change percentage",
             "type": "`$NUMBER`",
           },
           {
             "name": "price_usd",
+            "short": "Current price in USD",
             "type": "`$NUMBER`",
           },
           {
             "name": "symbol",
+            "short": "Token symbol",
             "type": "`$STRING`",
           },
           {
             "name": "timestamp",
+            "short": "Timestamp of ticker data",
             "type": "`$STRING`",
           },
           {
             "name": "volume_24h",
+            "short": "24-hour trading volume",
             "type": "`$NUMBER`",
           },
         ],
@@ -344,54 +366,67 @@ def make_config():
         "fields": [
           {
             "name": "address",
+            "short": "Token contract address",
             "type": "`$STRING`",
           },
           {
             "name": "chain",
+            "short": "Blockchain network",
             "type": "`$STRING`",
           },
           {
             "name": "decimals",
+            "short": "Token decimal places",
             "type": "`$INTEGER`",
           },
           {
             "name": "id",
+            "short": "Unique token identifier",
             "type": "`$STRING`",
           },
           {
             "name": "last_updated",
+            "short": "Timestamp of last data update",
             "type": "`$STRING`",
           },
           {
             "name": "liquidity_usd",
+            "short": "Total liquidity in USD",
             "type": "`$NUMBER`",
           },
           {
             "name": "market_cap",
+            "short": "Market capitalization in USD",
             "type": "`$NUMBER`",
           },
           {
             "name": "name",
+            "short": "Token name",
             "type": "`$STRING`",
           },
           {
             "name": "price_change_24h",
+            "short": "24-hour price change percentage",
             "type": "`$NUMBER`",
           },
           {
             "name": "price_usd",
+            "short": "Current price in USD",
             "type": "`$NUMBER`",
           },
           {
             "name": "symbol",
+            "short": "Token symbol",
             "type": "`$STRING`",
           },
           {
             "name": "total_supply",
+            "short": "Total token supply",
             "type": "`$NUMBER`",
           },
           {
             "name": "volume_24h",
+            "short": "24-hour trading volume",
             "type": "`$NUMBER`",
           },
         ],

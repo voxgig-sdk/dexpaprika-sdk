@@ -248,12 +248,12 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `chain` |  |
-| `id` |  |
-| `liquidity_usd` |  |
-| `name` |  |
-| `trades_24h` |  |
-| `volume_24h` |  |
+| `chain` | Blockchain network |
+| `id` | Exchange identifier |
+| `liquidity_usd` | Total liquidity in USD |
+| `name` | Exchange name |
+| `trades_24h` | Number of trades in last 24 hours |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: List.
 
@@ -264,7 +264,7 @@ API path: `/v1/exchanges`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `token_id` |  |
+| `token_id` | Token identifier |
 
 Operations: Load.
 
@@ -274,15 +274,15 @@ API path: `/v1/historical/{token_id}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `apr` |  |
-| `chain` |  |
-| `dex` |  |
-| `id` |  |
-| `liquidity_usd` |  |
+| `address` | Pool contract address |
+| `apr` | Annual percentage rate |
+| `chain` | Blockchain network |
+| `dex` | DEX platform name |
+| `id` | Unique pool identifier |
+| `liquidity_usd` | Total liquidity in USD |
 | `token0` |  |
 | `token1` |  |
-| `volume_24h` |  |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: List.
 
@@ -292,11 +292,11 @@ API path: `/v1/pools`
 
 | Field | Description |
 | --- | --- |
-| `price_change_24h` |  |
-| `price_usd` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `volume_24h` |  |
+| `price_change_24h` | 24-hour price change percentage |
+| `price_usd` | Current price in USD |
+| `symbol` | Token symbol |
+| `timestamp` | Timestamp of ticker data |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: List.
 
@@ -306,19 +306,19 @@ API path: `/v1/tickers`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `chain` |  |
-| `decimals` |  |
-| `id` |  |
-| `last_updated` |  |
-| `liquidity_usd` |  |
-| `market_cap` |  |
-| `name` |  |
-| `price_change_24h` |  |
-| `price_usd` |  |
-| `symbol` |  |
-| `total_supply` |  |
-| `volume_24h` |  |
+| `address` | Token contract address |
+| `chain` | Blockchain network |
+| `decimals` | Token decimal places |
+| `id` | Unique token identifier |
+| `last_updated` | Timestamp of last data update |
+| `liquidity_usd` | Total liquidity in USD |
+| `market_cap` | Market capitalization in USD |
+| `name` | Token name |
+| `price_change_24h` | 24-hour price change percentage |
+| `price_usd` | Current price in USD |
+| `symbol` | Token symbol |
+| `total_supply` | Total token supply |
+| `volume_24h` | 24-hour trading volume |
 
 Operations: List, Load.
 
@@ -343,12 +343,12 @@ Create an instance: `exchange = client.Exchange()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `chain` | `str` |  |
-| `id` | `str` |  |
-| `liquidity_usd` | `float` |  |
-| `name` | `str` |  |
-| `trades_24h` | `int` |  |
-| `volume_24h` | `float` |  |
+| `chain` | `str` | Blockchain network |
+| `id` | `str` | Exchange identifier |
+| `liquidity_usd` | `float` | Total liquidity in USD |
+| `name` | `str` | Exchange name |
+| `trades_24h` | `int` | Number of trades in last 24 hours |
+| `volume_24h` | `float` | 24-hour trading volume |
 
 #### Example: List
 
@@ -372,7 +372,7 @@ Create an instance: `historical = client.Historical()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `list` |  |
-| `token_id` | `str` |  |
+| `token_id` | `str` | Token identifier |
 
 #### Example: Load
 
@@ -395,15 +395,15 @@ Create an instance: `pool = client.Pool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `str` |  |
-| `apr` | `float` |  |
-| `chain` | `str` |  |
-| `dex` | `str` |  |
-| `id` | `str` |  |
-| `liquidity_usd` | `float` |  |
+| `address` | `str` | Pool contract address |
+| `apr` | `float` | Annual percentage rate |
+| `chain` | `str` | Blockchain network |
+| `dex` | `str` | DEX platform name |
+| `id` | `str` | Unique pool identifier |
+| `liquidity_usd` | `float` | Total liquidity in USD |
 | `token0` | `dict` |  |
 | `token1` | `dict` |  |
-| `volume_24h` | `float` |  |
+| `volume_24h` | `float` | 24-hour trading volume |
 
 #### Example: List
 
@@ -426,11 +426,11 @@ Create an instance: `ticker = client.Ticker()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `price_change_24h` | `float` |  |
-| `price_usd` | `float` |  |
-| `symbol` | `str` |  |
-| `timestamp` | `str` |  |
-| `volume_24h` | `float` |  |
+| `price_change_24h` | `float` | 24-hour price change percentage |
+| `price_usd` | `float` | Current price in USD |
+| `symbol` | `str` | Token symbol |
+| `timestamp` | `str` | Timestamp of ticker data |
+| `volume_24h` | `float` | 24-hour trading volume |
 
 #### Example: List
 
@@ -454,19 +454,19 @@ Create an instance: `token = client.Token()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `str` |  |
-| `chain` | `str` |  |
-| `decimals` | `int` |  |
-| `id` | `str` |  |
-| `last_updated` | `str` |  |
-| `liquidity_usd` | `float` |  |
-| `market_cap` | `float` |  |
-| `name` | `str` |  |
-| `price_change_24h` | `float` |  |
-| `price_usd` | `float` |  |
-| `symbol` | `str` |  |
-| `total_supply` | `float` |  |
-| `volume_24h` | `float` |  |
+| `address` | `str` | Token contract address |
+| `chain` | `str` | Blockchain network |
+| `decimals` | `int` | Token decimal places |
+| `id` | `str` | Unique token identifier |
+| `last_updated` | `str` | Timestamp of last data update |
+| `liquidity_usd` | `float` | Total liquidity in USD |
+| `market_cap` | `float` | Market capitalization in USD |
+| `name` | `str` | Token name |
+| `price_change_24h` | `float` | 24-hour price change percentage |
+| `price_usd` | `float` | Current price in USD |
+| `symbol` | `str` | Token symbol |
+| `total_supply` | `float` | Total token supply |
+| `volume_24h` | `float` | 24-hour trading volume |
 
 #### Example: Load
 

@@ -114,12 +114,12 @@ fmt.Println(exchange.GetName()) // "exchange"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `chain` | `string` | No |  |
-| `id` | `string` | No |  |
-| `liquidity_usd` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `trades_24h` | `int` | No |  |
-| `volume_24h` | `float64` | No |  |
+| `chain` | `string` | No | Blockchain network |
+| `id` | `string` | No | Exchange identifier |
+| `liquidity_usd` | `float64` | No | Total liquidity in USD |
+| `name` | `string` | No | Exchange name |
+| `trades_24h` | `int` | No | Number of trades in last 24 hours |
+| `volume_24h` | `float64` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -171,7 +171,7 @@ fmt.Println(historical.GetName()) // "historical"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `[]any` | No |  |
-| `token_id` | `string` | No |  |
+| `token_id` | `string` | No | Token identifier |
 
 ### Operations
 
@@ -222,15 +222,15 @@ fmt.Println(pool.GetName()) // "pool"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `apr` | `float64` | No |  |
-| `chain` | `string` | No |  |
-| `dex` | `string` | No |  |
-| `id` | `string` | No |  |
-| `liquidity_usd` | `float64` | No |  |
+| `address` | `string` | No | Pool contract address |
+| `apr` | `float64` | No | Annual percentage rate |
+| `chain` | `string` | No | Blockchain network |
+| `dex` | `string` | No | DEX platform name |
+| `id` | `string` | No | Unique pool identifier |
+| `liquidity_usd` | `float64` | No | Total liquidity in USD |
 | `token0` | `map[string]any` | No |  |
 | `token1` | `map[string]any` | No |  |
-| `volume_24h` | `float64` | No |  |
+| `volume_24h` | `float64` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -281,11 +281,11 @@ fmt.Println(ticker.GetName()) // "ticker"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `price_change_24h` | `float64` | No |  |
-| `price_usd` | `float64` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `volume_24h` | `float64` | No |  |
+| `price_change_24h` | `float64` | No | 24-hour price change percentage |
+| `price_usd` | `float64` | No | Current price in USD |
+| `symbol` | `string` | No | Token symbol |
+| `timestamp` | `string` | No | Timestamp of ticker data |
+| `volume_24h` | `float64` | No | 24-hour trading volume |
 
 ### Operations
 
@@ -336,19 +336,19 @@ fmt.Println(token.GetName()) // "token"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `chain` | `string` | No |  |
-| `decimals` | `int` | No |  |
-| `id` | `string` | No |  |
-| `last_updated` | `string` | No |  |
-| `liquidity_usd` | `float64` | No |  |
-| `market_cap` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `price_change_24h` | `float64` | No |  |
-| `price_usd` | `float64` | No |  |
-| `symbol` | `string` | No |  |
-| `total_supply` | `float64` | No |  |
-| `volume_24h` | `float64` | No |  |
+| `address` | `string` | No | Token contract address |
+| `chain` | `string` | No | Blockchain network |
+| `decimals` | `int` | No | Token decimal places |
+| `id` | `string` | No | Unique token identifier |
+| `last_updated` | `string` | No | Timestamp of last data update |
+| `liquidity_usd` | `float64` | No | Total liquidity in USD |
+| `market_cap` | `float64` | No | Market capitalization in USD |
+| `name` | `string` | No | Token name |
+| `price_change_24h` | `float64` | No | 24-hour price change percentage |
+| `price_usd` | `float64` | No | Current price in USD |
+| `symbol` | `string` | No | Token symbol |
+| `total_supply` | `float64` | No | Total token supply |
+| `volume_24h` | `float64` | No | 24-hour trading volume |
 
 ### Operations
 

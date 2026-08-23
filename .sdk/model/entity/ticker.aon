@@ -1,0 +1,79 @@
+# Entity: ticker
+
+main: kit: entity: ticker: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "price_change_24h"
+      req: false
+      short: "24-hour price change percentage"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "price_usd"
+      req: false
+      short: "Current price in USD"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "symbol"
+      req: false
+      short: "Token symbol"
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Timestamp of ticker data"
+      type: "`$STRING`"
+    }
+    {
+      name: "volume_24h"
+      req: false
+      short: "24-hour trading volume"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "ticker"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/tickers"
+          parts: [
+            "v1"
+            "tickers"
+          ]
+          select: {
+            exist: [
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

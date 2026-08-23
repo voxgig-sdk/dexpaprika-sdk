@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Dexpaprika",
+			"slug": "dexpaprika",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,26 +40,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "chain",
+						"short": "Blockchain network",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Exchange identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "liquidity_usd",
+						"short": "Total liquidity in USD",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Exchange name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "trades_24h",
+						"short": "Number of trades in last 24 hours",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "volume_24h",
+						"short": "24-hour trading volume",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -96,6 +105,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "token_id",
+						"short": "Token identifier",
 						"type": "`$STRING`",
 					},
 				},
@@ -175,26 +185,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "Pool contract address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "apr",
+						"short": "Annual percentage rate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "chain",
+						"short": "Blockchain network",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "dex",
+						"short": "DEX platform name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique pool identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "liquidity_usd",
+						"short": "Total liquidity in USD",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -207,6 +223,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "volume_24h",
+						"short": "24-hour trading volume",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -263,22 +280,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "price_change_24h",
+						"short": "24-hour price change percentage",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "price_usd",
+						"short": "Current price in USD",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "symbol",
+						"short": "Token symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp of ticker data",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "volume_24h",
+						"short": "24-hour trading volume",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -327,54 +349,67 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "Token contract address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "chain",
+						"short": "Blockchain network",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "decimals",
+						"short": "Token decimal places",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique token identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "last_updated",
+						"short": "Timestamp of last data update",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "liquidity_usd",
+						"short": "Total liquidity in USD",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "market_cap",
+						"short": "Market capitalization in USD",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Token name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "price_change_24h",
+						"short": "24-hour price change percentage",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "price_usd",
+						"short": "Current price in USD",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "symbol",
+						"short": "Token symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "total_supply",
+						"short": "Total token supply",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "volume_24h",
+						"short": "24-hour trading volume",
 						"type": "`$NUMBER`",
 					},
 				},
