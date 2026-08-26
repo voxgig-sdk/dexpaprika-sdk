@@ -71,10 +71,14 @@ ExchangeListMatch = Struct.new(
 # @!attribute [rw] data
 #   @return [Array, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] token_id
 #   @return [String, nil]
 Historical = Struct.new(
   :data,
+  :id,
   :token_id,
   keyword_init: true
 )

@@ -167,6 +167,7 @@ historical = client.Historical
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Array` | No |  |
+| `id` | `String` | No |  |
 | `token_id` | `String` | No | Token identifier |
 
 ### Operations

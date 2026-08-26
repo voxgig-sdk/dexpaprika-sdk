@@ -25,6 +25,7 @@ export interface ExchangeListMatch {
 
 export interface Historical {
   data?: any[]
+  id?: string
   token_id?: string
 }
 

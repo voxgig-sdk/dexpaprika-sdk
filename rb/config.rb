@@ -28,6 +28,7 @@ module DexpaprikaConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -110,6 +111,10 @@ module DexpaprikaConfig
             {
               "name" => "data",
               "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "token_id",

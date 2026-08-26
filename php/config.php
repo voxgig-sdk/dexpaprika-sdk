@@ -42,6 +42,7 @@ class DexpaprikaConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -124,6 +125,10 @@ class DexpaprikaConfig
             [
               'name' => 'data',
               'type' => '`$ARRAY`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'token_id',

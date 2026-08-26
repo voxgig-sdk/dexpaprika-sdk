@@ -171,6 +171,7 @@ fmt.Println(historical.GetName()) // "historical"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `[]any` | No |  |
+| `id` | `string` | No |  |
 | `token_id` | `string` | No | Token identifier |
 
 ### Operations

@@ -164,6 +164,7 @@ local historical = client:Historical(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `table` | No |  |
+| `id` | `string` | No |  |
 | `token_id` | `string` | No | Token identifier |
 
 ### Operations

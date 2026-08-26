@@ -35,6 +35,7 @@ type ExchangeListMatch struct {
 // Historical is the typed data model for the historical entity.
 type Historical struct {
 	Data *[]any `json:"data,omitempty"`
+	Id *string `json:"id,omitempty"`
 	TokenId *string `json:"token_id,omitempty"`
 }
 

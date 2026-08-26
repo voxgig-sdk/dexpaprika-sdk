@@ -36,6 +36,7 @@ class ExchangeListMatch(TypedDict, total=False):
 
 class Historical(TypedDict, total=False):
     data: list
+    id: str
     token_id: str
 
 

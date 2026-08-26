@@ -162,6 +162,7 @@ historical = client.Historical()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `list` | No |  |
+| `id` | `str` | No |  |
 | `token_id` | `str` | No | Token identifier |
 
 ### Operations

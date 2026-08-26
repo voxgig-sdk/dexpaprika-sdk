@@ -166,6 +166,7 @@ $historical = $client->Historical();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `array` | No |  |
+| `id` | `string` | No |  |
 | `token_id` | `string` | No | Token identifier |
 
 ### Operations

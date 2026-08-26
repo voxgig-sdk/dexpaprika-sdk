@@ -24,6 +24,7 @@
 
 ---@class Historical
 ---@field data? table
+---@field id? string
 ---@field token_id? string
 
 ---@class HistoricalLoadMatch

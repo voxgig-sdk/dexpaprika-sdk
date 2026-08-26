@@ -3,18 +3,18 @@
     "historical": {
       "HISTORICAL00": {
         "data": [],
-        "token_id": "TOKEN01",
-        "id": "HISTORICAL00"
+        "id": "HISTORICAL00",
+        "token_id": "TOKEN01"
       },
       "HISTORICAL01": {
         "data": [],
-        "token_id": "TOKEN01",
-        "id": "HISTORICAL01"
+        "id": "HISTORICAL01",
+        "token_id": "TOKEN01"
       },
       "HISTORICAL02": {
         "data": [],
-        "token_id": "TOKEN01",
-        "id": "HISTORICAL02"
+        "id": "HISTORICAL02",
+        "token_id": "TOKEN01"
       }
     }
   },

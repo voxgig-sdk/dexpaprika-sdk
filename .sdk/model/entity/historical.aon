@@ -11,12 +11,22 @@ main: kit: entity: historical: {
       type: "`$ARRAY`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "token_id"
       req: false
       short: "Token identifier"
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "historical"
   op: {

@@ -38,6 +38,7 @@ class ExchangeListMatch
 class Historical
 {
     public ?array $data = null;
+    public ?string $id = null;
     public ?string $token_id = null;
 }
 

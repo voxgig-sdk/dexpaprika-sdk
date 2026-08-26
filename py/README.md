@@ -264,6 +264,7 @@ API path: `/v1/exchanges`
 | Field | Description |
 | --- | --- |
 | `data` |  |
+| `id` |  |
 | `token_id` | Token identifier |
 
 Operations: Load.
@@ -372,6 +373,7 @@ Create an instance: `historical = client.Historical()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `list` |  |
+| `id` | `str` |  |
 | `token_id` | `str` | Token identifier |
 
 #### Example: Load
