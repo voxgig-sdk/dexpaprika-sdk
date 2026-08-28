@@ -31,6 +31,9 @@ export interface Historical {
 
 export interface HistoricalLoadMatch {
   id: string
+  end?: string
+  interval?: string
+  start?: string
 }
 
 export interface Pool {
@@ -46,15 +49,8 @@ export interface Pool {
 }
 
 export interface PoolListMatch {
-  address?: string
-  apr?: number
-  chain?: string
   dex?: string
-  id?: string
-  liquidity_usd?: number
-  token0?: Record<string, any>
-  token1?: Record<string, any>
-  volume_24h?: number
+  limit?: number
 }
 
 export interface Ticker {
@@ -66,11 +62,7 @@ export interface Ticker {
 }
 
 export interface TickerListMatch {
-  price_change_24h?: number
-  price_usd?: number
   symbol?: string
-  timestamp?: string
-  volume_24h?: number
 }
 
 export interface Token {
@@ -94,18 +86,8 @@ export interface TokenLoadMatch {
 }
 
 export interface TokenListMatch {
-  address?: string
   chain?: string
-  decimals?: number
-  id?: string
-  last_updated?: string
-  liquidity_usd?: number
-  market_cap?: number
-  name?: string
-  price_change_24h?: number
-  price_usd?: number
-  symbol?: string
-  total_supply?: number
-  volume_24h?: number
+  limit?: number
+  offset?: number
 }
 

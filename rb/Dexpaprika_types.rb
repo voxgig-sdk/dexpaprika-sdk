@@ -87,8 +87,20 @@ Historical = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [String, nil]
 HistoricalLoadMatch = Struct.new(
   :id,
+  :end,
+  :interval,
+  :start,
   keyword_init: true
 )
 
@@ -135,42 +147,14 @@ Pool = Struct.new(
 
 # Request payload for Pool#list.
 #
-# @!attribute [rw] address
-#   @return [String, nil]
-#
-# @!attribute [rw] apr
-#   @return [Float, nil]
-#
-# @!attribute [rw] chain
-#   @return [String, nil]
-#
 # @!attribute [rw] dex
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] liquidity_usd
-#   @return [Float, nil]
-#
-# @!attribute [rw] token0
-#   @return [Hash, nil]
-#
-# @!attribute [rw] token1
-#   @return [Hash, nil]
-#
-# @!attribute [rw] volume_24h
-#   @return [Float, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 PoolListMatch = Struct.new(
-  :address,
-  :apr,
-  :chain,
   :dex,
-  :id,
-  :liquidity_usd,
-  :token0,
-  :token1,
-  :volume_24h,
+  :limit,
   keyword_init: true
 )
 
@@ -201,26 +185,10 @@ Ticker = Struct.new(
 
 # Request payload for Ticker#list.
 #
-# @!attribute [rw] price_change_24h
-#   @return [Float, nil]
-#
-# @!attribute [rw] price_usd
-#   @return [Float, nil]
-#
 # @!attribute [rw] symbol
 #   @return [String, nil]
-#
-# @!attribute [rw] timestamp
-#   @return [String, nil]
-#
-# @!attribute [rw] volume_24h
-#   @return [Float, nil]
 TickerListMatch = Struct.new(
-  :price_change_24h,
-  :price_usd,
   :symbol,
-  :timestamp,
-  :volume_24h,
   keyword_init: true
 )
 
@@ -292,58 +260,18 @@ TokenLoadMatch = Struct.new(
 
 # Request payload for Token#list.
 #
-# @!attribute [rw] address
-#   @return [String, nil]
-#
 # @!attribute [rw] chain
 #   @return [String, nil]
 #
-# @!attribute [rw] decimals
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] last_updated
-#   @return [String, nil]
-#
-# @!attribute [rw] liquidity_usd
-#   @return [Float, nil]
-#
-# @!attribute [rw] market_cap
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] price_change_24h
-#   @return [Float, nil]
-#
-# @!attribute [rw] price_usd
-#   @return [Float, nil]
-#
-# @!attribute [rw] symbol
-#   @return [String, nil]
-#
-# @!attribute [rw] total_supply
-#   @return [Float, nil]
-#
-# @!attribute [rw] volume_24h
-#   @return [Float, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 TokenListMatch = Struct.new(
-  :address,
   :chain,
-  :decimals,
-  :id,
-  :last_updated,
-  :liquidity_usd,
-  :market_cap,
-  :name,
-  :price_change_24h,
-  :price_usd,
-  :symbol,
-  :total_supply,
-  :volume_24h,
+  :limit,
+  :offset,
   keyword_init: true
 )
 

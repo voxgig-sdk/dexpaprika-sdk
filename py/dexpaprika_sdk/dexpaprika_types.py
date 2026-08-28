@@ -40,8 +40,14 @@ class Historical(TypedDict, total=False):
     token_id: str
 
 
-class HistoricalLoadMatch(TypedDict):
+class HistoricalLoadMatchRequired(TypedDict):
     id: str
+
+
+class HistoricalLoadMatch(HistoricalLoadMatchRequired, total=False):
+    end: str
+    interval: str
+    start: str
 
 
 class Pool(TypedDict, total=False):
@@ -57,15 +63,8 @@ class Pool(TypedDict, total=False):
 
 
 class PoolListMatch(TypedDict, total=False):
-    address: str
-    apr: float
-    chain: str
     dex: str
-    id: str
-    liquidity_usd: float
-    token0: dict
-    token1: dict
-    volume_24h: float
+    limit: int
 
 
 class Ticker(TypedDict, total=False):
@@ -77,11 +76,7 @@ class Ticker(TypedDict, total=False):
 
 
 class TickerListMatch(TypedDict, total=False):
-    price_change_24h: float
-    price_usd: float
     symbol: str
-    timestamp: str
-    volume_24h: float
 
 
 class Token(TypedDict, total=False):
@@ -105,16 +100,6 @@ class TokenLoadMatch(TypedDict):
 
 
 class TokenListMatch(TypedDict, total=False):
-    address: str
     chain: str
-    decimals: int
-    id: str
-    last_updated: str
-    liquidity_usd: float
-    market_cap: float
-    name: str
-    price_change_24h: float
-    price_usd: float
-    symbol: str
-    total_supply: float
-    volume_24h: float
+    limit: int
+    offset: int

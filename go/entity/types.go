@@ -42,6 +42,9 @@ type Historical struct {
 // HistoricalLoadMatch is the typed request payload for Historical.LoadTyped.
 type HistoricalLoadMatch struct {
 	Id string `json:"id"`
+	End *string `json:"end,omitempty"`
+	Interval *string `json:"interval,omitempty"`
+	Start *string `json:"start,omitempty"`
 }
 
 // Pool is the typed data model for the pool entity.
@@ -59,15 +62,8 @@ type Pool struct {
 
 // PoolListMatch is the typed request payload for Pool.ListTyped.
 type PoolListMatch struct {
-	Address *string `json:"address,omitempty"`
-	Apr *float64 `json:"apr,omitempty"`
-	Chain *string `json:"chain,omitempty"`
 	Dex *string `json:"dex,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LiquidityUsd *float64 `json:"liquidity_usd,omitempty"`
-	Token0 *map[string]any `json:"token0,omitempty"`
-	Token1 *map[string]any `json:"token1,omitempty"`
-	Volume24h *float64 `json:"volume_24h,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // Ticker is the typed data model for the ticker entity.
@@ -81,11 +77,7 @@ type Ticker struct {
 
 // TickerListMatch is the typed request payload for Ticker.ListTyped.
 type TickerListMatch struct {
-	PriceChange24h *float64 `json:"price_change_24h,omitempty"`
-	PriceUsd *float64 `json:"price_usd,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Volume24h *float64 `json:"volume_24h,omitempty"`
 }
 
 // Token is the typed data model for the token entity.
@@ -112,19 +104,9 @@ type TokenLoadMatch struct {
 
 // TokenListMatch is the typed request payload for Token.ListTyped.
 type TokenListMatch struct {
-	Address *string `json:"address,omitempty"`
 	Chain *string `json:"chain,omitempty"`
-	Decimals *int `json:"decimals,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastUpdated *string `json:"last_updated,omitempty"`
-	LiquidityUsd *float64 `json:"liquidity_usd,omitempty"`
-	MarketCap *float64 `json:"market_cap,omitempty"`
-	Name *string `json:"name,omitempty"`
-	PriceChange24h *float64 `json:"price_change_24h,omitempty"`
-	PriceUsd *float64 `json:"price_usd,omitempty"`
-	Symbol *string `json:"symbol,omitempty"`
-	TotalSupply *float64 `json:"total_supply,omitempty"`
-	Volume24h *float64 `json:"volume_24h,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
